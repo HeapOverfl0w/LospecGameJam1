@@ -21,6 +21,7 @@ class Main
     this.lastSecond = new Date().getTime();
 
     this.keysDown = [];
+    this.mouseDown = false;
   }
 
   initialize()
@@ -32,7 +33,11 @@ class Main
   {
     for (let k = 0; k < main.keysDown.length; k++)
       main.camera.handleKeyDown(main.keysDown[k], main.level, 1/main.FPS);
+
     main.rayCaster.draw(main.ctx, main.camera, main.level);
+
+    if (main.mouseDown)
+      main.camera.handleMouseDown(this.level);
 
     main.fpsCounter++;
     if (new Date().getTime() - main.lastSecond > 1000)
@@ -48,6 +53,15 @@ class Main
     this.camera.angle = (this.camera.angle + angle) % (2 * Math.PI);
     if (this.angle < 0)
       this.camera.angle = this.camera.angle + (2 * Math.PI);
+  }
+
+  handleMouseDown() {
+    this.mouseDown = true;
+  }
+
+  handleMouseUp() {
+    this.mouseDown = false;
+    this.camera.handleMouseUp();
   }
 
   handleKeyDown(keyCode)

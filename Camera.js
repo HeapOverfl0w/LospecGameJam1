@@ -18,6 +18,14 @@ class Camera
     this.activeWeapon.draw(screenBuffer);
   }
 
+  handleMouseDown(level) {
+    this.activeWeapon.attack(level, this);
+  }
+
+  handleMouseUp( ) {
+    this.activeWeapon.stopAttack();
+  }
+
   handleKeyDown(keyCode, level, updateInterval)
   {
     if (keyCode == 87)

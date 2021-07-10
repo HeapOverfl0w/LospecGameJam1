@@ -11,6 +11,12 @@ class Animation {
         this.animating = false;
         this.frameTimeMs = frameTimeMs;
         this.repeats = repeats;
+
+        this.endRequested = false;
+    }
+
+    requestEnd() {
+        this.endRequested = true;
     }
 
     start() {
@@ -19,7 +25,7 @@ class Animation {
         this.animating = true;
         this.timer = setInterval((animation) => {
             animation.currentFrame++;
-            if (animation.frameCount == animation.currentFrame && !this.repeats){
+            if (animation.frameCount == animation.currentFrame && (!this.repeats || this.endRequested)){
                 animation.stop();
             }
             else if (animation.frameCount == animation.currentFrame && this.repeats){
@@ -34,6 +40,7 @@ class Animation {
         clearInterval(this.timer);
         this.animating = false;
         this.currentFrame = 0;
+        this.endRequested = false;
     }
 
     isAnimating() {

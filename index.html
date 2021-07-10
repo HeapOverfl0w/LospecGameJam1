@@ -11,6 +11,7 @@
       <img id="floors" src="./resources/floors.png"/>
       <img id="skybox" src="./resources/skybox.png"/>
       <img id="defaultScrewDriver" src="./resources/defaultScrewDriver.png"/>
+      <img id="defaultScrewDriver" src="./resources/attackScrewDriver.png"/>
     </div>
   </body>
 </html>
@@ -65,7 +66,14 @@
   document.addEventListener('mouseup', function (event) {
     if (main != undefined && !pointerLocked) 
       cvs.requestPointerLock();
-      //main.handleMouseUp();
+      
+    if (main != undefined && pointerLocked) 
+      main.handleMouseUp();
+  });
+
+  document.addEventListener('mousedown', function (event) {
+    if (main != undefined && pointerLocked) 
+      main.handleMouseDown();
   });
 
   document.addEventListener('pointerlockchange', function (event) {

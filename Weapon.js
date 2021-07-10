@@ -23,7 +23,8 @@ class Weapon {
 
     attack(level, camera) {
         //only shoot if weapon is ready and ammo is in the magazine
-        if (this.isReady() && this.magazineAmmo > 0) {
+        if (this.isReady() && (this.magazineAmmo > 0 || !this.isRanged)) {
+            this.activeAnimation.stop();
             this.activeAnimation = this.attackAnimation;
             this.activeAnimation.start();
             if (this.projectile !== undefined) {
@@ -43,6 +44,10 @@ class Weapon {
                 this.ammo = 0;
             }
         }
+    }
+
+    stopAttack() {
+        this.activeAnimation.requestEnd();
     }
 
     draw(screenBuffer) {
