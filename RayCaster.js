@@ -99,6 +99,8 @@ class RayCaster {
 
     this.drawBillboards(ctx, camera, level, zBuffer);
 
+    camera.draw(this.screenBuffer);
+
     ctx.putImageData(this.screenBuffer, 0,0);
 
     ctx.save();
@@ -202,9 +204,6 @@ class RayCaster {
 
       if (inFov && distanceFromCamera >= 0.5 && distanceFromCamera < this.maxViewDistance)
       {
-        //let ceiling = cvsHeight / 2 - cvsHeight / distanceFromCamera;
-        //let floor = cvsHeight - ceiling;
-        //let height = floor - ceiling;
         let billboardTexture = level.billboards[i].getImageBuffer();
         let z = distanceFromCamera * Math.cos(angle);
         let height = (cvsHeight + (billboardTexture.height + (cvsHeight * .333))) / z;

@@ -1,6 +1,6 @@
 class Camera
 {
-  constructor(startX, startY, startAngle, fov, speed)
+  constructor(startX, startY, startAngle, fov, speed, defaultWeapon)
   {
     this.x = startX;
     this.y = startY;
@@ -9,6 +9,13 @@ class Camera
     this.speed = speed;
     this.height = 16;
     this.isStrafing = false;
+    this.activeWeapon = defaultWeapon;
+    this.activeWeapon.switchTo();
+    this.weapons = [ defaultWeapon ];
+  }
+
+  draw(screenBuffer) {
+    this.activeWeapon.draw(screenBuffer);
   }
 
   handleKeyDown(keyCode, level, updateInterval)

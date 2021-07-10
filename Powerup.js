@@ -1,0 +1,3 @@
+class Powerup extends Billboard {
+    
+}

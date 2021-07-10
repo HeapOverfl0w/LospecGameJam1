@@ -1,12 +1,13 @@
 class Data {
-    constructor(textures) {
-        this.textures = textures;
+    constructor() {
+        this.textures = ["defaultScrewDriver", "walls", "billboards", "floors", "skybox"];
     }
 
     load() {
         this.loadTextures();
         this.createAnimations();
         this.createBillboards();
+        this.createWeapons();
     }
 
     loadTextures() {
@@ -32,6 +33,7 @@ class Data {
 
         this.animations = {};
         this.animations["test"] = testAnimation;
+        this.animations["defaultScrewDriver"] = new Animation(this.textures["defaultScrewDriver"], 240,135,3,100,true);
     }
 
     createBillboards() {
@@ -45,6 +47,10 @@ class Data {
     }
 
     createWeapons() {
-
+        this.weapons = {};
+        //Screw Driver
+        this.weapons["screwDriver"] = new Weapon("Screw Driver", 
+        this.animations["defaultScrewDriver"], this.animations["defaultScrewDriver"], this.animations["defaultScrewDriver"],
+        false, undefined, 0);
     }
 }

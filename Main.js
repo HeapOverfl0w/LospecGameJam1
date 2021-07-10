@@ -2,7 +2,7 @@ class Main
 {
   constructor(ctx)
   {
-    this.data = new Data( ["walls", "billboards", "floors", "skybox"] );
+    this.data = new Data();
     this.data.load();
     this.ctx = ctx;
     let demoLevel = [[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
@@ -14,7 +14,7 @@ class Main
                      [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
                      [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]]
     this.level = new Level(demoLevel, this.data, document.getElementById("skybox"), true, "#000000", [{type: "test", x: 2, y: 2}]);
-    this.camera = new Camera(this.level.width/2, this.level.height/2, 0, Math.PI * (4/18), 5);
+    this.camera = new Camera(this.level.width/2, this.level.height/2, 0, Math.PI * (4/18), 5, this.data.weapons["screwDriver"]);
     this.rayCaster = new RayCaster(15);
     this.FPS = 30;
     this.fpsCounter = 0;

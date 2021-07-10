@@ -12,6 +12,11 @@ class Weapon {
         this.magazineAmmo = 0;
     }
 
+    switchTo() {
+        this.activeAnimation = this.defaultAnimation;
+        this.activeAnimation.start();
+    }
+
     isReady() {
         return this.activeAnimation === this.defaultAnimation;
     }
@@ -40,11 +45,20 @@ class Weapon {
         }
     }
 
-    draw(ctx) {
+    draw(screenBuffer) {
         if (!this.isReady() && !this.activeAnimation.isAnimating()) {
             this.activeAnimation = this.defaultAnimation;
             this.activeAnimation.start();
         }
-        this.activeAnimation.draw(ctx, 0, 0, ctx.canvas.width, ctx.canvas.height);
+
+        let animationFrameBuffer = this.activeAnimation.getFrameBuffer();
+        for (let i = 0; i < animationFrameBuffer.data.length; i = i + 4) {
+            if (animationFrameBuffer.data[i+3] != 0) {
+                screenBuffer.data[i] = animationFrameBuffer.data[i];
+                screenBuffer.data[i+1] = animationFrameBuffer.data[i+1];
+                screenBuffer.data[i+2] = animationFrameBuffer.data[i+2];
+                screenBuffer.data[i+3] = animationFrameBuffer.data[i+3];
+            }
+        }
     }
 }
