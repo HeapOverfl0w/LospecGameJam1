@@ -184,10 +184,12 @@ class RayCaster {
     let cvsWidth = ctx.canvas.width;
     let cvsHeight = ctx.canvas.height;
 
-    for (let i = 0; i < level.billboards.length; i++)
+    let billboards = level.getAllBillboards();
+
+    for (let i = 0; i < billboards.length; i++)
     {
-      let x = level.billboards[i].x - camera.x;
-      let y = level.billboards[i].y - camera.y;
+      let x = billboards[i].x - camera.x;
+      let y = billboards[i].y - camera.y;
       let distanceFromCamera = Math.sqrt(x*x + y*y);
 
       let cameraX = Math.sin(camera.angle);
@@ -204,7 +206,7 @@ class RayCaster {
 
       if (inFov && distanceFromCamera >= 0.5 && distanceFromCamera < this.maxViewDistance)
       {
-        let billboardTexture = level.billboards[i].getImageBuffer();
+        let billboardTexture = billboards[i].getImageBuffer();
         let z = distanceFromCamera * Math.cos(angle);
         let height = (cvsHeight + (billboardTexture.height + (cvsHeight * .333))) / z;
         let floor = (cvsHeight + 32) / 2 * (1 + 1/z) - 15;

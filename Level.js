@@ -10,7 +10,28 @@ class Level
     this.useShade = useShade;
     this.shadeColor = shadeColor;
 
+    this.projectiles = [];
+
     this.loadBillboards(billboards);
+  }
+
+  getAllBillboards() {
+    return this.billboards.concat(this.projectiles);
+  }
+
+  update() {
+    //remove unnecessary projectiles
+    let projectilesToRemove = [];
+    for (let p = 0; p < this.projectiles.length; p++){
+      this.projectiles[p].update(this);
+      if (this.projectiles[p].reachedMaxDistanceOrHitWall())
+        projectilesToRemove.push(this.projectiles[p]);
+    }
+
+    for (let p = 0; p < projectilesToRemove.length; p++) {
+      this.projectiles.indexOf(projectilesToRemove[p]);
+      this.projectiles.splice(p, 1);
+    }
   }
 
   loadBillboards(billboards) {

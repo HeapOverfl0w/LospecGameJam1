@@ -34,10 +34,12 @@ class Main
     for (let k = 0; k < main.keysDown.length; k++)
       main.camera.handleKeyDown(main.keysDown[k], main.level, 1/main.FPS);
 
+    main.level.update();
+
     main.rayCaster.draw(main.ctx, main.camera, main.level);
 
     if (main.mouseDown)
-      main.camera.handleMouseDown(this.level);
+      main.camera.handleMouseDown(main.level);
 
     main.fpsCounter++;
     if (new Date().getTime() - main.lastSecond > 1000)
