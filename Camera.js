@@ -11,7 +11,7 @@ class Camera
     this.isStrafing = false;
   }
 
-  handleKeyDown(keyCode, level, updateInterval, isStrafing)
+  handleKeyDown(keyCode, level, updateInterval)
   {
     if (keyCode == 87)
     { //W

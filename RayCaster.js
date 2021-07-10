@@ -1,13 +1,37 @@
 class RayCaster {
-  constructor(maxViewDistance, useShade, shadeColor)
+  constructor(maxViewDistance)
   {
     this.maxViewDistance = maxViewDistance;
-    this.useShade = useShade;
-    this.shadeColor = shadeColor;
+  }
+
+  hexToRgbOffset(hex) {
+    var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+    if(result){
+        var r= parseInt(result[1], 16);
+        var g= parseInt(result[2], 16);
+        var b= parseInt(result[3], 16);
+        return {r : r-255, g : g-255, b : b-255};
+    } 
+    return null;
+  }
+
+  rgbaSum(c1, c2){
+    var a = c1.a + c2.a*(1-c1.a);
+    return {
+      r: (c1.r * c1.a  + c2.r * c2.a * (1 - c1.a)) / a,
+      g: (c1.g * c1.a  + c2.g * c2.a * (1 - c1.a)) / a,
+      b: (c1.b * c1.a  + c2.b * c2.a * (1 - c1.a)) / a,
+      a: a
+    }
   }
 
   draw(ctx, camera, level)
   {
+    if (level.useShade)
+      this.shadeColor = this.hexToRgbOffset(level.shadeColor);
+    else
+      this.shadeColor = {r: 0, g: 0, b: 0};
+
     let cvsWidth = ctx.canvas.width;
     let cvsHeight = ctx.canvas.height;
     this.renderBuffer = new Array(4 * cvsWidth * cvsHeight);
@@ -54,10 +78,14 @@ class RayCaster {
           let xSample = Math.floor(rayData.texture.width * rayData.sample);
           let textureSample = 4 * (ySample * rayData.texture.width + xSample);
           let screenBufferSample = 4 * ((bufferCeiling + y) * cvsWidth + x);
-          this.screenBuffer.data[screenBufferSample] = rayData.texture.data[textureSample];
-          this.screenBuffer.data[screenBufferSample + 1] = rayData.texture.data[textureSample + 1];
-          this.screenBuffer.data[screenBufferSample + 2] = rayData.texture.data[textureSample + 2];
-          this.screenBuffer.data[screenBufferSample + 3] = 255;
+
+          let r = rayData.texture.data[textureSample] + (rayData.distance / this.maxViewDistance) * this.shadeColor.r;
+          let g = rayData.texture.data[textureSample+1] + (rayData.distance / this.maxViewDistance) * this.shadeColor.g;
+          let b = rayData.texture.data[textureSample+2] + (rayData.distance / this.maxViewDistance) * this.shadeColor.b;
+          this.screenBuffer.data[screenBufferSample] = r;
+          this.screenBuffer.data[screenBufferSample + 1] = g;
+          this.screenBuffer.data[screenBufferSample + 2] = b;
+          this.screenBuffer.data[screenBufferSample + 3] = rayData.texture.data[textureSample + 3];;
         }
         
         //ctx.drawImage(rayData.texture, Math.floor(rayData.texture.width * rayData.sample), 0, 1, rayData.texture.height, x, ceiling, 1, wallLength);
@@ -210,11 +238,14 @@ class RayCaster {
                 let xSample = Math.floor(billboardTexture.width * sampleX);
                 let textureSample = 4 * (ySample * billboardTexture.width + xSample);
                 let screenBufferSample = 4 * ((bufferCeiling + y) * cvsWidth + column);
-                if (billboardTexture.data[textureSample + 3] != 0) {
-                  this.screenBuffer.data[screenBufferSample] = billboardTexture.data[textureSample];
-                  this.screenBuffer.data[screenBufferSample + 1] = billboardTexture.data[textureSample + 1];
-                  this.screenBuffer.data[screenBufferSample + 2] = billboardTexture.data[textureSample + 2];
-                  this.screenBuffer.data[screenBufferSample + 3] = billboardTexture.data[textureSample + 3];
+                if (billboardTexture.data[textureSample + 3] != 0 && textureSample < billboardTexture.data.length) {
+                  let r = billboardTexture.data[textureSample] + (distanceFromCamera / this.maxViewDistance) * this.shadeColor.r;
+                  let g = billboardTexture.data[textureSample+1] + (distanceFromCamera / this.maxViewDistance) * this.shadeColor.g;
+                  let b = billboardTexture.data[textureSample+2] + (distanceFromCamera / this.maxViewDistance) * this.shadeColor.b;
+                  this.screenBuffer.data[screenBufferSample] = r;
+                  this.screenBuffer.data[screenBufferSample + 1] = g;
+                  this.screenBuffer.data[screenBufferSample + 2] = b;
+                  this.screenBuffer.data[screenBufferSample + 3] = 255;
                 }
               }
               //ctx.drawImage(billboardTexture, Math.floor(billboardTexture.width * sampleX), 0, 1, billboardTexture.height, column, ceiling, 1, height);
@@ -253,23 +284,13 @@ class RayCaster {
 
       let textureSample = 4 * (Math.floor((y % 1) * texture.height) * texture.width + Math.floor((x % 1) * texture.width));
       let screenBufferSample = 4 * (cvsWidth * iy + column);
-      this.screenBuffer.data[screenBufferSample] = texture.data[textureSample];
-      this.screenBuffer.data[screenBufferSample + 1] = texture.data[textureSample + 1];
-      this.screenBuffer.data[screenBufferSample + 2] = texture.data[textureSample + 2];
+      let r = texture.data[textureSample] + (distance / (this.maxViewDistance - 3)) * this.shadeColor.r;
+      let g = texture.data[textureSample+1] + (distance / (this.maxViewDistance - 3)) * this.shadeColor.g;
+      let b = texture.data[textureSample+2] + (distance / (this.maxViewDistance - 3)) * this.shadeColor.b;
+      this.screenBuffer.data[screenBufferSample] = r;
+      this.screenBuffer.data[screenBufferSample + 1] = g;
+      this.screenBuffer.data[screenBufferSample + 2] = b;
       this.screenBuffer.data[screenBufferSample + 3] = 255;
-      //ctx.drawImage(texture, Math.floor((x % 1) * texture.width), Math.floor((y % 1) * texture.height), 1, 1, column, iy, 1,1);
-      if (this.useShade)
-      {
-        let shade = this.shade(distance)
-        if (shade > 0.3)
-        {
-          ctx.save();
-          ctx.globalAlpha = shade;
-          ctx.fillStyle = this.shadeColor;
-          ctx.fillRect(column, iy, 1, 1);
-          ctx.restore();
-        }
-      }
     }
   }
 

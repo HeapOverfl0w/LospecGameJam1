@@ -1,12 +1,14 @@
 class Level
 {
-  constructor(levelArray, data, skyboxImage, billboards)
+  constructor(levelArray, data, skyboxImage, useShade, shadeColor, billboards)
   {
     this.levelArray = levelArray;
     this.width = levelArray.length;
     this.height = levelArray[0].length;
     this.data = data;
     this.skybox = skyboxImage;
+    this.useShade = useShade;
+    this.shadeColor = shadeColor;
 
     this.loadBillboards(billboards);
   }
