@@ -15,6 +15,9 @@ class Billboard {
     }
 
     getImageBuffer() {
+        if (!this.activeAnimation.isAnimating()) {
+            this.activeAnimation.start();
+        }
         return this.activeAnimation.getFrameBuffer();
     }
 

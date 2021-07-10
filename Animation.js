@@ -19,9 +19,11 @@ class Animation {
         this.animating = true;
         this.timer = setInterval((animation) => {
             animation.currentFrame++;
-            if (animation.frameCount == animation.currentFrame && !this.repeats)
-            {
+            if (animation.frameCount == animation.currentFrame && !this.repeats){
                 animation.stop();
+            }
+            else if (animation.frameCount == animation.currentFrame && this.repeats){
+                this.currentFrame = 0;
             }
         }, 
             this.frameTimeMs,
@@ -46,5 +48,7 @@ class Animation {
         const endIndex = 4 * (this.currentFrame * this.frameWidth * this.frameHeight + this.frameWidth * this.frameHeight);
         const returnData = { width: this.frameWidth, height: this.frameHeight };
         returnData.data = this.image.data.slice(startIndex, endIndex);
+
+        return returnData;
     }
 }

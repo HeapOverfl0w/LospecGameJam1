@@ -28,7 +28,7 @@ class Data {
     }
 
     createAnimations() {
-        const testAnimation = new Animation(this.textures["billboards"], this.textures["billboards"].width, this.textures["billboards"].height, 1, 0, true);
+        const testAnimation = new Animation(this.textures["billboards"], 64, 102, 2, 1000, true);
 
         this.animations = {};
         this.animations["test"] = testAnimation;
