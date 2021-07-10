@@ -1,22 +1,21 @@
 class Level
 {
-  constructor(levelArray, data)
+  constructor(levelArray, data, skyboxImage, billboards)
   {
     this.levelArray = levelArray;
     this.width = levelArray.length;
     this.height = levelArray[0].length;
-    this.billboards = [{type: 1, x: 2, y: 2}];
     this.data = data;
+    this.skybox = skyboxImage;
 
-    this.loadTextures();
+    this.loadBillboards(billboards);
   }
 
-  loadTextures()
-  {
-    this.wallTextures = document.getElementById("walls");
-    this.billboardTextures = document.getElementById("billboards");
-    this.floors = document.getElementById("floors");
-    this.skybox = document.getElementById("skybox");
+  loadBillboards(billboards) {
+    this.billboards = [];
+    for (let b = 0; b < billboards.length; b++) {
+      this.billboards.push(this.data.billboards[billboards[b].type].copy(billboards[b].x, billboards[b].y));
+    }
   }
 
   isWall(x, y)
@@ -48,10 +47,6 @@ class Level
 
   billboardTexture(type)
   {
-    switch(type)
-    {
-      case 1:
-        return this.data.textures["billboards"];
-    }
+    
   }
 }

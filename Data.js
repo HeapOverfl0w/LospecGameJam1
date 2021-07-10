@@ -5,6 +5,8 @@ class Data {
 
     load() {
         this.loadTextures();
+        this.createAnimations();
+        this.createBillboards();
     }
 
     loadTextures() {
@@ -23,5 +25,26 @@ class Data {
             textures[this.textures[i]] = imgData;
         }
         this.textures = textures;
+    }
+
+    createAnimations() {
+        const testAnimation = new Animation(this.textures["billboards"], this.textures["billboards"].width, this.textures["billboards"].height, 1, 0, true);
+
+        this.animations = {};
+        this.animations["test"] = testAnimation;
+    }
+
+    createBillboards() {
+        const testBillboard = new Billboard(this.animations["test"], 0, 0);
+        this.billboards = {};
+        this.billboards["test"] = testBillboard;
+    }
+
+    createEnemies() {
+
+    }
+
+    createWeapons() {
+
     }
 }

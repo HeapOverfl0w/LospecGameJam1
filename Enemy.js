@@ -1,6 +1,6 @@
-import { Billboard } from "./Billboard";
+//import { Billboard } from "./Billboard";
 
-export class Enemy extends Billboard {
+class Enemy extends Billboard {
     constructor(name, maxLife, speed, isRanged, isStationary, projectile, walkAnimation, attackAnimation, x, y) {
         super(walkAnimation, x, y);
         this.name = name;

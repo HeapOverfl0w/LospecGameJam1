@@ -1,4 +1,4 @@
-export class Weapon {
+class Weapon {
     constructor(name, defaultAnimation, attackAnimation, reloadAnimation, isRanged, projectile, maxMagazineSize) {
         this.name = name;
         this.defaultAnimation = defaultAnimation;

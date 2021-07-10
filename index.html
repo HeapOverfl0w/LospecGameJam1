@@ -18,17 +18,22 @@
 <script src="Level.js"></script>
 <script src="RayCaster.js"></script>
 <script src="Data.js"></script>
+<script src="Animation.js"></script>
+<script src="Billboard.js"></script>
+<script src="Enemy.js"></script>
+<script src="Projectile.js"></script>
+<script src="Weapon.js"></script>
 <script>
   var cvs = document.getElementById("scene");
   var main;
   var pointerLocked = false;
 
   window.onload = function() {
-    cvs.width = 800;
-    cvs.height = 600;
+    cvs.width = 240;
+    cvs.height = 135;
     let aspectRatio = cvs.width / cvs.height;
-    cvs.style.width = window.innerHeight * aspectRatio + "px";
-    cvs.style.height = window.innerHeight + "px";
+    cvs.style.width = window.innerWidth + "px";
+    cvs.style.height = window.innerWidth / aspectRatio + "px";
     let ctx = cvs.getContext("2d");
 
     main = new Main(ctx);
@@ -37,8 +42,8 @@
 
   window.onresize = function(){
     let aspectRatio = cvs.width / cvs.height;
-    cvs.style.width = window.innerHeight * aspectRatio + "px";
-    cvs.style.height = window.innerHeight + "px";
+    cvs.style.width = window.innerWidth + "px";
+    cvs.style.height = window.innerWidth / aspectRatio + "px";
   };
 
   document.addEventListener('keydown', function(event) {

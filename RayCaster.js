@@ -177,7 +177,7 @@ class RayCaster {
         //let ceiling = cvsHeight / 2 - cvsHeight / distanceFromCamera;
         //let floor = cvsHeight - ceiling;
         //let height = floor - ceiling;
-        let billboardTexture = level.billboardTexture(level.billboards[i].type);
+        let billboardTexture = level.billboards[i].getImageBuffer();
         let z = distanceFromCamera * Math.cos(angle);
         let height = (cvsHeight + (billboardTexture.height + (cvsHeight * .333))) / z;
         let floor = (cvsHeight + 32) / 2 * (1 + 1/z) - 15;
@@ -247,7 +247,7 @@ class RayCaster {
     let floorFloorStart = Math.round(floorStart);
     for (let iy = floorFloorStart; iy < cvsHeight; iy++)
     {
-      let distance = (300 / (iy - halfCvsHeight));
+      let distance = (80 / (iy - halfCvsHeight));
       let x = distance * rayData.rayAngleX + camera.x;
       let y = distance * rayData.rayAngleY + camera.y;
 

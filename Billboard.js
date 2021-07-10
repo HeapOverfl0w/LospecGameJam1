@@ -1,4 +1,4 @@
-export class Billboard {
+class Billboard {
     constructor (animation, x, y) {
         this.defaultAnimation = animation;
         this.activeAnimation = animation;
@@ -14,7 +14,11 @@ export class Billboard {
             billboard.y - billboardWidth / 2 > this.y);
     }
 
-    drawSlice(ctx, x, y, width, height, sliceX) {
-        this.activeAnimation.drawSlice(ctx, x, y, width, height, sliceX);
+    getImageBuffer() {
+        return this.activeAnimation.getFrameBuffer();
+    }
+
+    copy(x, y) {
+        return new Billboard(this.defaultAnimation, x, y);
     }
 }

@@ -1,7 +1,7 @@
 /* Basic Animation class - only uses a single image for the whole animation where the 
 animation starts at 0,0. */
 
-export class Animation {
+class Animation {
     constructor(image, frameWidth, frameHeight, frameCount, frameTimeMs, repeats) {
         this.image = image;
         this.frameWidth = frameWidth;
@@ -14,6 +14,8 @@ export class Animation {
     }
 
     start() {
+        if (this.frameCount == 1)
+            return;
         this.animating = true;
         this.timer = setInterval((animation) => {
             animation.currentFrame++;
@@ -36,15 +38,13 @@ export class Animation {
         return this.animating;
     }
 
-    draw(ctx, x, y, width, height) {
-        ctx.drawImage(this.image, 
-            this.frameWidth * this.currentFrame, 0, 
-            this.frameWidth, this.frameHeight, x, y, width, height);
-    }
+    getFrameBuffer() {
+        if (this.frameCount == 1)
+            return this.image;
 
-    drawSlice(ctx, x, y, width, height, sliceX) {
-        ctx.drawImage(this.image, 
-            this.frameWidth * this.currentFrame + sliceX, 0, 
-            1, this.frameHeight, x, y, width, height);
+        const startIndex = 4 * (this.currentFrame * this.frameWidth * this.frameHeight);
+        const endIndex = 4 * (this.currentFrame * this.frameWidth * this.frameHeight + this.frameWidth * this.frameHeight);
+        const returnData = { width: this.frameWidth, height: this.frameHeight };
+        returnData.data = this.image.data.slice(startIndex, endIndex);
     }
 }

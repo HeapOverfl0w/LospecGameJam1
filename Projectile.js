@@ -1,6 +1,4 @@
-import { Billboard } from "./Billboard";
-
-export class Projectile extends Billboard {
+class Projectile extends Billboard {
     constructor(animation, x, y, directionX, directionY, speed, maxDistance) {
         super(animation, x, y);
         this.startX = x;
