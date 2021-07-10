@@ -64,7 +64,7 @@ class RayCaster {
 
       if (rayData.distance != this.maxViewDistance)
       {
-        let bufferHeight = Math.floor(rayData.height);
+        let bufferHeight = Math.ceil(rayData.height);
         let bufferCeiling = Math.ceil(rayData.ceiling);
         if (rayData.height > cvsHeight)
           bufferHeight = cvsHeight;
@@ -72,10 +72,10 @@ class RayCaster {
           bufferCeiling = 0;
         for (let y = 0; y < bufferHeight; y++)
         {
-          let ySample = Math.floor(y/rayData.height * rayData.texture.height);
+          let ySample = Math.round(y/rayData.height * rayData.texture.height);
           if (rayData.ceiling < 0)
-            ySample = Math.floor((y - rayData.ceiling)/rayData.height * rayData.texture.height);
-          let xSample = Math.floor(rayData.texture.width * rayData.sample);
+            ySample = Math.round((y - rayData.ceiling)/rayData.height * rayData.texture.height);
+          let xSample = Math.round(rayData.texture.width * rayData.sample);
           let textureSample = 4 * (ySample * rayData.texture.width + xSample);
           let screenBufferSample = 4 * ((bufferCeiling + y) * cvsWidth + x);
 
@@ -102,7 +102,7 @@ class RayCaster {
     ctx.putImageData(this.screenBuffer, 0,0);
 
     ctx.save();
-    ctx.strokeStyle = "White";
+    ctx.strokeStyle = "#fdbb27";
     ctx.lineWidth = "1";
     ctx.beginPath();
     ctx.rect(cvsWidth / 2, cvsHeight / 2, 1, 1);
@@ -256,26 +256,13 @@ class RayCaster {
     }
   }
 
-  drawLighting(ctx, rayData)
-  {
-    let shade = this.shade(rayData.distance);
-    if (shade > 0.3)
-    {
-      ctx.save();
-      ctx.globalAlpha = shade;
-      ctx.fillStyle = this.shadeColor;
-      ctx.fillRect(rayData.column, rayData.ceiling - 1, 1, rayData.height + 2);
-      ctx.restore();
-    }
-  }
-
   drawFloor(ctx, camera, floorStart, column, rayData, level)
   {
     let texture = level.data.textures["floors"];
     let cvsHeight = ctx.canvas.height;
     let cvsWidth = ctx.canvas.width;
     let halfCvsHeight = (cvsHeight) >> 1;
-    let floorFloorStart = Math.round(floorStart);
+    let floorFloorStart = Math.floor(floorStart);
     for (let iy = floorFloorStart; iy < cvsHeight; iy++)
     {
       let distance = (80 / (iy - halfCvsHeight));
@@ -292,10 +279,5 @@ class RayCaster {
       this.screenBuffer.data[screenBufferSample + 2] = b;
       this.screenBuffer.data[screenBufferSample + 3] = 255;
     }
-  }
-
-  shade(distance)
-  {
-    return distance * 0.9 / this.maxViewDistance;
   }
 }
