@@ -13,7 +13,7 @@ class Main
                      [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
                      [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
                      [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]]
-    this.level = new Level(demoLevel, this.data, document.getElementById("skybox"), true, "#000000", [{type: "test", x: 2, y: 2}]);
+    this.level = new Level(demoLevel, this.data, document.getElementById("skybox"), true, "#000000", [{type: "test", x: 2, y: 2}, {type: "couch", x: 5, y: 5}, {type: "trashcan", x: 6, y: 6}]);
     this.camera = new Camera(this.level.width/2, this.level.height/2, 0, Math.PI * (4/18), 5, this.data.weapons["screwDriver"]);
     this.rayCaster = new RayCaster(15);
     this.FPS = 30;

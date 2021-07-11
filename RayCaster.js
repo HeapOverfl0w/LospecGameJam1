@@ -184,13 +184,14 @@ class RayCaster {
     let cvsWidth = ctx.canvas.width;
     let cvsHeight = ctx.canvas.height;
 
-    let billboards = level.getAllBillboards();
+    let listOfBillboards = level.getAllBillboards();
 
-    for (let i = 0; i < billboards.length; i++)
-    {
-      let x = billboards[i].x - camera.x;
-      let y = billboards[i].y - camera.y;
-      let distanceFromCamera = Math.sqrt(x*x + y*y);
+    let billboardsToDraw = [];
+
+    for (let i = 0; i < listOfBillboards.length; i++) {
+      let x = listOfBillboards[i].x - camera.x;
+      let y = listOfBillboards[i].y - camera.y;
+      let distanceFromCamera = Math.sqrt(x * x + y * y);
 
       let cameraX = Math.sin(camera.angle);
       let cameraY = Math.cos(camera.angle);
@@ -202,55 +203,63 @@ class RayCaster {
       if (angle > Math.PI)
         angle -= 2 * Math.PI;
 
-      let inFov = Math.abs(angle) < camera.fov / 2;
+      let inFov = Math.abs(angle) < camera.fov / 1.5;
 
-      if (inFov && distanceFromCamera >= 0.5 && distanceFromCamera < this.maxViewDistance)
+      if (inFov && distanceFromCamera >= 0.5 && distanceFromCamera < this.maxViewDistance) {
+        billboardsToDraw.push({ billboard: listOfBillboards[i], dist: distanceFromCamera, angle: angle });
+      }
+    }
+
+    billboardsToDraw.sort((a, b) => {
+      return b.dist - a.dist;
+    })
+
+    for (let i = 0; i < billboardsToDraw.length; i++)
+    {
+      let billboardTexture = billboardsToDraw[i].billboard.getImageBuffer();
+      let z = billboardsToDraw[i].dist * Math.cos(billboardsToDraw[i].angle);
+      let height = (cvsHeight + billboardTexture.height - 32) / z;
+      let floor = (cvsHeight + 32) / 2 * (1 + 1 / z) - 15;
+      let ceiling = floor - height;
+      
+      let billboardAspectRatio = billboardTexture.height / billboardTexture.width;
+      let width = height / billboardAspectRatio;
+      let center = (0.5 * (billboardsToDraw[i].angle / (camera.fov / 2)) + 0.5) * cvsWidth;
+
+      for (let ix = 0; ix < width; ix++)
       {
-        let billboardTexture = billboards[i].getImageBuffer();
-        let z = distanceFromCamera * Math.cos(angle);
-        let height = (cvsHeight + (billboardTexture.height + (cvsHeight * .333))) / z;
-        let floor = (cvsHeight + 32) / 2 * (1 + 1/z) - 15;
-        let ceiling = floor - height;
-        
-        let aspectRatio = billboardTexture.height / billboardTexture.width;
-        let width = height / aspectRatio;
-        let center = (0.5 * (angle / (camera.fov / 2)) + 0.5) * cvsWidth;
-
-        for (let ix = 0; ix < width; ix++)
+        let sampleX = ix / width;
+        //let sampleY = iy / height;
+        let column = Math.floor(center + ix - width / 2);
+        if (column >= 0 && column < cvsWidth)
         {
-          let sampleX = ix / width;
-          //let sampleY = iy / height;
-          let column = Math.floor(center + ix - width / 2);
-          if (column >= 0 && column < cvsWidth)
+          if (zBuffer[column].distance >= billboardsToDraw[i].dist)
           {
-            if (zBuffer[column].distance >= distanceFromCamera)
+            let bufferHeight = Math.floor(height);
+            let bufferCeiling = Math.ceil(ceiling);
+            if (height > cvsHeight)
+              bufferHeight = cvsHeight;
+            if (ceiling < 0)
+              bufferCeiling = 0;
+            for (let y = 0; y < bufferHeight; y++)
             {
-              let bufferHeight = Math.floor(height);
-              let bufferCeiling = Math.ceil(ceiling);
-              if (height > cvsHeight)
-                bufferHeight = cvsHeight;
+              let ySample = Math.floor(y/height * billboardTexture.height);
               if (ceiling < 0)
-                bufferCeiling = 0;
-              for (let y = 0; y < bufferHeight; y++)
-              {
-                let ySample = Math.floor(y/height * billboardTexture.height);
-                if (ceiling < 0)
-                  ySample = Math.floor((y - ceiling)/height * billboardTexture.height);
-                let xSample = Math.floor(billboardTexture.width * sampleX);
-                let textureSample = 4 * (ySample * billboardTexture.width + xSample);
-                let screenBufferSample = 4 * ((bufferCeiling + y) * cvsWidth + column);
-                if (billboardTexture.data[textureSample + 3] != 0 && textureSample < billboardTexture.data.length) {
-                  let r = billboardTexture.data[textureSample] + (distanceFromCamera / this.maxViewDistance) * this.shadeColor.r;
-                  let g = billboardTexture.data[textureSample+1] + (distanceFromCamera / this.maxViewDistance) * this.shadeColor.g;
-                  let b = billboardTexture.data[textureSample+2] + (distanceFromCamera / this.maxViewDistance) * this.shadeColor.b;
-                  this.screenBuffer.data[screenBufferSample] = r;
-                  this.screenBuffer.data[screenBufferSample + 1] = g;
-                  this.screenBuffer.data[screenBufferSample + 2] = b;
-                  this.screenBuffer.data[screenBufferSample + 3] = 255;
-                }
+                ySample = Math.floor((y - ceiling)/height * billboardTexture.height);
+              let xSample = Math.floor(billboardTexture.width * sampleX);
+              let textureSample = 4 * (ySample * billboardTexture.width + xSample);
+              let screenBufferSample = 4 * ((bufferCeiling + y) * cvsWidth + column);
+              if (billboardTexture.data[textureSample + 3] != 0 && textureSample < billboardTexture.data.length) {
+                let r = billboardTexture.data[textureSample] + (billboardsToDraw[i].dist / this.maxViewDistance) * this.shadeColor.r;
+                let g = billboardTexture.data[textureSample+1] + (billboardsToDraw[i].dist / this.maxViewDistance) * this.shadeColor.g;
+                let b = billboardTexture.data[textureSample+2] + (billboardsToDraw[i].dist / this.maxViewDistance) * this.shadeColor.b;
+                this.screenBuffer.data[screenBufferSample] = r;
+                this.screenBuffer.data[screenBufferSample + 1] = g;
+                this.screenBuffer.data[screenBufferSample + 2] = b;
+                this.screenBuffer.data[screenBufferSample + 3] = 255;
               }
-              //ctx.drawImage(billboardTexture, Math.floor(billboardTexture.width * sampleX), 0, 1, billboardTexture.height, column, ceiling, 1, height);
             }
+            //ctx.drawImage(billboardTexture, Math.floor(billboardTexture.width * sampleX), 0, 1, billboardTexture.height, column, ceiling, 1, height);
           }
         }
       }

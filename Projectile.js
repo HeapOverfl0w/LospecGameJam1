@@ -11,6 +11,9 @@ class Projectile extends Billboard {
     }
 
     update(level) {
+        if (!this.activeAnimation.isAnimating())
+            this.activeAnimation.start();
+            
         this.x += this.directionX * this.speed;
         this.y += this.directionY * this.speed;
 

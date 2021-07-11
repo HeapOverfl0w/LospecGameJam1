@@ -1,6 +1,6 @@
 class Data {
     constructor() {
-        this.textures = ["sparks","defaultScrewDriver", "attackScrewDriver", "walls", "billboards", "floors", "skybox"];
+        this.textures = ["trashcan", "couch", "sparks","defaultScrewDriver", "attackScrewDriver", "walls", "billboards", "floors", "skybox"];
     }
 
     load() {
@@ -36,18 +36,22 @@ class Data {
         this.animations["test"] = testAnimation;
         this.animations["defaultScrewDriver"] = new Animation(this.textures["defaultScrewDriver"], 240,135,3,100,true);
         this.animations["attackScrewDriver"] = new Animation(this.textures["attackScrewDriver"], 240,135,3,100,true);
-        this.animations["sparks"] = new Animation(this.textures["sparks"], 16, 16, 3, 50, false);
+        this.animations["sparks"] = new Animation(this.textures["sparks"], 16, 16, 3, 100, false);
+        this.animations["couch"] = new Animation(this.textures["couch"], this.textures["couch"].width, this.textures["couch"].height, 1, 0, false);
+        this.animations["trashcan"] = new Animation(this.textures["trashcan"], this.textures["trashcan"].width, this.textures["trashcan"].height, 1, 0, false);
     }
 
     createBillboards() {
         const testBillboard = new Billboard(this.animations["test"], 0, 0);
         this.billboards = {};
         this.billboards["test"] = testBillboard;
+        this.billboards["couch"] = new Billboard(this.animations["couch"], 0, 0);
+        this.billboards["trashcan"] = new Billboard(this.animations["trashcan"], 0, 0);
     }
 
     createProjectiles() {
         this.projectiles = {};
-        this.projectiles["sparks"] = new Projectile(this.animations["sparks"], 0,0, 0,0, 0.2, 2);
+        this.projectiles["sparks"] = new Projectile(this.animations["sparks"], 0,0, 0,0, 0.2, 3);
     }
 
     createEnemies() {
