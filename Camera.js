@@ -28,6 +28,18 @@ class Camera
     this.activeWeapon.draw(screenBuffer);
   }
 
+  drawHUD(ctx) {
+    let height = ctx.canvas.height;
+    //draw health
+    ctx.fillStyle = "#f63f4c";
+    ctx.fillText(Math.round(this.playerHealth / 10 * 100) + "%", 10, height - 10);
+    //draw ammo
+    if (this.activeWeapon.isRanged) {
+      ctx.fillStyle = "#37313b";
+      ctx.fillText(this.activeWeapon.magazineAmmo + " : " + this.activeWeapon.ammo, 35, height - 10);
+    }
+  }
+
   handleMouseDown(level) {
     this.activeWeapon.attack(level, this);
   }

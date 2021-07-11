@@ -41,6 +41,9 @@ class Main
 
     main.rayCaster.draw(main.ctx, main.camera, main.level);
 
+    //draw HUD data
+    main.camera.drawHUD(main.ctx);
+
     if (main.mouseDown)
       main.camera.handleMouseDown(main.level);
 

@@ -52,6 +52,7 @@
     cvs.style.width = window.innerWidth + "px";
     cvs.style.height = window.innerWidth / aspectRatio + "px";
     let ctx = cvs.getContext("2d");
+    ctx.font = "10px MS Gothic";
 
     main = new Main(ctx);
     main.initialize();
