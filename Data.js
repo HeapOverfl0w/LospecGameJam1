@@ -21,7 +21,8 @@ class Data {
             "bulletprojectile",
             "attackPistol",
             "defaultPistol",
-            "ammopowerup"
+            "ammopowerup",
+            "healthpowerup"
         ];
     }
 
@@ -74,6 +75,7 @@ class Data {
         this.animations["defaultPistol"] = new Animation(this.textures["defaultPistol"], 240,135,3,300,true);
         this.animations["attackPistol"] = new Animation(this.textures["attackPistol"], 240,135,3,300,false);
         this.animations["ammopowerup"] = new Animation(this.textures["ammopowerup"], 16, 16, 6, 200, true);
+        this.animations["healthpowerup"] = new Animation(this.textures["healthpowerup"], 16, 16, 6, 200, true);
     }
 
     createBillboards() {
@@ -97,6 +99,7 @@ class Data {
         this.powerups = {};
         this.powerups["pistol"] = new Powerup("pistol", this.animations["pistolpowerup"], 0, 0);
         this.powerups["ammo"] = new Powerup("ammo", this.animations["ammopowerup"], 0, 0);
+        this.powerups["health"] = new Powerup("health", this.animations["healthpowerup"], 0, 0);
     }
 
     createEnemies() {
