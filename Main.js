@@ -5,15 +5,17 @@ class Main
     this.data = new Data();
     this.data.load();
     this.ctx = ctx;
-    let demoLevel = [[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
-                     [1,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,1],
-                     [1,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,1],
-                     [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
-                     [1,0,0,0,0,0,0,0,0,1,1,1,0,0,0,0,1,1,1,1],
-                     [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
-                     [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
-                     [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]]
-    this.level = new Level(demoLevel, this.data, document.getElementById("skybox"), true, "#000000", [{type: "test", x: 2, y: 2}, {type: "couch", x: 5, y: 5}, {type: "trashcan", x: 6, y: 6}]);
+    let demoLevel = [[2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
+                     [2,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,1],
+                     [2,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,1],
+                     [2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+                     [2,0,0,0,0,0,0,0,0,1,1,1,0,0,0,0,1,1,1,1],
+                     [2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+                     [2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+                     [2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]]
+    this.level = new Level(demoLevel, this.data, document.getElementById("skybox"), true, "#1d1c1f", 
+    [{type: "test", x: 2, y: 2}, {type: "couch", x: 5, y: 5}, {type: "trashcan", x: 6, y: 6}, {type: "pottedplant", x: 5, y: 2}, {type: "computerdesk", x: 5, y: 3}],
+    [{type: "turret", x: 2, y: 10}]);
     this.camera = new Camera(this.level.width/2, this.level.height/2, 0, Math.PI * (4/18), 5, this.data.weapons["screwDriver"]);
     this.rayCaster = new RayCaster(15);
     this.FPS = 30;
@@ -34,7 +36,7 @@ class Main
     for (let k = 0; k < main.keysDown.length; k++)
       main.camera.handleKeyDown(main.keysDown[k], main.level, 1/main.FPS);
 
-    main.level.update();
+    main.level.update(main.level, main.camera, 1/main.FPS);
 
     main.rayCaster.draw(main.ctx, main.camera, main.level);
 

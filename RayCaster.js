@@ -85,7 +85,7 @@ class RayCaster {
           this.screenBuffer.data[screenBufferSample] = r;
           this.screenBuffer.data[screenBufferSample + 1] = g;
           this.screenBuffer.data[screenBufferSample + 2] = b;
-          this.screenBuffer.data[screenBufferSample + 3] = rayData.texture.data[textureSample + 3];;
+          this.screenBuffer.data[screenBufferSample + 3] = rayData.texture.data[textureSample + 3];
         }
         
         //ctx.drawImage(rayData.texture, Math.floor(rayData.texture.width * rayData.sample), 0, 1, rayData.texture.height, x, ceiling, 1, wallLength);
