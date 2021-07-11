@@ -13,12 +13,14 @@ class Powerup extends Billboard {
             switch(this.powerupType) {
                 case "ammo":
                     camera.activeWeapon.ammo += 10;
+                    break;
                 case "health":
                     camera.playerHealth = camera.playerHealth + 3 > 10 ? 10 : camera.playerHealth + 3;
+                    break;
                 default:
                     let weaponDoesNotExist = true;
                     for (let w = 0; w < camera.weapons.length; w++) {
-                        if (camera.weapons[w].name == data.weapons[this.powerupType].name) {
+                        if (camera.weapons[w].name == data.powerups[this.powerupType].name) {
                             weaponDoesNotExist = false;
                             camera.weapons[w].ammo += 10;
                         }
@@ -28,6 +30,7 @@ class Powerup extends Billboard {
                         newWeapon.reload();
                         camera.weapons.push(newWeapon);
                     }
+                break;
             }
             this.collected = true;
         }

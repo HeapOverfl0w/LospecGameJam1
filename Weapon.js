@@ -34,6 +34,9 @@ class Weapon {
                 level.projectiles.push(this.projectile.copy(camera.x, camera.y, Math.sin(camera.angle), Math.cos(camera.angle), true));
             }
         }
+        else if (this.isReady() && (this.magazineAmmo <= 0 && this.isRanged)) {
+            this.reload();
+        }
     }
 
     reload() {
