@@ -19,7 +19,7 @@ class Projectile extends Billboard {
         this.x += this.directionX * this.speed;
         this.y += this.directionY * this.speed;
 
-        if (level.isWall(Math.round(this.x), Math.round(this.y)))
+        if (level.isWall(Math.floor(this.x), Math.floor(this.y)))
             this.hitWall = true;
     }
 
