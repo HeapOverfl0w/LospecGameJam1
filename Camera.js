@@ -14,6 +14,14 @@ class Camera
     this.weapons = [ defaultWeapon ];
   }
 
+  isInside(x, y) {
+    const cameraWidth = 1;
+    return (x + cameraWidth / 2 > this.x &&
+        x - cameraWidth / 2 < this.x &&
+        y + cameraWidth / 2 > this.y &&
+        y - cameraWidth / 2 < this.y);
+  }
+
   draw(screenBuffer) {
     this.activeWeapon.draw(screenBuffer);
   }

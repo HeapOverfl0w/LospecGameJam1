@@ -1,6 +1,23 @@
 class Data {
     constructor() {
-        this.textures = ["trashcan", "couch", "sparks","defaultScrewDriver", "attackScrewDriver", "walls", "billboards", "floors", "skybox"];
+        this.textures = [
+            "enemyturret", 
+            "enemyturretdestroyed", 
+            "enemyturretattack", 
+            "computerdesk", 
+            "pottedplant", 
+            "drywall", 
+            "trashcan", 
+            "couch", 
+            "sparks",
+            "defaultScrewDriver", 
+            "attackScrewDriver", 
+            "walls", 
+            "billboards", 
+            "floors", 
+            "skybox",
+            "enemyshot"
+        ];
     }
 
     load() {
@@ -8,6 +25,7 @@ class Data {
         this.createAnimations();
         this.createProjectiles();
         this.createBillboards();
+        this.createEnemies();
         this.createWeapons();
     }
 
@@ -39,6 +57,12 @@ class Data {
         this.animations["sparks"] = new Animation(this.textures["sparks"], 16, 16, 3, 100, false);
         this.animations["couch"] = new Animation(this.textures["couch"], this.textures["couch"].width, this.textures["couch"].height, 1, 0, false);
         this.animations["trashcan"] = new Animation(this.textures["trashcan"], this.textures["trashcan"].width, this.textures["trashcan"].height, 1, 0, false);
+        this.animations["pottedplant"] = new Animation(this.textures["pottedplant"], this.textures["pottedplant"].width, this.textures["pottedplant"].height, 1, 0, false);
+        this.animations["computerdesk"] = new Animation(this.textures["computerdesk"], this.textures["computerdesk"].width, this.textures["computerdesk"].height, 1, 0, false);
+        this.animations["enemyturret"] = new Animation(this.textures["enemyturret"], this.textures["enemyturret"].width, this.textures["enemyturret"].height, 1, 0, false);
+        this.animations["enemyturretdestroyed"] = new Animation(this.textures["enemyturretdestroyed"], this.textures["enemyturretdestroyed"].width, this.textures["enemyturretdestroyed"].height, 1, 0, false);
+        this.animations["enemyturretattack"] = new Animation(this.textures["enemyturretattack"], 32,32,3,400,false);
+        this.animations["enemyshot"] = new Animation(this.textures["enemyshot"], 16,16,3,200,false);
     }
 
     createBillboards() {
@@ -47,15 +71,19 @@ class Data {
         this.billboards["test"] = testBillboard;
         this.billboards["couch"] = new Billboard(this.animations["couch"], 0, 0);
         this.billboards["trashcan"] = new Billboard(this.animations["trashcan"], 0, 0);
+        this.billboards["pottedplant"] = new Billboard(this.animations["pottedplant"], 0, 0);
+        this.billboards["computerdesk"] = new Billboard(this.animations["computerdesk"], 0, 0);
     }
 
     createProjectiles() {
         this.projectiles = {};
-        this.projectiles["sparks"] = new Projectile(this.animations["sparks"], 0,0, 0,0, 0.2, 3);
+        this.projectiles["sparks"] = new Projectile(this.animations["sparks"], 0,0, 0,0, 0.2, 2);
+        this.projectiles["enemyshot"] = new Projectile(this.animations["enemyshot"], 0,0, 0,0, 0.5, 20);
     }
 
     createEnemies() {
-
+        this.enemies = [];
+        this.enemies["turret"] = new Enemy("Turret", 3, 0, true, true, this.projectiles["enemyshot"],this.animations["enemyturret"],this.animations["enemyturretattack"],this.animations["enemyturretdestroy"],0,0);
     }
 
     createWeapons() {
