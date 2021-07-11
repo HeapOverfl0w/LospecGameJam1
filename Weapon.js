@@ -14,7 +14,8 @@ class Weapon {
 
     switchTo() {
         this.activeAnimation = this.defaultAnimation;
-        this.activeAnimation.start();
+        if (!this.activeAnimation.isAnimating())
+            this.activeAnimation.start();
     }
 
     isReady() {
@@ -47,6 +48,7 @@ class Weapon {
     }
 
     stopAttack() {
+        if (this.activeAnimation != this.defaultAnimation)
         this.activeAnimation.requestEnd();
     }
 
