@@ -16,6 +16,19 @@ class Enemy extends Billboard {
     }
 
     update(level, camera, updateInterval) {
+        for (let p = 0; p < level.projectiles.length; p++) {
+            if (level.projectiles[p].playerOwned && level.projectiles[p].isInside(this)) {
+                this.life--;
+                level.projectiles[p].hitWall = true;
+            }
+        }
+
+        if (this.life <= 0) {
+            if (this.activeAnimation != this.destroyAnimation)
+                this.activeAnimation = this.destroyAnimation;
+            return;
+        }
+
         const maxViewRange = 15;
         //if we've seen the player find a way to get to him
         //first determine if we're even in range to see him
@@ -75,12 +88,12 @@ class Enemy extends Billboard {
     rayCastForWallsOrPlayer(level, camera, maxViewRange, angle) {
         
         for(let i = 0; i < maxViewRange; i += 0.5) {
-            let x = Math.floor(this.x + Math.sin(angle) * i);
-            let y = Math.floor(this.y + Math.cos(angle) * i);
-            if (camera.isInside(x, y)) 
-                return true;
-            else if (level.isWall(x, y)) 
+            let x = this.x + Math.sin(angle) * i;
+            let y = this.y + Math.cos(angle) * i;
+            if (level.isWall(Math.floor(x), Math.floor(y))) 
                 return false;
+            else if (camera.isInside(x, y)) 
+                return true;
         }
 
         return false;

@@ -23,6 +23,7 @@ class Animation {
         if (this.frameCount == 1)
             return;
         this.animating = true;
+        this.currentFrame = 0;
         this.timer = setInterval((animation) => {
             animation.currentFrame++;
             if (animation.frameCount == animation.currentFrame && (!this.repeats || this.endRequested)){
@@ -39,7 +40,6 @@ class Animation {
     stop() {
         clearInterval(this.timer);
         this.animating = false;
-        this.currentFrame = 0;
         this.endRequested = false;
     }
 

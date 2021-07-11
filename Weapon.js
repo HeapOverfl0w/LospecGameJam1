@@ -28,7 +28,7 @@ class Weapon {
             this.activeAnimation = this.attackAnimation;
             this.activeAnimation.start();
             if (this.projectile !== undefined) {
-                level.projectiles.push(this.projectile.copy(camera.x, camera.y, Math.sin(camera.angle), Math.cos(camera.angle)));
+                level.projectiles.push(this.projectile.copy(camera.x, camera.y, Math.sin(camera.angle), Math.cos(camera.angle), true));
             }
         }
     }
