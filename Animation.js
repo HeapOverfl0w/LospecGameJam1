@@ -40,6 +40,7 @@ class Animation {
     stop() {
         clearInterval(this.timer);
         this.animating = false;
+        this.currentFrame = this.frameCount - 1;
         this.endRequested = false;
     }
 

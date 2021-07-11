@@ -15,7 +15,8 @@ class Main
                      [2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]]
     this.level = new Level(demoLevel, this.data, document.getElementById("skybox"), true, "#1d1c1f", 
     [{type: "test", x: 2, y: 2}, {type: "couch", x: 5, y: 5}, {type: "trashcan", x: 6, y: 6}, {type: "pottedplant", x: 5, y: 2}, {type: "computerdesk", x: 5, y: 3}],
-    [{type: "turret", x: 2, y: 10}]);
+    [{type: "turret", x: 2, y: 10}],
+    [{type: "pistol", x: 3, y: 12}]);
     this.camera = new Camera(this.level.width/2, this.level.height/2, 0, Math.PI * (4/18), 5, this.data.weapons["screwDriver"]);
     this.rayCaster = new RayCaster(15);
     this.FPS = 30;
@@ -85,6 +86,10 @@ class Main
     
     if (removeAt != -1)
       this.keysDown.splice(removeAt,1);
+
+    if (keyCode == 70) {
+      this.camera.handleKeyUp(keyCode);
+    }
 
     if (keyCode == 65 || keyCode == 68) {
       if (!this.keysDown.includes(65) && !this.keysDown.includes(68))

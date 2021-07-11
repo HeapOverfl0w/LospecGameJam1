@@ -66,4 +66,10 @@ class Weapon {
             }
         }
     }
+
+    copy(ammo) {
+        let weapon = new Weapon(this.name, this.defaultAnimation, this.attackAnimation, this.reloadAnimation, this.isRanged, this.projectile, this.maxMagazineSize);
+        weapon.ammo = ammo;
+        return weapon;
+    }
 }

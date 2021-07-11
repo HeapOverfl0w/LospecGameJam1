@@ -1,5 +1,5 @@
 class Projectile extends Billboard {
-    constructor(animation, x, y, directionX, directionY, speed, maxDistance) {
+    constructor(animation, x, y, directionX, directionY, speed, maxDistance, damage) {
         super(animation, x, y);
         this.startX = x;
         this.startY = y;
@@ -9,6 +9,7 @@ class Projectile extends Billboard {
         this.maxDistance = maxDistance;
         this.hitWall = false;
         this.playerOwned = false;
+        this.damage = damage;
     }
 
     update(level) {
@@ -27,7 +28,7 @@ class Projectile extends Billboard {
     }
 
     copy(x, y, directionX, directionY, playerOwned) {
-        let projectile = new Projectile(this.defaultAnimation, x, y, directionX, directionY, this.speed, this.maxDistance);
+        let projectile = new Projectile(this.defaultAnimation, x, y, directionX, directionY, this.speed, this.maxDistance, this.damage);
         if (playerOwned !== undefined) {
             projectile.playerOwned = playerOwned;
         }

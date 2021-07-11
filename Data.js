@@ -16,7 +16,11 @@ class Data {
             "billboards", 
             "floors", 
             "skybox",
-            "enemyshot"
+            "enemyshot",
+            "pistolpowerup",
+            "bulletprojectile",
+            "attackPistol",
+            "defaultPistol"
         ];
     }
 
@@ -25,6 +29,7 @@ class Data {
         this.createAnimations();
         this.createProjectiles();
         this.createBillboards();
+        this.createPowerups();
         this.createEnemies();
         this.createWeapons();
     }
@@ -63,6 +68,10 @@ class Data {
         this.animations["enemyturretdestroyed"] = new Animation(this.textures["enemyturretdestroyed"], this.textures["enemyturretdestroyed"].width, this.textures["enemyturretdestroyed"].height, 1, 0, false);
         this.animations["enemyturretattack"] = new Animation(this.textures["enemyturretattack"], 32,32,3,400,false);
         this.animations["enemyshot"] = new Animation(this.textures["enemyshot"], 16,16,3,200,false);
+        this.animations["pistolpowerup"] = new Animation(this.textures["pistolpowerup"], 16, 16, 4, 300, true);
+        this.animations["bulletprojectile"] = new Animation(this.textures["bulletprojectile"], 16, 16, 1, 0, false);
+        this.animations["defaultPistol"] = new Animation(this.textures["defaultPistol"], 240,135,3,100,true);
+        this.animations["attackPistol"] = new Animation(this.textures["attackPistol"], 240,135,3,300,false);
     }
 
     createBillboards() {
@@ -77,8 +86,14 @@ class Data {
 
     createProjectiles() {
         this.projectiles = {};
-        this.projectiles["sparks"] = new Projectile(this.animations["sparks"], 0,0, 0,0, 0.2, 2);
-        this.projectiles["enemyshot"] = new Projectile(this.animations["enemyshot"], 0,0, 0,0, 0.5, 20);
+        this.projectiles["sparks"] = new Projectile(this.animations["sparks"], 0,0, 0,0, 0.2, 2, 1);
+        this.projectiles["enemyshot"] = new Projectile(this.animations["enemyshot"], 0,0, 0,0, 0.5, 20, 1);
+        this.projectiles["bulletprojectile"] = new Projectile(this.animations["bulletprojectile"], 0,0,0,0,0.5,20,1);
+    }
+
+    createPowerups() {
+        this.powerups = {};
+        this.powerups["pistol"] = new Powerup("pistol", this.animations["pistolpowerup"], 0, 0);
     }
 
     createEnemies() {
@@ -92,5 +107,10 @@ class Data {
         this.weapons["screwDriver"] = new Weapon("Screw Driver", 
         this.animations["defaultScrewDriver"], this.animations["attackScrewDriver"], this.animations["defaultScrewDriver"],
         false, this.projectiles["sparks"], 0);
+
+        //Pistol TODO: ADD RELOAD ANIMATION
+        this.weapons["pistol"] = new Weapon("Pistol",
+        this.animations["defaultPistol"], this.animations["attackPistol"], this.animations["defaultPistol"], 
+        true, this.projectiles["bulletprojectile"], 8);
     }
 }

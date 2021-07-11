@@ -1,6 +1,6 @@
 class Level
 {
-  constructor(levelArray, data, skyboxImage, useShade, shadeColor, billboards, enemies)
+  constructor(levelArray, data, skyboxImage, useShade, shadeColor, billboards, enemies, powerups)
   {
     this.levelArray = levelArray;
     this.width = levelArray.length;
@@ -10,14 +10,20 @@ class Level
     this.useShade = useShade;
     this.shadeColor = shadeColor;
 
+    this.billboardTypes = billboards;
+    this.enemyTypes = enemies;
+    this.powerupTypes = powerups;
+
+
     this.projectiles = [];
 
     this.loadBillboards(billboards);
     this.loadEnemies(enemies);
+    this.loadPowerups(powerups);
   }
 
   getAllBillboards() {
-    return this.billboards.concat(this.projectiles).concat(this.enemies);
+    return this.billboards.concat(this.projectiles).concat(this.enemies).concat(this.powerups);
   }
 
   update(level, camera, updateInterval) {
@@ -36,6 +42,19 @@ class Level
       this.projectiles.indexOf(projectilesToRemove[p]);
       this.projectiles.splice(p, 1);
     }
+
+    //remove collected powerups
+    let powerupsToRemove = [];
+    for (let p = 0; p < this.powerups.length; p++){
+      this.powerups[p].update(this.data, camera);
+      if (this.powerups[p].collected)
+        powerupsToRemove.push(this.powerups[p]);
+    }
+
+    for (let p = 0; p < powerupsToRemove.length; p++) {
+      this.powerups.indexOf(powerupsToRemove[p]);
+      this.powerups.splice(p, 1);
+    }
   }
 
   loadBillboards(billboards) {
@@ -47,8 +66,15 @@ class Level
 
   loadEnemies(enemies) {
     this.enemies = [];
-    for (let b = 0; b < enemies.length; b++) {
-      this.enemies.push(this.data.enemies[enemies[b].type].copy(enemies[b].x, enemies[b].y));
+    for (let e = 0; e < enemies.length; e++) {
+      this.enemies.push(this.data.enemies[enemies[e].type].copy(enemies[e].x, enemies[e].y));
+    }
+  }
+
+  loadPowerups(powerups) {
+    this.powerups = [];
+    for (let p = 0; p < powerups.length; p++) {
+      this.powerups.push(this.data.powerups[powerups[p].type].copy(powerups[p].x, powerups[p].y));
     }
   }
 
@@ -83,8 +109,7 @@ class Level
     }
   }
 
-  billboardTexture(type)
-  {
-    
+  copy() {
+    return new Level([...this.levelArray], this.data, this.skybox, this.useShade, this.shadeColor, this.billboardTypes, this.enemyTypes, this.powerupTypes);
   }
 }

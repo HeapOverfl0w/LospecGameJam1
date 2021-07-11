@@ -9,9 +9,11 @@ class Camera
     this.speed = speed;
     this.height = 16;
     this.isStrafing = false;
+
     this.activeWeapon = defaultWeapon;
     this.activeWeapon.switchTo();
     this.weapons = [ defaultWeapon ];
+    this.playerHealth = 10;
   }
 
   isInside(x, y) {
@@ -32,6 +34,23 @@ class Camera
 
   handleMouseUp( ) {
     this.activeWeapon.stopAttack();
+  }
+
+  handleKeyUp(keyCode) {
+    //switch weapons on F
+    if (this.activeWeapon.isReady() && keyCode == 70) {
+      let requestedWeaponIndex = this.weapons.indexOf(this.activeWeapon) + 1;
+      if (this.weapons.length <= requestedWeaponIndex) {
+        this.activeWeapon.stopAttack();
+        this.weapons[0].switchTo();
+        this.activeWeapon = this.weapons[0];
+      }
+      else {
+        this.activeWeapon.stopAttack();
+        this.weapons[requestedWeaponIndex].switchTo();
+        this.activeWeapon = this.weapons[requestedWeaponIndex];
+      }
+    }
   }
 
   handleKeyDown(keyCode, level, updateInterval)
