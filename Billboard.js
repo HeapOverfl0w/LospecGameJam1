@@ -22,6 +22,6 @@ class Billboard {
     }
 
     copy(x, y) {
-        return new Billboard(this.defaultAnimation, x, y);
+        return new Billboard(this.defaultAnimation.copy(), x, y);
     }
 }

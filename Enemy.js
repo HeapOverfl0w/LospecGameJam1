@@ -29,7 +29,7 @@ class Enemy extends Billboard {
             return;
         }
 
-        const maxViewRange = 10;
+        const maxViewRange = 15;
         //if we've seen the player find a way to get to him
         //first determine if we're even in range to see him
         const distanceFromPlayer = Math.sqrt(Math.pow(camera.x - this.x, 2) + Math.pow(camera.y - this.y, 2));
@@ -41,13 +41,13 @@ class Enemy extends Billboard {
                 this.hasSeenCamera = true;
 
             if (this.hasSeenCamera) {
-                this.move(angle, playerInView, updateInterval);
+                this.move(level, angle, playerInView, updateInterval, distanceFromPlayer);
                 this.attack(angle, playerInView, distanceFromPlayer, level);             
             }
         }
     }
 
-    move(angle, playerInView, updateInterval, distanceFromPlayer) {
+    move(level, angle, playerInView, updateInterval, distanceFromPlayer) {
         if ((this.isRanged && playerInView) || this.isStationary)
             return;
         
@@ -79,6 +79,9 @@ class Enemy extends Billboard {
         }
         else if (playerInView && !this.isRanged && distanceFromPlayer < 2) {
             this.activeAnimation.stop();
+            if (this.projectile !== undefined) {
+                level.projectiles.push(this.projectile.copy(this.x, this.y, Math.sin(angle), Math.cos(angle)));
+            }
             this.activeAnimation = this.attackAnimation;
             this.activeAnimation.start();
             //TODO: DETERMINE DAMAGE TO PLAYER
@@ -100,6 +103,6 @@ class Enemy extends Billboard {
     }
 
     copy(x, y) {
-        return new Enemy(this.name, this.maxLife, this.speed, this.isRanged, this.isStationary, this.projectile, this.defaultAnimation, this.attackAnimation, this.destroyAnimation, x, y);
+        return new Enemy(this.name, this.maxLife, this.speed, this.isRanged, this.isStationary, this.projectile, this.defaultAnimation.copy(), this.attackAnimation.copy(), this.destroyAnimation.copy(), x, y);
     }
 }

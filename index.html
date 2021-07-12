@@ -31,6 +31,12 @@
       <img src="./resources/ceiling.png"/>
       <img src="./resources/cobblestone.png"/>
       <img src="./resources/cobblestonetall.png"/>
+      <img src="./resources/fireaxe.png"/>
+      <img src="./resources/fireaxeattack.png"/>
+      <img src="./resources/fireaxepowerup.png"/>
+      <img src="./resources/bluesparks.png"/>
+      <img src="./resources/npc_melee_attack.png"/>
+      <img src="./resources/npc_melee_move.png"/>
     </div>
   </body>
 </html>
@@ -54,8 +60,12 @@
     cvs.width = 240;
     cvs.height = 135;
     let aspectRatio = cvs.width / cvs.height;
-    cvs.style.width = window.innerWidth + "px";
-    cvs.style.height = window.innerWidth / aspectRatio + "px";
+    let width = window.innerWidth;
+    if (window.innerWidth / aspectRatio > window.innerHeight) {
+      width = window.innerHeight * aspectRatio;
+    }
+    cvs.style.width = width + "px";
+    cvs.style.height = width / aspectRatio + "px";
     let ctx = cvs.getContext("2d");
     ctx.font = "10px MS Gothic";
 
@@ -65,8 +75,12 @@
 
   window.onresize = function(){
     let aspectRatio = cvs.width / cvs.height;
-    cvs.style.width = window.innerWidth + "px";
-    cvs.style.height = window.innerWidth / aspectRatio + "px";
+    let width = window.innerWidth;
+    if (window.innerWidth / aspectRatio > window.innerHeight) {
+      width = window.innerHeight * aspectRatio;
+    }
+    cvs.style.width = width + "px";
+    cvs.style.height = width / aspectRatio + "px";
   };
 
   document.addEventListener('keydown', function(event) {

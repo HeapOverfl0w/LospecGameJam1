@@ -39,8 +39,9 @@ class Level
     }
 
     for (let p = 0; p < projectilesToRemove.length; p++) {
-      this.projectiles.indexOf(projectilesToRemove[p]);
-      this.projectiles.splice(p, 1);
+      let index = this.projectiles.indexOf(projectilesToRemove[p]);
+      this.projectiles[index].activeAnimation.stop();
+      this.projectiles.splice(index, 1);
     }
 
     //remove collected powerups
@@ -52,8 +53,9 @@ class Level
     }
 
     for (let p = 0; p < powerupsToRemove.length; p++) {
-      this.powerups.indexOf(powerupsToRemove[p]);
-      this.powerups.splice(p, 1);
+      let index = this.powerups.indexOf(powerupsToRemove[p]);
+      this.powerups[index].activeAnimation.stop();
+      this.powerups.splice(index, 1);
     }
   }
 

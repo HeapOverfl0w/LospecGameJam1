@@ -25,7 +25,13 @@ class Data {
             "healthpowerup",
             "ceiling",
             "cobblestone",
-            "cobblestonetall"
+            "cobblestonetall",
+            "fireaxe",
+            "fireaxeattack",
+            "fireaxepowerup",
+            "bluesparks",
+            "npc_melee_attack",
+            "npc_melee_move"
         ];
     }
 
@@ -73,12 +79,18 @@ class Data {
         this.animations["enemyturretdestroyed"] = new Animation(this.textures["enemyturretdestroyed"], this.textures["enemyturretdestroyed"].width, this.textures["enemyturretdestroyed"].height, 1, 0, false);
         this.animations["enemyturretattack"] = new Animation(this.textures["enemyturretattack"], 32,32,3,400,false);
         this.animations["enemyshot"] = new Animation(this.textures["enemyshot"], 16,16,3,200,false);
-        this.animations["pistolpowerup"] = new Animation(this.textures["pistolpowerup"], 16, 16, 4, 300, true);
+        this.animations["pistolpowerup"] = new Animation(this.textures["pistolpowerup"], 16, 16, 8, 200, true);
         this.animations["bulletprojectile"] = new Animation(this.textures["bulletprojectile"], 16, 16, 1, 0, false);
         this.animations["defaultPistol"] = new Animation(this.textures["defaultPistol"], 240,135,3,300,true);
         this.animations["attackPistol"] = new Animation(this.textures["attackPistol"], 240,135,3,300,false);
         this.animations["ammopowerup"] = new Animation(this.textures["ammopowerup"], 16, 16, 6, 200, true);
         this.animations["healthpowerup"] = new Animation(this.textures["healthpowerup"], 16, 16, 6, 200, true);
+        this.animations["bluesparks"] = new Animation(this.textures["bluesparks"], 16, 16, 3, 100, false);
+        this.animations["fireaxepowerup"] = new Animation(this.textures["fireaxepowerup"], 16, 16, 8, 200, true);
+        this.animations["defaultfireaxe"] = new Animation(this.textures["fireaxe"], 240,135,3,400,true);
+        this.animations["attackfireaxe"] = new Animation(this.textures["fireaxeattack"], 240,135,5,300,false);
+        this.animations["enemymeleeattack"] = new Animation(this.textures["npc_melee_attack"],32,32,11,100,false);
+        this.animations["enemymeleemove"] = new Animation(this.textures["npc_melee_move"],32,32,6,100,true);
     }
 
     createBillboards() {
@@ -94,6 +106,7 @@ class Data {
     createProjectiles() {
         this.projectiles = {};
         this.projectiles["sparks"] = new Projectile(this.animations["sparks"], 0,0, 0,0, 0.2, 2, 1);
+        this.projectiles["bluesparks"] = new Projectile(this.animations["bluesparks"], 0,0, 0,0, 0.2, 5, 1);
         this.projectiles["enemyshot"] = new Projectile(this.animations["enemyshot"], 0,0, 0,0, 0.5, 20, 1);
         this.projectiles["bulletprojectile"] = new Projectile(this.animations["bulletprojectile"], 0,0,0,0,0.5,20,1);
     }
@@ -101,6 +114,7 @@ class Data {
     createPowerups() {
         this.powerups = {};
         this.powerups["pistol"] = new Powerup("pistol", this.animations["pistolpowerup"], 0, 0);
+        this.powerups["fireaxe"] = new Powerup("fireaxe", this.animations["fireaxepowerup"], 0, 0);
         this.powerups["ammo"] = new Powerup("ammo", this.animations["ammopowerup"], 0, 0);
         this.powerups["health"] = new Powerup("health", this.animations["healthpowerup"], 0, 0);
     }
@@ -108,6 +122,8 @@ class Data {
     createEnemies() {
         this.enemies = [];
         this.enemies["turret"] = new Enemy("Turret", 3, 0, true, true, this.projectiles["enemyshot"],this.animations["enemyturret"],this.animations["enemyturretattack"],this.animations["enemyturretdestroyed"],0,0);
+        //TODO: ADD MELEE ENEMY KILL ANIMATION
+        this.enemies["melee"] = new Enemy("Melee", 2, 2, false, false, this.projectiles["sparks"],this.animations["enemymeleemove"],this.animations["enemymeleeattack"],this.animations["enemyturretdestroyed"],0,0);
     }
 
     createWeapons() {
@@ -121,5 +137,10 @@ class Data {
         this.weapons["pistol"] = new Weapon("Pistol",
         this.animations["defaultPistol"], this.animations["attackPistol"], this.animations["defaultPistol"], 
         true, this.projectiles["bulletprojectile"], 8);
+
+        //Fireaxe
+        this.weapons["fireaxe"] = new Weapon("Fireaxe", 
+        this.animations["defaultfireaxe"], this.animations["attackfireaxe"], this.animations["defaultfireaxe"],
+        false, this.projectiles["bluesparks"], 0);
     }
 }
