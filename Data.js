@@ -29,7 +29,9 @@ class Data {
             "fireaxe",
             "fireaxeattack",
             "fireaxepowerup",
-            "bluesparks"
+            "bluesparks",
+            "npc_melee_attack",
+            "npc_melee_move"
         ];
     }
 
@@ -87,6 +89,8 @@ class Data {
         this.animations["fireaxepowerup"] = new Animation(this.textures["fireaxepowerup"], 16, 16, 8, 200, true);
         this.animations["defaultfireaxe"] = new Animation(this.textures["fireaxe"], 240,135,3,400,true);
         this.animations["attackfireaxe"] = new Animation(this.textures["fireaxeattack"], 240,135,5,300,false);
+        this.animations["enemymeleeattack"] = new Animation(this.textures["npc_melee_attack"],32,32,11,100,false);
+        this.animations["enemymeleemove"] = new Animation(this.textures["npc_melee_move"],32,32,6,100,true);
     }
 
     createBillboards() {
@@ -118,6 +122,8 @@ class Data {
     createEnemies() {
         this.enemies = [];
         this.enemies["turret"] = new Enemy("Turret", 3, 0, true, true, this.projectiles["enemyshot"],this.animations["enemyturret"],this.animations["enemyturretattack"],this.animations["enemyturretdestroyed"],0,0);
+        //TODO: ADD MELEE ENEMY KILL ANIMATION
+        this.enemies["melee"] = new Enemy("Melee", 2, 2, false, false, this.projectiles["sparks"],this.animations["enemymeleemove"],this.animations["enemymeleeattack"],this.animations["enemyturretdestroyed"],0,0);
     }
 
     createWeapons() {

@@ -41,13 +41,13 @@ class Enemy extends Billboard {
                 this.hasSeenCamera = true;
 
             if (this.hasSeenCamera) {
-                this.move(angle, playerInView, updateInterval);
+                this.move(level, angle, playerInView, updateInterval, distanceFromPlayer);
                 this.attack(angle, playerInView, distanceFromPlayer, level);             
             }
         }
     }
 
-    move(angle, playerInView, updateInterval, distanceFromPlayer) {
+    move(level, angle, playerInView, updateInterval, distanceFromPlayer) {
         if ((this.isRanged && playerInView) || this.isStationary)
             return;
         
@@ -79,6 +79,9 @@ class Enemy extends Billboard {
         }
         else if (playerInView && !this.isRanged && distanceFromPlayer < 2) {
             this.activeAnimation.stop();
+            if (this.projectile !== undefined) {
+                level.projectiles.push(this.projectile.copy(this.x, this.y, Math.sin(angle), Math.cos(angle)));
+            }
             this.activeAnimation = this.attackAnimation;
             this.activeAnimation.start();
             //TODO: DETERMINE DAMAGE TO PLAYER
