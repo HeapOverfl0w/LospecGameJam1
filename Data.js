@@ -31,7 +31,11 @@ class Data {
             "fireaxepowerup",
             "bluesparks",
             "npc_melee_attack",
-            "npc_melee_move"
+            "npc_melee_move",
+            "ar",
+            "arattack",
+            "arreload",
+            "arpowerup"
         ];
     }
 
@@ -69,7 +73,7 @@ class Data {
         this.animations = {};
         this.animations["test"] = testAnimation;
         this.animations["defaultScrewDriver"] = new Animation(this.textures["defaultScrewDriver"], 240,135,3,100,true);
-        this.animations["attackScrewDriver"] = new Animation(this.textures["attackScrewDriver"], 240,135,3,100,true);
+        this.animations["attackScrewDriver"] = new Animation(this.textures["attackScrewDriver"], 240,135,3,300,false);
         this.animations["sparks"] = new Animation(this.textures["sparks"], 16, 16, 3, 100, false);
         this.animations["couch"] = new Animation(this.textures["couch"], this.textures["couch"].width, this.textures["couch"].height, 1, 0, false);
         this.animations["trashcan"] = new Animation(this.textures["trashcan"], this.textures["trashcan"].width, this.textures["trashcan"].height, 1, 0, false);
@@ -91,6 +95,10 @@ class Data {
         this.animations["attackfireaxe"] = new Animation(this.textures["fireaxeattack"], 240,135,5,300,false);
         this.animations["enemymeleeattack"] = new Animation(this.textures["npc_melee_attack"],32,32,11,100,false);
         this.animations["enemymeleemove"] = new Animation(this.textures["npc_melee_move"],32,32,6,100,true);
+        this.animations["defaultar"] = new Animation(this.textures["ar"], 240,135,3,400,true);
+        this.animations["attackar"] = new Animation(this.textures["arattack"], 240,135,2,100,false);
+        this.animations["reloadar"] = new Animation(this.textures["arreload"], 240,135,6,300,false);
+        this.animations["arpowerup"] = new Animation(this.textures["arpowerup"], 16, 16, 8, 200, true);
     }
 
     createBillboards() {
@@ -115,6 +123,7 @@ class Data {
         this.powerups = {};
         this.powerups["pistol"] = new Powerup("pistol", this.animations["pistolpowerup"], 0, 0);
         this.powerups["fireaxe"] = new Powerup("fireaxe", this.animations["fireaxepowerup"], 0, 0);
+        this.powerups["ar"] = new Powerup("ar", this.animations["arpowerup"], 0, 0);
         this.powerups["ammo"] = new Powerup("ammo", this.animations["ammopowerup"], 0, 0);
         this.powerups["health"] = new Powerup("health", this.animations["healthpowerup"], 0, 0);
     }
@@ -142,5 +151,10 @@ class Data {
         this.weapons["fireaxe"] = new Weapon("Fireaxe", 
         this.animations["defaultfireaxe"], this.animations["attackfireaxe"], this.animations["defaultfireaxe"],
         false, this.projectiles["bluesparks"], 0);
+
+        //Fireaxe
+        this.weapons["ar"] = new Weapon("AR", 
+        this.animations["defaultar"], this.animations["attackar"], this.animations["reloadar"],
+        true, this.projectiles["bulletprojectile"], 20);
     }
 }
