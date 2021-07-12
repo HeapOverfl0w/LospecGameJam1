@@ -81,10 +81,7 @@ class Level
   isWall(x, y)
   {
     //for out of bounds just put a wall
-    if (x < 0 || x >= this.levelArray.length || y < 0 || y >= this.levelArray[x].length)
-      return true;
-    else
-      return this.levelArray[x][y] > 0 && this.levelArray[x][y] < 100;
+    return this.wallTextureAt(x, y) !== undefined;
   }
 
   isPassable(x, y) {
@@ -93,19 +90,32 @@ class Level
 
   wallTextureAt(x, y)
   {
-    if (x < 0 || x >= this.levelArray.length || y < 0 || y >= this.levelArray[x].length)
-      return "#000000";
-    else
+    switch(this.levelArray[x][y])
     {
-      switch(this.levelArray[x][y])
-      {
-        case 1:
-          return this.data.textures["walls"];
-          break;
-        case 2:
-          return this.data.textures["drywall"];
-          break;
-      }
+      case 1:
+        return this.data.textures["walls"];
+      case 2:
+        return this.data.textures["drywall"];
+      default:
+        return undefined;
+    }
+  }
+
+  getCeilingTextureAt(x,y) {
+    switch(this.levelArray[x][y]) {
+      case 0:
+        return this.data.textures["floors"];
+      default:
+        return undefined;
+    }
+  }
+
+  getFloorTextureAt(x,y) {
+    switch(this.levelArray[x][y]) {
+      case 0:
+        return this.data.textures["floors"];
+      default:
+        return this.data.textures["floors"];
     }
   }
 

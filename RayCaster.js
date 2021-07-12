@@ -54,7 +54,7 @@ class RayCaster {
       //let wallLength = floor - ceiling;
       let z = rayData.distance * Math.cos(camera.angle - rayAngle);
       let wallLength = cvsHeight / z * aspectRatio;
-      let floor = (cvsHeight + 32) / 2 * (1 + 1/z) - 15;
+      let floor = (cvsHeight + 32) / 2 * (1 + 1/z) - 10;
       let ceiling = floor - wallLength;
 
       rayData.height = wallLength;
@@ -219,7 +219,7 @@ class RayCaster {
       let billboardTexture = billboardsToDraw[i].billboard.getImageBuffer();
       let z = billboardsToDraw[i].dist * Math.cos(billboardsToDraw[i].angle);
       let height = (cvsHeight + billboardTexture.height - 32) / z;
-      let floor = (cvsHeight + 32) / 2 * (1 + 1 / z) - 15;
+      let floor = (cvsHeight + 32) / 2 * (1 + 1 / z) - 10;
       let ceiling = floor - height;
       
       let billboardAspectRatio = billboardTexture.height / billboardTexture.width;
@@ -268,26 +268,41 @@ class RayCaster {
 
   drawFloor(ctx, camera, floorStart, column, rayData, level)
   {
-    let texture = level.data.textures["floors"];
     let cvsHeight = ctx.canvas.height;
     let cvsWidth = ctx.canvas.width;
     let halfCvsHeight = (cvsHeight) >> 1;
     let floorFloorStart = Math.floor(floorStart);
     for (let iy = floorFloorStart; iy < cvsHeight; iy++)
     {
-      let distance = (80 / (iy - halfCvsHeight));
+      let distance = (100 / (iy - halfCvsHeight));
       let x = distance * rayData.rayAngleX + camera.x;
       let y = distance * rayData.rayAngleY + camera.y;
 
+      let texture = level.getFloorTextureAt(Math.floor(x), Math.floor(y));
+      let ceilingTexture = level.getCeilingTextureAt(Math.floor(x), Math.floor(y));
+
       let textureSample = 4 * (Math.floor((y % 1) * texture.height) * texture.width + Math.floor((x % 1) * texture.width));
-      let screenBufferSample = 4 * (cvsWidth * iy + column);
+      let screenBufferSampleFloor = 4 * (cvsWidth * iy + column);
+      let screenBufferSampleCeiling = 4 * (cvsWidth * (cvsHeight - iy) + column)
+
       let r = texture.data[textureSample] + (distance / (this.maxViewDistance - 3)) * this.shadeColor.r;
       let g = texture.data[textureSample+1] + (distance / (this.maxViewDistance - 3)) * this.shadeColor.g;
       let b = texture.data[textureSample+2] + (distance / (this.maxViewDistance - 3)) * this.shadeColor.b;
-      this.screenBuffer.data[screenBufferSample] = r;
-      this.screenBuffer.data[screenBufferSample + 1] = g;
-      this.screenBuffer.data[screenBufferSample + 2] = b;
-      this.screenBuffer.data[screenBufferSample + 3] = 255;
+      this.screenBuffer.data[screenBufferSampleFloor] = r;
+      this.screenBuffer.data[screenBufferSampleFloor + 1] = g;
+      this.screenBuffer.data[screenBufferSampleFloor + 2] = b;
+      this.screenBuffer.data[screenBufferSampleFloor + 3] = 255;
+
+      if (ceilingTexture != undefined)
+      {
+        let r = ceilingTexture.data[textureSample] + (distance / (this.maxViewDistance - 3)) * this.shadeColor.r;
+        let g = ceilingTexture.data[textureSample+1] + (distance / (this.maxViewDistance - 3)) * this.shadeColor.g;
+        let b = ceilingTexture.data[textureSample+2] + (distance / (this.maxViewDistance - 3)) * this.shadeColor.b;
+        this.screenBuffer.data[screenBufferSampleCeiling] = r;
+        this.screenBuffer.data[screenBufferSampleCeiling + 1] = g;
+        this.screenBuffer.data[screenBufferSampleCeiling + 2] = b;
+        this.screenBuffer.data[screenBufferSampleCeiling + 3] = 255;
+      }
     }
   }
 }
