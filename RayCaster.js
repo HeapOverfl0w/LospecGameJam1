@@ -54,7 +54,7 @@ class RayCaster {
       //let wallLength = floor - ceiling;
       let z = rayData.distance * Math.cos(camera.angle - rayAngle);
       let wallLength = cvsHeight / z * aspectRatio;
-      let floor = (cvsHeight + 32) / 2 * (1 + 1/z) - 10;
+      let floor = (cvsHeight + 32) / 2 * (1 + 1/z) - 13;
       let ceiling = floor - wallLength;
 
       rayData.height = wallLength;
@@ -219,7 +219,7 @@ class RayCaster {
       let billboardTexture = billboardsToDraw[i].billboard.getImageBuffer();
       let z = billboardsToDraw[i].dist * Math.cos(billboardsToDraw[i].angle);
       let height = (cvsHeight + billboardTexture.height - 32) / z;
-      let floor = (cvsHeight + 32) / 2 * (1 + 1 / z) - 10;
+      let floor = (cvsHeight + 32) / 2 * (1 + 1 / z) - 13;
       let ceiling = floor - height;
       
       let billboardAspectRatio = billboardTexture.height / billboardTexture.width;
@@ -274,7 +274,7 @@ class RayCaster {
     let floorFloorStart = Math.floor(floorStart);
     for (let iy = floorFloorStart; iy < cvsHeight; iy++)
     {
-      let distance = (100 / (iy - halfCvsHeight));
+      let distance = (80 / (iy - halfCvsHeight));
       let x = distance * rayData.rayAngleX + camera.x;
       let y = distance * rayData.rayAngleY + camera.y;
 
