@@ -29,7 +29,7 @@ class Enemy extends Billboard {
             return;
         }
 
-        const maxViewRange = 10;
+        const maxViewRange = 15;
         //if we've seen the player find a way to get to him
         //first determine if we're even in range to see him
         const distanceFromPlayer = Math.sqrt(Math.pow(camera.x - this.x, 2) + Math.pow(camera.y - this.y, 2));
@@ -103,6 +103,6 @@ class Enemy extends Billboard {
     }
 
     copy(x, y) {
-        return new Enemy(this.name, this.maxLife, this.speed, this.isRanged, this.isStationary, this.projectile, this.defaultAnimation, this.attackAnimation, this.destroyAnimation, x, y);
+        return new Enemy(this.name, this.maxLife, this.speed, this.isRanged, this.isStationary, this.projectile, this.defaultAnimation.copy(), this.attackAnimation.copy(), this.destroyAnimation.copy(), x, y);
     }
 }

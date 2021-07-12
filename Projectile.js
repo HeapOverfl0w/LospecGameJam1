@@ -28,7 +28,7 @@ class Projectile extends Billboard {
     }
 
     copy(x, y, directionX, directionY, playerOwned) {
-        let projectile = new Projectile(this.defaultAnimation, x, y, directionX, directionY, this.speed, this.maxDistance, this.damage);
+        let projectile = new Projectile(this.defaultAnimation.copy(), x, y, directionX, directionY, this.speed, this.maxDistance, this.damage);
         if (playerOwned !== undefined) {
             projectile.playerOwned = playerOwned;
         }

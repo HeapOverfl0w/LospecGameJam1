@@ -59,4 +59,8 @@ class Animation {
 
         return returnData;
     }
+
+    copy() {
+        return new Animation(this.image, this.frameWidth, this.frameHeight, this.frameCount, this.frameTimeMs, this.repeats);
+    }
 }

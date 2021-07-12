@@ -39,6 +39,6 @@ class Powerup extends Billboard {
     }
 
     copy(x, y) {
-        return new Powerup(this.powerupType, this.defaultAnimation, x, y);
+        return new Powerup(this.powerupType, this.defaultAnimation.copy(), x, y);
     }
 }
