@@ -96,6 +96,8 @@ class Level
         return this.data.textures["walls"];
       case 2:
         return this.data.textures["drywall"];
+      case 4:
+        return this.data.textures["cobblestonetall"];
       default:
         return undefined;
     }
@@ -104,7 +106,7 @@ class Level
   getCeilingTextureAt(x,y) {
     switch(this.levelArray[x][y]) {
       case 0:
-        return this.data.textures["floors"];
+        return this.data.textures["ceiling"];
       default:
         return undefined;
     }

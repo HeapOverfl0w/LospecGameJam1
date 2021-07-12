@@ -22,7 +22,10 @@ class Data {
             "attackPistol",
             "defaultPistol",
             "ammopowerup",
-            "healthpowerup"
+            "healthpowerup",
+            "ceiling",
+            "cobblestone",
+            "cobblestonetall"
         ];
     }
 

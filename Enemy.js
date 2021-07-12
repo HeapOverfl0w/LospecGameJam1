@@ -29,7 +29,7 @@ class Enemy extends Billboard {
             return;
         }
 
-        const maxViewRange = 15;
+        const maxViewRange = 10;
         //if we've seen the player find a way to get to him
         //first determine if we're even in range to see him
         const distanceFromPlayer = Math.sqrt(Math.pow(camera.x - this.x, 2) + Math.pow(camera.y - this.y, 2));

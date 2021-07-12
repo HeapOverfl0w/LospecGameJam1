@@ -46,15 +46,13 @@ class RayCaster {
 
     for(let x = 0; x < cvsWidth; x++)
     {
-      //let rayAngle = (camera.angle - camera.fov / 2) + (x/cvsWidth) * camera.fov;
       let rayAngle = camera.angle + camera.fov * (x / cvsWidth - 0.5);
       let rayData = this.cast(camera, rayAngle, level);
-      //let ceiling = cvsHeight / 2 - cvsHeight / rayData.distance;
-      //let floor = cvsHeight - ceiling;
-      //let wallLength = floor - ceiling;
       let z = rayData.distance * Math.cos(camera.angle - rayAngle);
       let wallLength = cvsHeight / z * aspectRatio;
       let floor = (cvsHeight + 32) / 2 * (1 + 1/z) - 13;
+      if (rayData.texture !== undefined && rayData.texture.height > 32)
+        wallLength *= 2;
       let ceiling = floor - wallLength;
 
       rayData.height = wallLength;
