@@ -6,7 +6,7 @@ class Powerup extends Billboard {
     }
 
     update(data, camera) {
-        if (camera.isInside(this.x, this.y)) {
+        if (!this.collected && camera.isInside(this.x, this.y)) {
             if ((this.powerupType == "health" && camera.playerHealth == 10) ||
                 (this.powerupType == "ammo" && !camera.activeWeapon.isRanged)) 
                 return;
@@ -33,6 +33,7 @@ class Powerup extends Billboard {
                     }
                 break;
             }
+            this.activeAnimation.stop();
             this.collected = true;
         }
     }
