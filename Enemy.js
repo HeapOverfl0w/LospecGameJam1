@@ -16,17 +16,17 @@ class Enemy extends Billboard {
     }
 
     update(level, camera, updateInterval) {
+        if (this.life <= 0) {
+            if (this.activeAnimation != this.destroyAnimation)
+                this.activeAnimation = this.destroyAnimation;
+            return;
+        }
+        
         for (let p = 0; p < level.projectiles.length; p++) {
             if (level.projectiles[p].playerOwned && level.projectiles[p].isInside(this)) {
                 this.life -= level.projectiles[p].damage;
                 level.projectiles[p].hitWall = true;
             }
-        }
-
-        if (this.life <= 0) {
-            if (this.activeAnimation != this.destroyAnimation)
-                this.activeAnimation = this.destroyAnimation;
-            return;
         }
 
         const maxViewRange = 15;

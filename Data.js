@@ -48,7 +48,9 @@ class Data {
             "fridge",
             "comfychair",
             "tv",
-            "bed"
+            "bed",
+            "endtable",
+            "statue"
         ];
     }
 
@@ -107,7 +109,7 @@ class Data {
         this.animations["bluesparks"] = new Animation(this.textures["bluesparks"], 16, 16, 3, 100, false);
         this.animations["fireaxepowerup"] = new Animation(this.textures["fireaxepowerup"], 16, 16, 8, 200, true);
         this.animations["defaultfireaxe"] = new Animation(this.textures["fireaxe"], 240,135,3,400,true);
-        this.animations["attackfireaxe"] = new Animation(this.textures["fireaxeattack"], 240,135,5,300,false);
+        this.animations["attackfireaxe"] = new Animation(this.textures["fireaxeattack"], 240,135,5,200,false);
         this.animations["enemymeleeattack"] = new Animation(this.textures["npc_melee_attack"],32,32,11,100,false);
         this.animations["enemymeleemove"] = new Animation(this.textures["npc_melee_move"],32,32,6,100,true);
         this.animations["defaultar"] = new Animation(this.textures["ar"], 240,135,3,400,true);
@@ -120,6 +122,8 @@ class Data {
         this.animations["tv"] = new Animation(this.textures["tv"], 32, 32, 1, 0, true);
         this.animations["fridge"] = new Animation(this.textures["fridge"], 41, 44, 1, 0, true);
         this.animations["bed"] = new Animation(this.textures["bed"], 45, 32, 1, 0, true);
+        this.animations["endtable"] = new Animation(this.textures["endtable"], 16, 32, 1, 0, true);
+        this.animations["statue"] = new Animation(this.textures["statue"], 32, 64, 1, 0, true);
     }
 
     createTeleports() {
@@ -140,14 +144,16 @@ class Data {
         this.billboards["fridge"] = new Billboard(this.animations["fridge"], 0, 0);
         this.billboards["tv"] = new Billboard(this.animations["tv"], 0, 0);
         this.billboards["bed"] = new Billboard(this.animations["bed"], 0, 0);
+        this.billboards["endtable"] = new Billboard(this.animations["endtable"], 0, 0);
+        this.billboards["statue"] = new Billboard(this.animations["statue"], 0, 0);
     }
 
     createProjectiles() {
         this.projectiles = {};
         this.projectiles["sparks"] = new Projectile(this.animations["sparks"], 0,0, 0,0, 0.2, 2, 1);
-        this.projectiles["bluesparks"] = new Projectile(this.animations["bluesparks"], 0,0, 0,0, 0.2, 5, 1);
+        this.projectiles["bluesparks"] = new Projectile(this.animations["bluesparks"], 0,0, 0,0, 0.2, 20, 1);
         this.projectiles["enemyshot"] = new Projectile(this.animations["enemyshot"], 0,0, 0,0, 0.5, 20, 1);
-        this.projectiles["bulletprojectile"] = new Projectile(this.animations["bulletprojectile"], 0,0,0,0,0.5,20,1);
+        this.projectiles["bulletprojectile"] = new Projectile(this.animations["bulletprojectile"], 0,0,0,0,0.5,25,1);
     }
 
     createPowerups() {
