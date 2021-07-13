@@ -41,7 +41,8 @@ class Data {
             "brickwindow",
             "ceilingDryWall",
             "wallpaperdoor",
-            "wallpapervent"
+            "wallpapervent",
+            "pistolreload"
         ];
     }
 
@@ -93,6 +94,7 @@ class Data {
         this.animations["bulletprojectile"] = new Animation(this.textures["bulletprojectile"], 16, 16, 1, 0, false);
         this.animations["defaultPistol"] = new Animation(this.textures["defaultPistol"], 240,135,3,300,true);
         this.animations["attackPistol"] = new Animation(this.textures["attackPistol"], 240,135,3,300,false);
+        this.animations["reloadPistol"] = new Animation(this.textures["pistolreload"], 240,135,6,300,false);
         this.animations["ammopowerup"] = new Animation(this.textures["ammopowerup"], 16, 16, 6, 200, true);
         this.animations["healthpowerup"] = new Animation(this.textures["healthpowerup"], 16, 16, 6, 200, true);
         this.animations["bluesparks"] = new Animation(this.textures["bluesparks"], 16, 16, 3, 100, false);
@@ -150,7 +152,7 @@ class Data {
 
         //Pistol TODO: ADD RELOAD ANIMATION
         this.weapons["pistol"] = new Weapon("Pistol",
-        this.animations["defaultPistol"], this.animations["attackPistol"], this.animations["defaultPistol"], 
+        this.animations["defaultPistol"], this.animations["attackPistol"], this.animations["reloadPistol"], 
         true, this.projectiles["bulletprojectile"], 8);
 
         //Fireaxe
