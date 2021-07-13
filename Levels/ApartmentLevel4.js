@@ -41,8 +41,12 @@ let ApartmentLevel4 = new Level(
 document.getElementById("skyboxblank"),
 true,
 "#1d1c1f",
-[],
-[],
-[],
+[{type:"couch", x: 19.8, y:67.3}, {type:"couch", x: 32.8, y:44.3}, 
+{type: "computerdesk", x: 16.4, y: 68.5}, {type: "computerdesk", x: 36, y: 44.5},
+{type: "fridge", x: 36.5, y: 49.1},
+{type: "deaddude", x: 34.4, y: 47.2},
+{type: "tv", x: 31.8, y:44.2}],
+[{type:"melee", x: 36.3, y:45.5}],
+[{type:"fireaxe", x: 19.5, y: 36.5}, {type: "pistol", x: 32.4, y: 54.3}],
 [{type: "apartmentlevel4down", x: 18.5, y: 6.5}]
 );
