@@ -30,6 +30,7 @@ class Camera
 
   drawHUD(ctx) {
     let height = ctx.canvas.height;
+    let width = ctx.canvas.width;
     //draw health
     ctx.fillStyle = "#f63f4c";
     ctx.fillText(Math.round(this.playerHealth / 10 * 100) + "%", 10, height - 10);
@@ -38,6 +39,9 @@ class Camera
       ctx.fillStyle = "#37313b";
       ctx.fillText(this.activeWeapon.magazineAmmo + " : " + this.activeWeapon.ammo, 35, height - 10);
     }
+
+    ctx.fillStyle = "#000000";
+    ctx.fillText((Math.round(this.x * 10) / 10) + "," + (Math.round(this.y * 10) / 10), width - 40, height - 10);
   }
 
   handleMouseDown(level) {
