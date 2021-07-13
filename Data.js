@@ -23,7 +23,7 @@ class Data {
             "defaultPistol",
             "ammopowerup",
             "healthpowerup",
-            "ceiling",
+            "vent",
             "cobblestone",
             "cobblestonetall",
             "fireaxe",
@@ -40,7 +40,8 @@ class Data {
             "wallpaper",
             "brickwindow",
             "ceilingDryWall",
-            "wallpaperdoor"
+            "wallpaperdoor",
+            "wallpapervent"
         ];
     }
 

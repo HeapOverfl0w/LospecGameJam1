@@ -83,7 +83,7 @@ class Level
   }
 
   isDoor(x, y) {
-    return this.levelArray[x][y] == 5;
+    return this.levelArray[x][y] == 5 || this.levelArray[x][y] == 7;
   }
 
   isWall(x, y)
@@ -110,6 +110,10 @@ class Level
         return this.data.textures["brickwindow"];
       case 5:
         return this.data.textures["wallpaperdoor"];
+      case 7:
+        return this.data.textures["wallpapervent"];
+      case 8:
+        return this.data.textures["vent"];
       default:
         return undefined;
     }
@@ -120,6 +124,8 @@ class Level
       case 0:
       case 6:
         return this.data.textures["ceilingDryWall"];
+      case 9:
+        return this.data.textures["vent"];
       default:
         return undefined;
     }
@@ -131,6 +137,8 @@ class Level
         return this.data.textures["floors"];
       case 6:
         return this.data.textures["carpet"];
+      case 9:
+        return this.data.textures["vent"];
       default:
         return this.data.textures["floors"];
     }

@@ -67,8 +67,10 @@ class Camera
 
   handleKeyDown(keyCode, level, updateInterval)
   {
-    let adjustedX = 0;
-    let adjustedY = 0;
+    let adjustedX = this.x;
+    let adjustedY = this.y;
+    let actualX = this.x;
+    let actualY = this.y;
     let previousX = this.x;
     let previousY = this.y;
 
@@ -77,10 +79,12 @@ class Camera
       let modifier = this.isStrafing ? 0.4 : 1;
       adjustedX = this.x + Math.sin(this.angle) * this.speed * modifier * updateInterval;
       adjustedY = this.y + Math.cos(this.angle) * this.speed * modifier * updateInterval;
-      if (level.isPassable(Math.floor(adjustedX), Math.floor(adjustedY)))
+      actualX = adjustedX;
+      actualY = adjustedY;
+      if (!level.isPassable(Math.floor(adjustedX), Math.floor(adjustedY)))
       {
-        this.x = adjustedX;
-        this.y = adjustedY;
+        actualX = this.x;
+        actualY = this.y;
       }
     }
     if (keyCode == 83)
@@ -88,23 +92,27 @@ class Camera
       let modifier = this.isStrafing ? 0.2 : 0.5;
       adjustedX = this.x - Math.sin(this.angle) * this.speed * modifier * updateInterval;
       adjustedY = this.y - Math.cos(this.angle) * this.speed * modifier * updateInterval;
+      actualX = adjustedX;
+      actualY = adjustedY;
       let floorAdjustedX = Math.floor(adjustedX);
       let floorAdjustedY = Math.floor(adjustedY);
-      if (level.isPassable(floorAdjustedX, floorAdjustedY))
+      if (!level.isPassable(floorAdjustedX, floorAdjustedY))
       {
-        this.x = adjustedX;
-        this.y = adjustedY;
+        actualX = this.x;
+        actualY = this.y;
       }
     }
     if (keyCode == 65)
     { //A
       adjustedX = this.x - Math.sin(this.angle + Math.PI/2) * this.speed * (0.4) * updateInterval;
       adjustedY = this.y - Math.cos(this.angle + Math.PI/2) * this.speed * (0.4) * updateInterval;
+      actualX = adjustedX;
+      actualY = adjustedY;
       let floorAdjustedX = Math.floor(adjustedX);
       let floorAdjustedY = Math.floor(adjustedY);
-      if (level.isPassable(floorAdjustedX, floorAdjustedY)) {
-        this.x = adjustedX;
-        this.y = adjustedY;
+      if (!level.isPassable(floorAdjustedX, floorAdjustedY)) {
+        actualX = this.x;
+        actualY = this.y;
       }
       this.isStrafing = true;
     }
@@ -112,28 +120,33 @@ class Camera
     { //D
       adjustedX = this.x - Math.sin(this.angle - Math.PI/2) * this.speed * (0.4) * updateInterval;
       adjustedY = this.y - Math.cos(this.angle - Math.PI/2) * this.speed * (0.4) * updateInterval;
+      actualX = adjustedX;
+      actualY = adjustedY;
       let floorAdjustedX = Math.floor(adjustedX);
       let floorAdjustedY = Math.floor(adjustedY);
-      if (level.isPassable(floorAdjustedX, floorAdjustedY)) {
-        this.x = adjustedX;
-        this.y = adjustedY;
+      if (!level.isPassable(floorAdjustedX, floorAdjustedY)) {
+        actualX = this.x;
+        actualY = this.y;
       }
       this.isStrafing = true;
     }
 
     if (level.isDoor(Math.floor(adjustedX), Math.floor(adjustedY))) {
       if (adjustedX > previousX) {
-        this.x += 1;
+        actualX = this.x + 1;
       }
-      if (adjustedY > previousY) {
-        this.y += 1;
+      else if (adjustedY > previousY) {
+        actualY = this.y + 1;
       }
-      if (adjustedX < previousX) {
-        this.x -= 1;
+      else if (adjustedX < previousX) {
+        actualX = this.x - 1;
       }
-      if (adjustedY < previousY) {
-        this.y -= 1;
+      else if (adjustedY < previousY) {
+        actualY = this.y - 1;
       }
     }
+
+    this.x = actualX;
+    this.y = actualY;
   }
 }
