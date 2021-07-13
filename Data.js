@@ -47,7 +47,8 @@ class Data {
             "deaddude",
             "fridge",
             "comfychair",
-            "tv"
+            "tv",
+            "bed"
         ];
     }
 
@@ -118,6 +119,7 @@ class Data {
         this.animations["comfychair"] = new Animation(this.textures["comfychair"], 41, 32, 1, 0, true);
         this.animations["tv"] = new Animation(this.textures["tv"], 32, 32, 1, 0, true);
         this.animations["fridge"] = new Animation(this.textures["fridge"], 41, 44, 1, 0, true);
+        this.animations["bed"] = new Animation(this.textures["bed"], 45, 32, 1, 0, true);
     }
 
     createTeleports() {
@@ -137,6 +139,7 @@ class Data {
         this.billboards["comfychair"] = new Billboard(this.animations["comfychair"], 0, 0);
         this.billboards["fridge"] = new Billboard(this.animations["fridge"], 0, 0);
         this.billboards["tv"] = new Billboard(this.animations["tv"], 0, 0);
+        this.billboards["bed"] = new Billboard(this.animations["bed"], 0, 0);
     }
 
     createProjectiles() {
@@ -170,18 +173,18 @@ class Data {
         this.animations["defaultScrewDriver"], this.animations["attackScrewDriver"], this.animations["defaultScrewDriver"],
         false, this.projectiles["sparks"], 0);
 
-        //Pistol TODO: ADD RELOAD ANIMATION
-        this.weapons["pistol"] = new Weapon("Pistol",
+        //Pistol
+        this.weapons["pistol"] = new Weapon("pistol",
         this.animations["defaultPistol"], this.animations["attackPistol"], this.animations["reloadPistol"], 
         true, this.projectiles["bulletprojectile"], 8);
 
         //Fireaxe
-        this.weapons["fireaxe"] = new Weapon("Fireaxe", 
+        this.weapons["fireaxe"] = new Weapon("fireaxe", 
         this.animations["defaultfireaxe"], this.animations["attackfireaxe"], this.animations["defaultfireaxe"],
         false, this.projectiles["bluesparks"], 0);
 
         //Fireaxe
-        this.weapons["ar"] = new Weapon("AR", 
+        this.weapons["ar"] = new Weapon("ar", 
         this.animations["defaultar"], this.animations["attackar"], this.animations["reloadar"],
         true, this.projectiles["bulletprojectile"], 20);
     }

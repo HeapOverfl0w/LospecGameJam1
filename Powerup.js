@@ -21,7 +21,7 @@ class Powerup extends Billboard {
                 default:
                     let weaponDoesNotExist = true;
                     for (let w = 0; w < camera.weapons.length; w++) {
-                        if (camera.weapons[w].name == data.powerups[this.powerupType].name) {
+                        if (camera.weapons[w].name == this.powerupType) {
                             weaponDoesNotExist = false;
                             camera.weapons[w].ammo += 10;
                         }
