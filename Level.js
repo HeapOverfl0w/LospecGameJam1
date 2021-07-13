@@ -1,11 +1,10 @@
 class Level
 {
-  constructor(levelArray, data, skyboxImage, useShade, shadeColor, billboards, enemies, powerups)
+  constructor(levelArray, skyboxImage, useShade, shadeColor, billboards, enemies, powerups)
   {
     this.levelArray = levelArray;
     this.width = levelArray.length;
     this.height = levelArray[0].length;
-    this.data = data;
     this.skybox = skyboxImage;
     this.useShade = useShade;
     this.shadeColor = shadeColor;
@@ -16,10 +15,13 @@ class Level
 
 
     this.projectiles = [];
+  }
 
-    this.loadBillboards(billboards);
-    this.loadEnemies(enemies);
-    this.loadPowerups(powerups);
+  loadData(data) {
+    this.data = data;
+    this.loadBillboards(this.billboardTypes);
+    this.loadEnemies(this.enemyTypes);
+    this.loadPowerups(this.powerupTypes);
   }
 
   getAllBillboards() {
@@ -80,6 +82,10 @@ class Level
     }
   }
 
+  isDoor(x, y) {
+    return this.levelArray[x][y] == 5;
+  }
+
   isWall(x, y)
   {
     //for out of bounds just put a wall
@@ -95,11 +101,15 @@ class Level
     switch(this.levelArray[x][y])
     {
       case 1:
-        return this.data.textures["walls"];
+        return this.data.textures["brick"];
       case 2:
         return this.data.textures["drywall"];
+      case 3:
+        return this.data.textures["wallpaper"];
       case 4:
-        return this.data.textures["cobblestonetall"];
+        return this.data.textures["brickwindow"];
+      case 5:
+        return this.data.textures["wallpaperdoor"];
       default:
         return undefined;
     }
@@ -108,7 +118,8 @@ class Level
   getCeilingTextureAt(x,y) {
     switch(this.levelArray[x][y]) {
       case 0:
-        return this.data.textures["ceiling"];
+      case 6:
+        return this.data.textures["ceilingDryWall"];
       default:
         return undefined;
     }
@@ -118,6 +129,8 @@ class Level
     switch(this.levelArray[x][y]) {
       case 0:
         return this.data.textures["floors"];
+      case 6:
+        return this.data.textures["carpet"];
       default:
         return this.data.textures["floors"];
     }

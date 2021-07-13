@@ -67,11 +67,16 @@ class Camera
 
   handleKeyDown(keyCode, level, updateInterval)
   {
+    let adjustedX = 0;
+    let adjustedY = 0;
+    let previousX = this.x;
+    let previousY = this.y;
+
     if (keyCode == 87)
     { //W
       let modifier = this.isStrafing ? 0.4 : 1;
-      let adjustedX = this.x + Math.sin(this.angle) * this.speed * modifier * updateInterval;
-      let adjustedY = this.y + Math.cos(this.angle) * this.speed * modifier * updateInterval;
+      adjustedX = this.x + Math.sin(this.angle) * this.speed * modifier * updateInterval;
+      adjustedY = this.y + Math.cos(this.angle) * this.speed * modifier * updateInterval;
       if (level.isPassable(Math.floor(adjustedX), Math.floor(adjustedY)))
       {
         this.x = adjustedX;
@@ -81,8 +86,8 @@ class Camera
     if (keyCode == 83)
     { //S
       let modifier = this.isStrafing ? 0.2 : 0.5;
-      let adjustedX = this.x - Math.sin(this.angle) * this.speed * modifier * updateInterval;
-      let adjustedY = this.y - Math.cos(this.angle) * this.speed * modifier * updateInterval;
+      adjustedX = this.x - Math.sin(this.angle) * this.speed * modifier * updateInterval;
+      adjustedY = this.y - Math.cos(this.angle) * this.speed * modifier * updateInterval;
       let floorAdjustedX = Math.floor(adjustedX);
       let floorAdjustedY = Math.floor(adjustedY);
       if (level.isPassable(floorAdjustedX, floorAdjustedY))
@@ -93,8 +98,8 @@ class Camera
     }
     if (keyCode == 65)
     { //A
-      let adjustedX = this.x - Math.sin(this.angle + Math.PI/2) * this.speed * (0.4) * updateInterval;
-      let adjustedY = this.y - Math.cos(this.angle + Math.PI/2) * this.speed * (0.4) * updateInterval;
+      adjustedX = this.x - Math.sin(this.angle + Math.PI/2) * this.speed * (0.4) * updateInterval;
+      adjustedY = this.y - Math.cos(this.angle + Math.PI/2) * this.speed * (0.4) * updateInterval;
       let floorAdjustedX = Math.floor(adjustedX);
       let floorAdjustedY = Math.floor(adjustedY);
       if (level.isPassable(floorAdjustedX, floorAdjustedY)) {
@@ -105,8 +110,8 @@ class Camera
     }
     if (keyCode == 68)
     { //D
-      let adjustedX = this.x - Math.sin(this.angle - Math.PI/2) * this.speed * (0.4) * updateInterval;
-      let adjustedY = this.y - Math.cos(this.angle - Math.PI/2) * this.speed * (0.4) * updateInterval;
+      adjustedX = this.x - Math.sin(this.angle - Math.PI/2) * this.speed * (0.4) * updateInterval;
+      adjustedY = this.y - Math.cos(this.angle - Math.PI/2) * this.speed * (0.4) * updateInterval;
       let floorAdjustedX = Math.floor(adjustedX);
       let floorAdjustedY = Math.floor(adjustedY);
       if (level.isPassable(floorAdjustedX, floorAdjustedY)) {
@@ -114,6 +119,21 @@ class Camera
         this.y = adjustedY;
       }
       this.isStrafing = true;
+    }
+
+    if (level.isDoor(Math.floor(adjustedX), Math.floor(adjustedY))) {
+      if (adjustedX > previousX) {
+        this.x += 1;
+      }
+      if (adjustedY > previousY) {
+        this.y += 1;
+      }
+      if (adjustedX < previousX) {
+        this.x -= 1;
+      }
+      if (adjustedY < previousY) {
+        this.y -= 1;
+      }
     }
   }
 }

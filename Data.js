@@ -12,7 +12,7 @@ class Data {
             "sparks",
             "defaultScrewDriver", 
             "attackScrewDriver", 
-            "walls", 
+            "brick", 
             "billboards", 
             "floors", 
             "skybox",
@@ -35,7 +35,12 @@ class Data {
             "ar",
             "arattack",
             "arreload",
-            "arpowerup"
+            "arpowerup",
+            "carpet",
+            "wallpaper",
+            "brickwindow",
+            "ceilingDryWall",
+            "wallpaperdoor"
         ];
     }
 
