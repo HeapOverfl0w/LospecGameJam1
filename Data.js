@@ -12,7 +12,7 @@ class Data {
             "sparks",
             "defaultScrewDriver", 
             "attackScrewDriver", 
-            "walls", 
+            "brick", 
             "billboards", 
             "floors", 
             "skybox",
@@ -23,7 +23,7 @@ class Data {
             "defaultPistol",
             "ammopowerup",
             "healthpowerup",
-            "ceiling",
+            "vent",
             "cobblestone",
             "cobblestonetall",
             "fireaxe",
@@ -35,7 +35,13 @@ class Data {
             "ar",
             "arattack",
             "arreload",
-            "arpowerup"
+            "arpowerup",
+            "carpet",
+            "wallpaper",
+            "brickwindow",
+            "ceilingDryWall",
+            "wallpaperdoor",
+            "wallpapervent"
         ];
     }
 

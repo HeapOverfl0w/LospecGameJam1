@@ -30,6 +30,7 @@ class Camera
 
   drawHUD(ctx) {
     let height = ctx.canvas.height;
+    let width = ctx.canvas.width;
     //draw health
     ctx.fillStyle = "#f63f4c";
     ctx.fillText(Math.round(this.playerHealth / 10 * 100) + "%", 10, height - 10);
@@ -38,6 +39,9 @@ class Camera
       ctx.fillStyle = "#37313b";
       ctx.fillText(this.activeWeapon.magazineAmmo + " : " + this.activeWeapon.ammo, 35, height - 10);
     }
+
+    ctx.fillStyle = "#000000";
+    ctx.fillText((Math.round(this.x * 10) / 10) + "," + (Math.round(this.y * 10) / 10), width - 40, height - 10);
   }
 
   handleMouseDown(level) {
@@ -67,53 +71,86 @@ class Camera
 
   handleKeyDown(keyCode, level, updateInterval)
   {
+    let adjustedX = this.x;
+    let adjustedY = this.y;
+    let actualX = this.x;
+    let actualY = this.y;
+    let previousX = this.x;
+    let previousY = this.y;
+
     if (keyCode == 87)
     { //W
       let modifier = this.isStrafing ? 0.4 : 1;
-      let adjustedX = this.x + Math.sin(this.angle) * this.speed * modifier * updateInterval;
-      let adjustedY = this.y + Math.cos(this.angle) * this.speed * modifier * updateInterval;
-      if (level.isPassable(Math.floor(adjustedX), Math.floor(adjustedY)))
+      adjustedX = this.x + Math.sin(this.angle) * this.speed * modifier * updateInterval;
+      adjustedY = this.y + Math.cos(this.angle) * this.speed * modifier * updateInterval;
+      actualX = adjustedX;
+      actualY = adjustedY;
+      if (!level.isPassable(Math.floor(adjustedX), Math.floor(adjustedY)))
       {
-        this.x = adjustedX;
-        this.y = adjustedY;
+        actualX = this.x;
+        actualY = this.y;
       }
     }
     if (keyCode == 83)
     { //S
       let modifier = this.isStrafing ? 0.2 : 0.5;
-      let adjustedX = this.x - Math.sin(this.angle) * this.speed * modifier * updateInterval;
-      let adjustedY = this.y - Math.cos(this.angle) * this.speed * modifier * updateInterval;
+      adjustedX = this.x - Math.sin(this.angle) * this.speed * modifier * updateInterval;
+      adjustedY = this.y - Math.cos(this.angle) * this.speed * modifier * updateInterval;
+      actualX = adjustedX;
+      actualY = adjustedY;
       let floorAdjustedX = Math.floor(adjustedX);
       let floorAdjustedY = Math.floor(adjustedY);
-      if (level.isPassable(floorAdjustedX, floorAdjustedY))
+      if (!level.isPassable(floorAdjustedX, floorAdjustedY))
       {
-        this.x = adjustedX;
-        this.y = adjustedY;
+        actualX = this.x;
+        actualY = this.y;
       }
     }
     if (keyCode == 65)
     { //A
-      let adjustedX = this.x - Math.sin(this.angle + Math.PI/2) * this.speed * (0.4) * updateInterval;
-      let adjustedY = this.y - Math.cos(this.angle + Math.PI/2) * this.speed * (0.4) * updateInterval;
+      adjustedX = this.x - Math.sin(this.angle + Math.PI/2) * this.speed * (0.4) * updateInterval;
+      adjustedY = this.y - Math.cos(this.angle + Math.PI/2) * this.speed * (0.4) * updateInterval;
+      actualX = adjustedX;
+      actualY = adjustedY;
       let floorAdjustedX = Math.floor(adjustedX);
       let floorAdjustedY = Math.floor(adjustedY);
-      if (level.isPassable(floorAdjustedX, floorAdjustedY)) {
-        this.x = adjustedX;
-        this.y = adjustedY;
+      if (!level.isPassable(floorAdjustedX, floorAdjustedY)) {
+        actualX = this.x;
+        actualY = this.y;
       }
       this.isStrafing = true;
     }
     if (keyCode == 68)
     { //D
-      let adjustedX = this.x - Math.sin(this.angle - Math.PI/2) * this.speed * (0.4) * updateInterval;
-      let adjustedY = this.y - Math.cos(this.angle - Math.PI/2) * this.speed * (0.4) * updateInterval;
+      adjustedX = this.x - Math.sin(this.angle - Math.PI/2) * this.speed * (0.4) * updateInterval;
+      adjustedY = this.y - Math.cos(this.angle - Math.PI/2) * this.speed * (0.4) * updateInterval;
+      actualX = adjustedX;
+      actualY = adjustedY;
       let floorAdjustedX = Math.floor(adjustedX);
       let floorAdjustedY = Math.floor(adjustedY);
-      if (level.isPassable(floorAdjustedX, floorAdjustedY)) {
-        this.x = adjustedX;
-        this.y = adjustedY;
+      if (!level.isPassable(floorAdjustedX, floorAdjustedY)) {
+        actualX = this.x;
+        actualY = this.y;
       }
       this.isStrafing = true;
     }
+
+    if (level.isDoor(Math.floor(adjustedX), Math.floor(adjustedY))) {
+      if (adjustedX > previousX) {
+        actualX = this.x + 1;
+      }
+      else if (adjustedY > previousY) {
+        actualY = this.y + 1;
+      }
+      else if (adjustedX < previousX) {
+        actualX = this.x - 1;
+      }
+      else if (adjustedY < previousY) {
+        actualY = this.y - 1;
+      }
+    }
+
+    this.x = actualX;
+    this.y = actualY;
   }
 }
