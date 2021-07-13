@@ -42,7 +42,12 @@ class Data {
             "ceilingDryWall",
             "wallpaperdoor",
             "wallpapervent",
-            "elevatordoors"
+            "elevatordoors",
+            "pistolreload",
+            "deaddude",
+            "fridge",
+            "comfychair",
+            "tv"
         ];
     }
 
@@ -95,6 +100,7 @@ class Data {
         this.animations["bulletprojectile"] = new Animation(this.textures["bulletprojectile"], 16, 16, 1, 0, false);
         this.animations["defaultPistol"] = new Animation(this.textures["defaultPistol"], 240,135,3,300,true);
         this.animations["attackPistol"] = new Animation(this.textures["attackPistol"], 240,135,3,300,false);
+        this.animations["reloadPistol"] = new Animation(this.textures["pistolreload"], 240,135,6,300,false);
         this.animations["ammopowerup"] = new Animation(this.textures["ammopowerup"], 16, 16, 6, 200, true);
         this.animations["healthpowerup"] = new Animation(this.textures["healthpowerup"], 16, 16, 6, 200, true);
         this.animations["bluesparks"] = new Animation(this.textures["bluesparks"], 16, 16, 3, 100, false);
@@ -108,6 +114,10 @@ class Data {
         this.animations["reloadar"] = new Animation(this.textures["arreload"], 240,135,6,300,false);
         this.animations["arpowerup"] = new Animation(this.textures["arpowerup"], 16, 16, 8, 200, true);
         this.animations["elevatordoors"] = new Animation(this.textures["elevatordoors"], 32, 32, 6, 300, true);
+        this.animations["deaddude"] = new Animation(this.textures["deaddude"], 32, 32, 1, 0, true);
+        this.animations["comfychair"] = new Animation(this.textures["comfychair"], 41, 32, 1, 0, true);
+        this.animations["tv"] = new Animation(this.textures["tv"], 32, 32, 1, 0, true);
+        this.animations["fridge"] = new Animation(this.textures["fridge"], 41, 44, 1, 0, true);
     }
 
     createTeleports() {
@@ -123,6 +133,10 @@ class Data {
         this.billboards["trashcan"] = new Billboard(this.animations["trashcan"], 0, 0);
         this.billboards["pottedplant"] = new Billboard(this.animations["pottedplant"], 0, 0);
         this.billboards["computerdesk"] = new Billboard(this.animations["computerdesk"], 0, 0);
+        this.billboards["deaddude"] = new Billboard(this.animations["deaddude"], 0, 0);
+        this.billboards["comfychair"] = new Billboard(this.animations["comfychair"], 0, 0);
+        this.billboards["fridge"] = new Billboard(this.animations["fridge"], 0, 0);
+        this.billboards["tv"] = new Billboard(this.animations["tv"], 0, 0);
     }
 
     createProjectiles() {
@@ -158,7 +172,7 @@ class Data {
 
         //Pistol TODO: ADD RELOAD ANIMATION
         this.weapons["pistol"] = new Weapon("Pistol",
-        this.animations["defaultPistol"], this.animations["attackPistol"], this.animations["defaultPistol"], 
+        this.animations["defaultPistol"], this.animations["attackPistol"], this.animations["reloadPistol"], 
         true, this.projectiles["bulletprojectile"], 8);
 
         //Fireaxe
