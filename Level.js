@@ -1,6 +1,6 @@
 class Level
 {
-  constructor(levelArray, skyboxImage, useShade, shadeColor, billboards, enemies, powerups)
+  constructor(levelArray, skyboxImage, useShade, shadeColor, billboards, enemies, powerups, teleports)
   {
     this.levelArray = levelArray;
     this.width = levelArray.length;
@@ -12,7 +12,7 @@ class Level
     this.billboardTypes = billboards;
     this.enemyTypes = enemies;
     this.powerupTypes = powerups;
-
+    this.teleportTypes = teleports;
 
     this.projectiles = [];
   }
@@ -22,10 +22,20 @@ class Level
     this.loadBillboards(this.billboardTypes);
     this.loadEnemies(this.enemyTypes);
     this.loadPowerups(this.powerupTypes);
+    this.loadTeleports(this.teleportTypes);
   }
 
   getAllBillboards() {
-    return this.billboards.concat(this.projectiles).concat(this.enemies).concat(this.powerups);
+    return this.billboards.concat(this.projectiles).concat(this.enemies).concat(this.powerups).concat(this.teleports);
+  }
+
+  getTeleportOnPlayer(camera) {
+    for(let t = 0; t < this.teleports.length; t++){
+      if (this.teleports[t].isPlayerInside(camera))
+        return this.teleports[t];
+    }
+
+    return undefined;
   }
 
   update(level, camera, updateInterval) {
@@ -79,6 +89,13 @@ class Level
     this.powerups = [];
     for (let p = 0; p < powerups.length; p++) {
       this.powerups.push(this.data.powerups[powerups[p].type].copy(powerups[p].x, powerups[p].y));
+    }
+  }
+
+  loadTeleports(teleports) {
+    this.teleports = [];
+    for (let p = 0; p < teleports.length; p++) {
+      this.teleports.push(this.data.teleports[teleports[p].type].copy(teleports[p].x, teleports[p].y));
     }
   }
 
@@ -145,6 +162,6 @@ class Level
   }
 
   copy() {
-    return new Level([...this.levelArray], this.data, this.skybox, this.useShade, this.shadeColor, this.billboardTypes, this.enemyTypes, this.powerupTypes);
+    return new Level([...this.levelArray], this.data, this.skybox, this.useShade, this.shadeColor, this.billboardTypes, this.enemyTypes, this.powerupTypes, this.teleportTypes);
   }
 }

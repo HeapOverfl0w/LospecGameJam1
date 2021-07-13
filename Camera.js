@@ -136,17 +136,24 @@ class Camera
     }
 
     if (level.isDoor(Math.floor(adjustedX), Math.floor(adjustedY))) {
-      if (adjustedX > previousX) {
-        actualX = this.x + 1;
+      let previousXDiff = Math.abs(adjustedX - previousX);
+      let previousYDiff = Math.abs(adjustedY - previousY);
+
+      if (previousXDiff > previousYDiff) {
+        if (adjustedX > previousX) {
+          actualX = this.x + 1;
+        }
+        else if (adjustedX < previousX) {
+          actualX = this.x - 1;
+        }
       }
-      else if (adjustedY > previousY) {
-        actualY = this.y + 1;
-      }
-      else if (adjustedX < previousX) {
-        actualX = this.x - 1;
-      }
-      else if (adjustedY < previousY) {
-        actualY = this.y - 1;
+      else {
+        if (adjustedY > previousY) {
+          actualY = this.y + 1;
+        }
+        else if (adjustedY < previousY) {
+          actualY = this.y - 1;
+        }
       }
     }
 

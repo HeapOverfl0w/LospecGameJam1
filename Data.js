@@ -41,7 +41,8 @@ class Data {
             "brickwindow",
             "ceilingDryWall",
             "wallpaperdoor",
-            "wallpapervent"
+            "wallpapervent",
+            "elevatordoors"
         ];
     }
 
@@ -53,6 +54,7 @@ class Data {
         this.createPowerups();
         this.createEnemies();
         this.createWeapons();
+        this.createTeleports();
     }
 
     loadTextures() {
@@ -105,6 +107,12 @@ class Data {
         this.animations["attackar"] = new Animation(this.textures["arattack"], 240,135,2,100,false);
         this.animations["reloadar"] = new Animation(this.textures["arreload"], 240,135,6,300,false);
         this.animations["arpowerup"] = new Animation(this.textures["arpowerup"], 16, 16, 8, 200, true);
+        this.animations["elevatordoors"] = new Animation(this.textures["elevatordoors"], 32, 32, 6, 300, true);
+    }
+
+    createTeleports() {
+        this.teleports = {};
+        this.teleports["apartmentlevel4down"] = new Teleport(this.animations["elevatordoors"],0,0,testLevel,2,2);
     }
 
     createBillboards() {

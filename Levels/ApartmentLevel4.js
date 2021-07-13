@@ -43,5 +43,6 @@ true,
 "#1d1c1f",
 [],
 [],
-[]
+[],
+[{type: "apartmentlevel4down", x: 18.5, y: 6.5}]
 );
