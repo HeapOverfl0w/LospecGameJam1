@@ -99,13 +99,14 @@ function App() {
   const [update, setUpdate] = useState(false);
 
   const updateHeight = function(e) {
-    let defRow = [];
     let temp = rows;
-    for (let i = 0; i < width; i++) {
-      defRow.push({billboard: '', wall: 0, floor: 0, ceiling: 0 });
-    }
 
     while(temp.length < e.target.value) {
+      let defRow = [];
+      for (let i = 0; i < width; i++) {
+        defRow.push({billboard: '', wall: 0, floor: 0, ceiling: 0 });
+      }
+      
       temp.push({columns: defRow});
     }
 
