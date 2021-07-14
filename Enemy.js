@@ -13,15 +13,14 @@ class Enemy extends Billboard {
         this.isStationary = isStationary;
         this.speed = speed;
         this.destroyAnimation = destroyAnimation;
+
+        this.maxViewRange = 15;
+        this.maxAttackRange = this.isRanged ? 12 : 2;
     }
 
     update(level, camera, updateInterval) {
-        if (this.life <= 0) {
-            if (this.activeAnimation != this.destroyAnimation)
-                this.activeAnimation = this.destroyAnimation;
-            return;
-        }
-        
+        if (this.life <= 0) { return; }
+
         for (let p = 0; p < level.projectiles.length; p++) {
             if (level.projectiles[p].playerOwned && level.projectiles[p].isInside(this)) {
                 this.life -= level.projectiles[p].damage;
@@ -29,13 +28,18 @@ class Enemy extends Billboard {
             }
         }
 
-        const maxViewRange = 15;
+        if (this.life <= 0) {
+            if (this.activeAnimation != this.destroyAnimation)
+                this.activeAnimation = this.destroyAnimation;
+            return;
+        }
+
         //if we've seen the player find a way to get to him
         //first determine if we're even in range to see him
         const distanceFromPlayer = Math.sqrt(Math.pow(camera.x - this.x, 2) + Math.pow(camera.y - this.y, 2));
-        if (distanceFromPlayer < maxViewRange) {
+        if (distanceFromPlayer < this.maxViewRange) {
             const angle = Math.atan2(camera.x - this.x, camera.y - this.y);
-            const playerInView = this.rayCastForWallsOrPlayer(level, camera, maxViewRange, angle);
+            const playerInView = this.rayCastForWallsOrPlayer(level, camera, this.maxViewRange, angle);
 
             if (!this.hasSeenCamera && playerInView)
                 this.hasSeenCamera = true;
@@ -48,10 +52,9 @@ class Enemy extends Billboard {
     }
 
     move(level, angle, playerInView, updateInterval, distanceFromPlayer) {
-        if ((this.isRanged && playerInView) || this.isStationary)
+        if (this.isStationary)
             return;
-        
-        if (distanceFromPlayer > 2) {
+        if (distanceFromPlayer > this.maxAttackRange) {
             let x = this.x + Math.sin(angle) * this.speed * updateInterval;
             let y = this.y + Math.cos(angle) * this.speed * updateInterval;
             if (!level.isWall(Math.floor(x), Math.floor(y)))
@@ -69,7 +72,7 @@ class Enemy extends Billboard {
             this.activeAnimation = this.defaultAnimation;
             this.activeAnimation.start();
         }
-        else if (playerInView && this.isRanged){
+        else if (playerInView && this.isRanged && this.maxAttackRange > distanceFromPlayer){
             this.activeAnimation.stop();
             this.activeAnimation = this.attackAnimation;
             this.activeAnimation.start();

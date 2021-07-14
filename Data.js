@@ -50,7 +50,10 @@ class Data {
             "tv",
             "bed",
             "endtable",
-            "statue"
+            "statue",
+            "enemyrangedmove",
+            "enemyrangeddeath",
+            "enemyrangedattack"
         ];
     }
 
@@ -124,6 +127,9 @@ class Data {
         this.animations["bed"] = new Animation(this.textures["bed"], 45, 32, 1, 0, true);
         this.animations["endtable"] = new Animation(this.textures["endtable"], 16, 32, 1, 0, true);
         this.animations["statue"] = new Animation(this.textures["statue"], 32, 64, 1, 0, true);
+        this.animations["enemyrangedmove"] = new Animation(this.textures["enemyrangedmove"], 32, 32, 4, 200, true);
+        this.animations["enemyrangedattack"] = new Animation(this.textures["enemyrangedattack"], 32, 32, 3, 300, false);
+        this.animations["enemyrangeddeath"] = new Animation(this.textures["enemyrangeddeath"], 32, 32, 6, 300, false);
     }
 
     createTeleports() {
@@ -170,6 +176,7 @@ class Data {
         this.enemies["turret"] = new Enemy("Turret", 3, 0, true, true, this.projectiles["enemyshot"],this.animations["enemyturret"],this.animations["enemyturretattack"],this.animations["enemyturretdestroyed"],0,0);
         //TODO: ADD MELEE ENEMY KILL ANIMATION
         this.enemies["melee"] = new Enemy("Melee", 2, 2, false, false, this.projectiles["sparks"],this.animations["enemymeleemove"],this.animations["enemymeleeattack"],this.animations["enemyturretdestroyed"],0,0);
+        this.enemies["ranged"] = new Enemy("Ranged", 3, 1, true, false, this.projectiles["enemyshot"],this.animations["enemyrangedmove"],this.animations["enemyrangedattack"],this.animations["enemyrangeddeath"],0,0);
     }
 
     createWeapons() {

@@ -12,6 +12,7 @@ class Animation {
         this.frameTimeMs = frameTimeMs;
         this.repeats = repeats;
 
+        this.played = false;
         this.endRequested = false;
     }
 
@@ -26,11 +27,12 @@ class Animation {
         this.currentFrame = 0;
         this.timer = setInterval((animation) => {
             animation.currentFrame++;
-            if (animation.frameCount == animation.currentFrame && (!this.repeats || this.endRequested)){
+            if (animation.frameCount == animation.currentFrame && (!animation.repeats || animation.endRequested)){
+                this.played = true;
                 animation.stop();
             }
-            else if (animation.frameCount == animation.currentFrame && this.repeats){
-                this.currentFrame = 0;
+            else if (animation.frameCount == animation.currentFrame && animation.repeats){
+                animation.currentFrame = 0;
             }
         }, 
             this.frameTimeMs,
