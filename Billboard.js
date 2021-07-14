@@ -7,7 +7,7 @@ class Billboard {
     }
 
     isInside(billboard) {
-        const billboardWidth = 1;
+        const billboardWidth = 0.75;
         return (billboard.x + billboardWidth / 2 > this.x &&
             billboard.x - billboardWidth / 2 < this.x &&
             billboard.y + billboardWidth / 2 > this.y &&

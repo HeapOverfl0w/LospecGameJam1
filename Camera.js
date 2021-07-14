@@ -17,7 +17,7 @@ class Camera
   }
 
   isInside(x, y) {
-    const cameraWidth = 1;
+    const cameraWidth = 0.75;
     return (x + cameraWidth / 2 > this.x &&
         x - cameraWidth / 2 < this.x &&
         y + cameraWidth / 2 > this.y &&

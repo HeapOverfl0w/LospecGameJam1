@@ -53,7 +53,11 @@ class Data {
             "statue",
             "enemyrangedmove",
             "enemyrangeddeath",
-            "enemyrangedattack"
+            "enemyrangedattack",
+            "streetlamp",
+            "exitsign",
+            "cardboardbox",
+            "bush"
         ];
     }
 
@@ -130,6 +134,10 @@ class Data {
         this.animations["enemyrangedmove"] = new Animation(this.textures["enemyrangedmove"], 32, 32, 4, 200, true);
         this.animations["enemyrangedattack"] = new Animation(this.textures["enemyrangedattack"], 32, 32, 3, 300, false);
         this.animations["enemyrangeddeath"] = new Animation(this.textures["enemyrangeddeath"], 32, 32, 6, 300, false);
+        this.animations["exitsign"] = new Animation(this.textures["exitsign"],18,64,1,0,true);
+        this.animations["streetlamp"] = new Animation(this.textures["streetlamp"],16,64,1,0,true);
+        this.animations["cardboardbox"] = new Animation(this.textures["cardboardbox"],25,40,1,0,true);
+        this.animations["bush"] = new Animation(this.textures["bush"],33,45,1,0,true);
     }
 
     createTeleports() {
@@ -152,6 +160,10 @@ class Data {
         this.billboards["bed"] = new Billboard(this.animations["bed"], 0, 0);
         this.billboards["endtable"] = new Billboard(this.animations["endtable"], 0, 0);
         this.billboards["statue"] = new Billboard(this.animations["statue"], 0, 0);
+        this.billboards["exitsign"] = new Billboard(this.animations["exitsign"], 0, 0);
+        this.billboards["streetlamp"] = new Billboard(this.animations["streetlamp"], 0, 0);
+        this.billboards["cardboardbox"] = new Billboard(this.animations["cardboardbox"], 0, 0);
+        this.billboards["bush"] = new Billboard(this.animations["bush"],0,0);
     }
 
     createProjectiles() {
