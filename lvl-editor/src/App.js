@@ -98,6 +98,8 @@ function App() {
   const [billboard, setBillboard] = useState('');
   const [update, setUpdate] = useState(false);
 
+  const [mouseDown, setMouseDown] = useState(false);
+
   const updateHeight = function(e) {
     let temp = rows;
 
@@ -150,6 +152,10 @@ function App() {
     temp[i].columns[j][layer] = value;
     setRows(temp);
     setUpdate(!update);
+  }
+
+  const updateMouseDown = function(value){
+    setMouseDown(value);
   }
 
   const generate = function() {
@@ -269,7 +275,7 @@ function App() {
           </Select>
         }
       </div>
-      <div style={{width: '100%', display: 'flex', flexDirection: 'row', justifyContent: 'center'}}>
+      <div style={{width: '100%', display: 'flex', flexDirection: 'row', justifyContent: 'center'}} onMouseDown={() => updateMouseDown(true)} onMouseUp={() => updateMouseDown(false)}>
         <div style={{display: 'flex', flexDirection: 'column'}}>
           { rows.map((row, i) => (
             <Grid key={i} container spacing={0}>
@@ -278,10 +284,10 @@ function App() {
                     {row.columns.map((column, j) => (
                       <Grid key={j} item>
                         { layer !== 'billboard' &&
-                          <Paper square className={classes.paper} style={{backgroundColor: lcolors[rows[i].columns[j][layer]]}} onClick={() => updateLevel(i, j, Number(tile))}/>
+                          <Paper square className={classes.paper} style={{backgroundColor: lcolors[rows[i].columns[j][layer]]}} onMouseOver={() => {if (mouseDown)updateLevel(i, j, Number(tile))}}/>
                         }
                         { layer === 'billboard' &&
-                          <Paper square className={classes.paper} style={{backgroundColor: lcolors[rows[i].columns[j]['wall']]}} onClick={() => updateLevel(i, j, billboard)}>
+                          <Paper square className={classes.paper} style={{backgroundColor: lcolors[rows[i].columns[j]['wall']]}} onMouseOver={() => {if (mouseDown)updateLevel(i, j, Number(tile))}}>
                             {column[layer] &&
                               <Tooltip title={column[layer]}>
                                 <DetailsIcon style={{display: 'block', fontSize: 'medium'}}/>
