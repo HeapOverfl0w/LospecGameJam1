@@ -45,7 +45,7 @@ class Level
     //remove unnecessary projectiles
     let projectilesToRemove = [];
     for (let p = 0; p < this.projectiles.length; p++){
-      this.projectiles[p].update(this);
+      this.projectiles[p].update(this,camera);
       if (this.projectiles[p].reachedMaxDistanceOrHitWall())
         projectilesToRemove.push(this.projectiles[p]);
     }

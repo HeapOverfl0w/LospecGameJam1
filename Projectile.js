@@ -12,12 +12,17 @@ class Projectile extends Billboard {
         this.damage = damage;
     }
 
-    update(level) {
+    update(level, camera) {
         if (!this.activeAnimation.isAnimating())
             this.activeAnimation.start();
             
         this.x += this.directionX * this.speed;
         this.y += this.directionY * this.speed;
+
+        if (!this.playerOwned && camera.isInside(this.x, this.y)) {
+            this.hitWall = true;
+            camera.playerHealth -= this.damage;
+        }
 
         if (level.isWall(Math.floor(this.x), Math.floor(this.y)))
             this.hitWall = true;
