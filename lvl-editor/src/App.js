@@ -106,7 +106,7 @@ function App() {
       for (let i = 0; i < width; i++) {
         defRow.push({billboard: '', wall: 0, floor: 0, ceiling: 0 });
       }
-      
+
       temp.push({columns: defRow});
     }
 
@@ -269,30 +269,40 @@ function App() {
           </Select>
         }
       </div>
-      {rows.map((row, i) => (
-        <Grid key={i} container spacing={0}>
-          <Grid item xs={12}>
-              <Grid  container justifyContent="center" spacing={0}>
-                {row.columns.map((column, j) => (
-                  <Grid key={j} item>
-                    { layer !== 'billboard' &&
-                      <Paper square className={classes.paper} style={{backgroundColor: lcolors[rows[i].columns[j][layer]]}} onClick={() => updateLevel(i, j, Number(tile))}/>
-                    }
-                    { layer === 'billboard' &&
-                      <Paper square className={classes.paper} style={{backgroundColor: lcolors[rows[i].columns[j]['wall']]}} onClick={() => updateLevel(i, j, billboard)}>
-                        {column[layer] &&
-                          <Tooltip title={column[layer]}>
-                            <DetailsIcon style={{display: 'block', fontSize: 'medium'}}/>
-                          </Tooltip>
+      <div style={{width: '100%', display: 'flex', flexDirection: 'row', justifyContent: 'center'}}>
+        <div style={{display: 'flex', flexDirection: 'column'}}>
+          { rows.map((row, i) => (
+            <Grid key={i} container spacing={0}>
+              <Grid item xs={12}>
+                  <Grid  container justifyContent="center" spacing={0}>
+                    {row.columns.map((column, j) => (
+                      <Grid key={j} item>
+                        { layer !== 'billboard' &&
+                          <Paper square className={classes.paper} style={{backgroundColor: lcolors[rows[i].columns[j][layer]]}} onClick={() => updateLevel(i, j, Number(tile))}/>
                         }
-                      </Paper>
-                    }
+                        { layer === 'billboard' &&
+                          <Paper square className={classes.paper} style={{backgroundColor: lcolors[rows[i].columns[j]['wall']]}} onClick={() => updateLevel(i, j, billboard)}>
+                            {column[layer] &&
+                              <Tooltip title={column[layer]}>
+                                <DetailsIcon style={{display: 'block', fontSize: 'medium'}}/>
+                              </Tooltip>
+                            }
+                          </Paper>
+                        }
+                      </Grid>
+                    ))}
                   </Grid>
-                ))}
               </Grid>
-          </Grid>
-        </Grid>
-      ))}
+            </Grid>
+          ))}
+        </div>
+        <div style={{display: 'flex', flexDirection: 'column', marginLeft: '20px'}}>
+          { lcolors.map((color, i) => (
+            <Paper style={{backgroundColor: color, color: 'white'}}>{i}</Paper>
+          ))}
+        </div>
+      </div>
+
       <Button onClick={() => generate()}>
         Generate
       </Button>
