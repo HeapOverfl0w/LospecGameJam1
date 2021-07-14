@@ -23,6 +23,7 @@ class Enemy extends Billboard {
 
         for (let p = 0; p < level.projectiles.length; p++) {
             if (level.projectiles[p].playerOwned && level.projectiles[p].isInside(this)) {
+                this.hasSeenCamera = true;
                 this.life -= level.projectiles[p].damage;
                 level.projectiles[p].hitWall = true;
             }
