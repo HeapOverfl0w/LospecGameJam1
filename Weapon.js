@@ -41,6 +41,7 @@ class Weapon {
 
     reload() {
         if (this.magazineAmmo !== this.maxMagazineSize && this.ammo > 0) {
+            this.activeAnimation.stop();
             this.activeAnimation = this.reloadAnimation;
             this.activeAnimation.start();
             this.ammo -= this.maxMagazineSize - this.magazineAmmo;

@@ -143,7 +143,7 @@ class Data {
         this.animations["streetlamp"] = new Animation(this.textures["streetlamp"],16,64,1,0,true);
         this.animations["cardboardbox"] = new Animation(this.textures["cardboardbox"],25,40,1,0,true);
         this.animations["bush"] = new Animation(this.textures["bush"],33,45,1,0,true);
-        this.animations["defaultshotgun"] = new Animation(this.textures["shotgun"], 240,135,3,400,true);
+        this.animations["defaultshotgun"] = new Animation(this.textures["shotgun"], 240,135,3,500,true);
         this.animations["attackshotgun"] = new Animation(this.textures["shotgunattack"], 240,135,3,150,false);
         this.animations["reloadshotgun"] = new Animation(this.textures["shotgunreload"], 240,135,8,250,false);
         this.animations["shotgunpowerup"] = new Animation(this.textures["shotgunpowerup"], 16, 16, 8, 200, true);
@@ -182,7 +182,7 @@ class Data {
         this.projectiles["bluesparks"] = new Projectile(this.animations["bluesparks"], 0,0, 0,0, 0.2, 20, 1);
         this.projectiles["enemyshot"] = new Projectile(this.animations["enemyshot"], 0,0, 0,0, 0.5, 20, 1);
         this.projectiles["bulletprojectile"] = new Projectile(this.animations["bulletprojectile"], 0,0,0,0,0.5,25,1);
-        this.projectiles["shotgunblast"] = new Projectile(this.animations["shotgunblast"],0,0,0,0,0.75,10,3);
+        this.projectiles["shotgunblast"] = new Projectile(this.animations["shotgunblast"],0,0,0,0,0.6,10,3);
     }
 
     createPowerups() {
