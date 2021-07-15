@@ -62,7 +62,10 @@ class Data {
             "shotgunattack",
             "shotgunreload",
             "shotgunpowerup",
-            "shotgunblast"
+            "shotgunblast",
+            "hellraiser",
+            "hellraiserattack",
+            "hellraiserdeath"
         ];
     }
 
@@ -147,7 +150,10 @@ class Data {
         this.animations["attackshotgun"] = new Animation(this.textures["shotgunattack"], 240,135,3,150,false);
         this.animations["reloadshotgun"] = new Animation(this.textures["shotgunreload"], 240,135,8,250,false);
         this.animations["shotgunpowerup"] = new Animation(this.textures["shotgunpowerup"], 16, 16, 8, 200, true);
-        this.animations["shotgunblast"] = new Animation(this.textures["shotgunblast"],16,16,1,0,false);
+        this.animations["shotgunblast"] = new Animation(this.textures["shotgunblast"],16,16,2,50,true);
+        this.animations["hellraisermove"] = new Animation(this.textures["hellraiser"], 32, 40, 6, 100, true);
+        this.animations["hellraiserattack"] = new Animation(this.textures["hellraiserattack"], 32, 40, 3, 250, false);
+        this.animations["hellraiserdeath"] = new Animation(this.textures["hellraiserdeath"], 32, 40, 7, 150, false);
     }
 
     createTeleports() {
@@ -201,6 +207,7 @@ class Data {
         //TODO: ADD MELEE ENEMY KILL ANIMATION
         this.enemies["melee"] = new Enemy("Melee", 2, 2, false, false, this.projectiles["sparks"],this.animations["enemymeleemove"],this.animations["enemymeleeattack"],this.animations["enemyturretdestroyed"],0,0);
         this.enemies["ranged"] = new Enemy("Ranged", 3, 1, true, false, this.projectiles["enemyshot"],this.animations["enemyrangedmove"],this.animations["enemyrangedattack"],this.animations["enemyrangeddeath"],0,0);
+        this.enemies["hellraiser"] = new Enemy("Hellraiser", 5, 1, true, false, this.projectiles["enemyshot"],this.animations["hellraisermove"],this.animations["hellraiserattack"],this.animations["hellraiserdeath"],0,0);
     }
 
     createWeapons() {

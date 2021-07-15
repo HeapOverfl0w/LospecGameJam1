@@ -13,7 +13,7 @@ class Powerup extends Billboard {
 
             switch(this.powerupType) {
                 case "ammo":
-                    camera.activeWeapon.ammo += 10;
+                    camera.activeWeapon.ammo += camera.activeWeapon.maxMagazineSize;
                     break;
                 case "health":
                     camera.playerHealth = camera.playerHealth + 3 > 10 ? 10 : camera.playerHealth + 3;
@@ -23,11 +23,11 @@ class Powerup extends Billboard {
                     for (let w = 0; w < camera.weapons.length; w++) {
                         if (camera.weapons[w].name == this.powerupType) {
                             weaponDoesNotExist = false;
-                            camera.weapons[w].ammo += 10;
+                            camera.weapons[w].ammo += camera.weapons[w].maxMagazineSize;
                         }
                     }
                     if (weaponDoesNotExist) {
-                        let newWeapon = data.weapons[this.powerupType].copy(10);
+                        let newWeapon = data.weapons[this.powerupType].copy(data.weapons[this.powerupType].maxMagazineSize);
                         newWeapon.reload();
                         camera.weapons.push(newWeapon);
                     }
