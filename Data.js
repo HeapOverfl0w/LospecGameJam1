@@ -57,7 +57,12 @@ class Data {
             "streetlamp",
             "exitsign",
             "cardboardbox",
-            "bush"
+            "bush",
+            "shotgun",
+            "shotgunattack",
+            "shotgunreload",
+            "shotgunpowerup",
+            "shotgunblast"
         ];
     }
 
@@ -138,6 +143,11 @@ class Data {
         this.animations["streetlamp"] = new Animation(this.textures["streetlamp"],16,64,1,0,true);
         this.animations["cardboardbox"] = new Animation(this.textures["cardboardbox"],25,40,1,0,true);
         this.animations["bush"] = new Animation(this.textures["bush"],33,45,1,0,true);
+        this.animations["defaultshotgun"] = new Animation(this.textures["shotgun"], 240,135,3,400,true);
+        this.animations["attackshotgun"] = new Animation(this.textures["shotgunattack"], 240,135,3,150,false);
+        this.animations["reloadshotgun"] = new Animation(this.textures["shotgunreload"], 240,135,8,250,false);
+        this.animations["shotgunpowerup"] = new Animation(this.textures["shotgunpowerup"], 16, 16, 8, 200, true);
+        this.animations["shotgunblast"] = new Animation(this.textures["shotgunblast"],16,16,1,0,false);
     }
 
     createTeleports() {
@@ -172,6 +182,7 @@ class Data {
         this.projectiles["bluesparks"] = new Projectile(this.animations["bluesparks"], 0,0, 0,0, 0.2, 20, 1);
         this.projectiles["enemyshot"] = new Projectile(this.animations["enemyshot"], 0,0, 0,0, 0.5, 20, 1);
         this.projectiles["bulletprojectile"] = new Projectile(this.animations["bulletprojectile"], 0,0,0,0,0.5,25,1);
+        this.projectiles["shotgunblast"] = new Projectile(this.animations["shotgunblast"],0,0,0,0,0.75,10,3);
     }
 
     createPowerups() {
@@ -181,6 +192,7 @@ class Data {
         this.powerups["ar"] = new Powerup("ar", this.animations["arpowerup"], 0, 0);
         this.powerups["ammo"] = new Powerup("ammo", this.animations["ammopowerup"], 0, 0);
         this.powerups["health"] = new Powerup("health", this.animations["healthpowerup"], 0, 0);
+        this.powerups["shotgun"] = new Powerup("shotgun", this.animations["shotgunpowerup"], 0, 0);
     }
 
     createEnemies() {
@@ -208,9 +220,14 @@ class Data {
         this.animations["defaultfireaxe"], this.animations["attackfireaxe"], this.animations["defaultfireaxe"],
         false, this.projectiles["bluesparks"], 0);
 
-        //Fireaxe
+        //AR
         this.weapons["ar"] = new Weapon("ar", 
         this.animations["defaultar"], this.animations["attackar"], this.animations["reloadar"],
         true, this.projectiles["bulletprojectile"], 20);
+
+        //AR
+        this.weapons["shotgun"] = new Weapon("shotgun", 
+        this.animations["defaultshotgun"], this.animations["attackshotgun"], this.animations["reloadshotgun"],
+        true, this.projectiles["shotgunblast"], 2);
     }
 }
