@@ -1,6 +1,6 @@
 class Level
 {
-  constructor(levelArray, skyboxImage, useShade, shadeColor, billboards, enemies, powerups, teleports)
+  constructor(levelArray, skyboxImage, useShade, shadeColor, billboards, enemies, powerups, hazards,teleports)
   {
     this.levelArray = levelArray;
     this.width = levelArray.length;
@@ -12,6 +12,7 @@ class Level
     this.billboardTypes = billboards;
     this.enemyTypes = enemies;
     this.powerupTypes = powerups;
+    this.hazardTypes = hazards;
     this.teleportTypes = teleports;
 
     this.projectiles = [];
@@ -22,6 +23,7 @@ class Level
     this.loadBillboards(this.billboardTypes);
     this.loadEnemies(this.enemyTypes);
     this.loadPowerups(this.powerupTypes);
+    this.loadHazards(this.hazardTypes);
     this.loadTeleports(this.teleportTypes);
   }
 
@@ -99,6 +101,13 @@ class Level
     }
   }
 
+  loadHazards(hazards) {
+    this.hazards = [];
+    for (let h = 0; h < hazards.length; h++) {
+      this.hazards.push(this.data.hazards[hazards[h].type].copy(hazards[h].x, hazards[h].y));
+    }
+  }
+
   isDoor(x, y) {
     return this.levelArray[x][y] == 5 || this.levelArray[x][y] == 7;
   }
@@ -162,6 +171,6 @@ class Level
   }
 
   copy() {
-    return new Level([...this.levelArray], this.data, this.skybox, this.useShade, this.shadeColor, this.billboardTypes, this.enemyTypes, this.powerupTypes, this.teleportTypes);
+    return new Level([...this.levelArray], this.data, this.skybox, this.useShade, this.shadeColor, this.billboardTypes, this.enemyTypes, this.powerupTypes, this.hazardTypes, this.teleportTypes);
   }
 }

@@ -65,7 +65,11 @@ class Data {
             "shotgunblast",
             "hellraiser",
             "hellraiserattack",
-            "hellraiserdeath"
+            "hellraiserdeath",
+            "introtoc",
+            "darkblades",
+            "introtocattack",
+            "introtocpowerup"
         ];
     }
 
@@ -77,6 +81,7 @@ class Data {
         this.createPowerups();
         this.createEnemies();
         this.createWeapons();
+        this.createHazards();
         this.createTeleports();
     }
 
@@ -154,6 +159,14 @@ class Data {
         this.animations["hellraisermove"] = new Animation(this.textures["hellraiser"], 32, 40, 6, 100, true);
         this.animations["hellraiserattack"] = new Animation(this.textures["hellraiserattack"], 32, 40, 3, 250, false);
         this.animations["hellraiserdeath"] = new Animation(this.textures["hellraiserdeath"], 32, 40, 7, 150, false);
+        this.animations["darkblades"] = new Animation(this.textures["darkblades"],16,16,2,100,true);
+        this.animations["defaultintrotoc"] = new Animation(this.textures["introtoc"], 240,135,3,500, true);
+        this.animations["attackintrotoc"] = new Animation(this.textures["introtocattack"], 240,135,3, 150, false);
+        this.animations["introtocpowerup"] = new Animation(this.textures["introtocpowerup"], 16, 16, 8, 200, true);
+    }
+
+    createHazards() {
+        this.hazards = {};
     }
 
     createTeleports() {
@@ -189,6 +202,7 @@ class Data {
         this.projectiles["enemyshot"] = new Projectile(this.animations["enemyshot"], 0,0, 0,0, 0.5, 20, 1);
         this.projectiles["bulletprojectile"] = new Projectile(this.animations["bulletprojectile"], 0,0,0,0,0.5,25,1);
         this.projectiles["shotgunblast"] = new Projectile(this.animations["shotgunblast"],0,0,0,0,0.6,10,3);
+        this.projectiles["darkblades"] = new Projectile(this.animations["darkblades"],0,0,0,0,0.2,7,2);
     }
 
     createPowerups() {
@@ -199,6 +213,7 @@ class Data {
         this.powerups["ammo"] = new Powerup("ammo", this.animations["ammopowerup"], 0, 0);
         this.powerups["health"] = new Powerup("health", this.animations["healthpowerup"], 0, 0);
         this.powerups["shotgun"] = new Powerup("shotgun", this.animations["shotgunpowerup"], 0, 0);
+        this.powerups["introtoc"] = new Powerup("introtoc", this.animations["introtocpowerup"], 0, 0);
     }
 
     createEnemies() {
@@ -232,9 +247,14 @@ class Data {
         this.animations["defaultar"], this.animations["attackar"], this.animations["reloadar"],
         true, this.projectiles["bulletprojectile"], 20);
 
-        //AR
+        //Shotgun
         this.weapons["shotgun"] = new Weapon("shotgun", 
         this.animations["defaultshotgun"], this.animations["attackshotgun"], this.animations["reloadshotgun"],
         true, this.projectiles["shotgunblast"], 2);
+
+        //IntroToC
+        this.weapons["introtoc"] = new Weapon("introtoc", 
+        this.animations["defaultintrotoc"], this.animations["attackintrotoc"], this.animations["defaultintrotoc"],
+        false, this.projectiles["darkblades"], 0);
     }
 }
