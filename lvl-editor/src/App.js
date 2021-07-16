@@ -284,10 +284,10 @@ function App() {
                     {row.columns.map((column, j) => (
                       <Grid key={j} item>
                         { layer !== 'billboard' &&
-                          <Paper square className={classes.paper} style={{backgroundColor: lcolors[rows[i].columns[j][layer]]}} onMouseOver={() => {if (mouseDown)updateLevel(i, j, Number(tile))}}/>
+                          <Paper square className={classes.paper} style={{backgroundColor: lcolors[rows[i].columns[j][layer]]}} onDragStart={(e) => {e.preventDefault()}} onMouseOver={() => {if (mouseDown)updateLevel(i, j, Number(tile))}}/>
                         }
                         { layer === 'billboard' &&
-                          <Paper square className={classes.paper} style={{backgroundColor: lcolors[rows[i].columns[j]['wall']]}} onMouseOver={() => {if (mouseDown)updateLevel(i, j, Number(tile))}}>
+                          <Paper square className={classes.paper} style={{backgroundColor: lcolors[rows[i].columns[j]['wall']]}} onDragStart={(e) => {e.preventDefault()}} onMouseOver={() => {if (mouseDown)updateLevel(i, j, Number(tile))}}>
                             {column[layer] &&
                               <Tooltip title={column[layer]}>
                                 <DetailsIcon style={{display: 'block', fontSize: 'medium'}}/>

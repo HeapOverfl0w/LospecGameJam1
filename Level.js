@@ -140,6 +140,8 @@ class Level
         return this.data.textures["wallpapervent"];
       case 8:
         return this.data.textures["vent"];
+      case 11:
+        return this.data.textures["cobblestonetall"];
       default:
         return undefined;
     }
@@ -165,6 +167,8 @@ class Level
         return this.data.textures["carpet"];
       case 9:
         return this.data.textures["vent"];
+      case 12:
+        return this.data.textures["cobblestone"];
       default:
         return this.data.textures["floors"];
     }

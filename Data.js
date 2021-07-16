@@ -15,7 +15,6 @@ class Data {
             "brick", 
             "billboards", 
             "floors", 
-            "skybox",
             "enemyshot",
             "pistolpowerup",
             "bulletprojectile",
@@ -171,7 +170,7 @@ class Data {
 
     createTeleports() {
         this.teleports = {};
-        this.teleports["apartmentlevel4down"] = new Teleport(this.animations["elevatordoors"],0,0,testLevel,2,2);
+        this.teleports["apartmentlevel4down"] = new Teleport(this.animations["elevatordoors"],0,0,testStreets,2,2);
     }
 
     createBillboards() {
