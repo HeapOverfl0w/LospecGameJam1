@@ -7,8 +7,8 @@ class Main
     this.ctx = ctx;
     this.level = ApartmentLevel4;
     this.level.loadData(this.data);
-    this.camera = new Camera(17, 67, 0, Math.PI * (4/18), 5, this.data.weapons["screwDriver"]);
-    this.rayCaster = new RayCaster(15);
+    this.camera = new Camera(17, 67, 0, Math.PI * (4/18), 6, this.data.weapons["screwDriver"]);
+    this.rayCaster = new RayCaster(20);
     this.FPS = 30;
     this.fpsCounter = 0;
     this.lastSecond = new Date().getTime();
