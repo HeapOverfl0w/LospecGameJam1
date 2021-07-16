@@ -84,8 +84,6 @@ class Data {
             "sidewalk12",
             "sidewalk13",
             "sidewalk14",
-            "sidewalk15",
-            "sidewalk16",
             "sidewalk17",
             "sidewalk18",
             "sidewalk19",
