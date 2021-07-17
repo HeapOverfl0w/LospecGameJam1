@@ -97,6 +97,10 @@ class Data {
             "concrete7",
             "concrete8",
             "concrete9",
+            "concrete10",
+            "concrete11",
+            "concrete12",
+            "concrete13",
             "crosswalk1",
             "crosswalk2",
         ];

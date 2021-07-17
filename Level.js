@@ -229,6 +229,14 @@ class Level
         return this.data.textures["concrete8"];
       case 43:
         return this.data.textures["concrete9"];
+      case 44:
+        return this.data.textures["concrete10"];
+      case 45:
+        return this.data.textures["concrete11"];
+      case 46:
+        return this.data.textures["concrete12"];
+      case 47:
+        return this.data.textures["concrete13"];
       default:
         return this.data.textures["floors"];
     }
