@@ -40,9 +40,9 @@ class Level
     return undefined;
   }
 
-  update(level, camera, updateInterval) {
+  update(level, camera, audio, updateInterval) {
     for (let e = 0; e < this.enemies.length; e++) {
-      this.enemies[e].update(level, camera, updateInterval);
+      this.enemies[e].update(level, camera, audio, updateInterval);
     }
     //remove unnecessary projectiles
     let projectilesToRemove = [];
@@ -61,7 +61,7 @@ class Level
     //remove collected powerups
     let powerupsToRemove = [];
     for (let p = 0; p < this.powerups.length; p++){
-      this.powerups[p].update(this.data, camera);
+      this.powerups[p].update(this.data, camera, audio);
       if (this.powerups[p].collected)
         powerupsToRemove.push(this.powerups[p]);
     }

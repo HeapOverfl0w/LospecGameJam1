@@ -18,7 +18,7 @@ class Enemy extends Billboard {
         this.maxAttackRange = this.isRanged ? 11.5 : 2;
     }
 
-    update(level, camera, updateInterval) {
+    update(level, camera, audio, updateInterval) {
         if (this.life <= 0) { return; }
 
         for (let p = 0; p < level.projectiles.length; p++) {
@@ -31,7 +31,10 @@ class Enemy extends Billboard {
 
         if (this.life <= 0) {
             if (this.activeAnimation != this.destroyAnimation)
+            {
+                audio.playDeath();
                 this.activeAnimation = this.destroyAnimation;
+            }
             return;
         }
 
@@ -47,7 +50,15 @@ class Enemy extends Billboard {
 
             if (this.hasSeenCamera) {
                 this.move(level, angle, playerInView, updateInterval, distanceFromPlayer);
-                this.attack(angle, playerInView, distanceFromPlayer, level);             
+                this.attack(angle, playerInView, distanceFromPlayer, level, audio);
+                
+                //randomly play enemy sounds
+                if (Math.random() < 0.01) {
+                    if (Math.random() < 0.5)
+                        audio.playGrowl();
+                    else
+                        audio.playSpirit();
+                }
             }
         }
     }
@@ -66,7 +77,7 @@ class Enemy extends Billboard {
         }
     }
 
-    attack(angle, playerInView, distanceFromPlayer, level) {
+    attack(angle, playerInView, distanceFromPlayer, level, audio) {
         if (this.attackAnimation == this.activeAnimation && this.attackAnimation.isAnimating())
             return;
         else if (this.attackAnimation == this.activeAnimation && !this.attackAnimation.isAnimating()) {
@@ -74,6 +85,7 @@ class Enemy extends Billboard {
             this.activeAnimation.start();
         }
         else if (playerInView && this.isRanged && this.maxAttackRange > distanceFromPlayer){
+            audio.playSpell();
             this.activeAnimation.stop();
             this.activeAnimation = this.attackAnimation;
             this.activeAnimation.start();

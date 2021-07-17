@@ -2,6 +2,8 @@ class Main
 {
   constructor(ctx)
   {
+    this.audio = new AudioHandler();
+    this.audio.playAndLoopMusic();
     this.data = new Data();
     this.data.load();
     this.ctx = ctx;
@@ -27,7 +29,7 @@ class Main
     for (let k = 0; k < main.keysDown.length; k++)
       main.camera.handleKeyDown(main.keysDown[k], main.level, 1/main.FPS);
 
-    main.level.update(main.level, main.camera, 1/main.FPS);
+    main.level.update(main.level, main.camera, main.audio, 1/main.FPS);
 
     main.rayCaster.draw(main.ctx, main.camera, main.level);
 
@@ -43,7 +45,7 @@ class Main
     main.camera.drawHUD(main.ctx);
 
     if (main.mouseDown)
-      main.camera.handleMouseDown(main.level);
+      main.camera.handleMouseDown(main.level, main.audio);
 
     main.fpsCounter++;
     if (new Date().getTime() - main.lastSecond > 1000)

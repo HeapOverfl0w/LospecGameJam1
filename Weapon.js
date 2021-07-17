@@ -22,9 +22,10 @@ class Weapon {
         return this.activeAnimation === this.defaultAnimation;
     }
 
-    attack(level, camera) {
+    attack(level, camera, audio) {
         //only shoot if weapon is ready and ammo is in the magazine
         if (this.isReady() && (this.magazineAmmo > 0 || !this.isRanged)) {
+            audio.playWeaponAttack(this.name);
             this.activeAnimation.stop();
             this.activeAnimation = this.attackAnimation;
             this.activeAnimation.start();
@@ -35,12 +36,13 @@ class Weapon {
             }
         }
         else if (this.isReady() && (this.magazineAmmo <= 0 && this.isRanged)) {
-            this.reload();
+            this.reload(audio);
         }
     }
 
-    reload() {
+    reload(audio) {
         if (this.magazineAmmo !== this.maxMagazineSize && this.ammo > 0) {
+            audio.playReload();
             this.activeAnimation.stop();
             this.activeAnimation = this.reloadAnimation;
             this.activeAnimation.start();
