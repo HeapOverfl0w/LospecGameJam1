@@ -200,35 +200,35 @@ class Level
       case 27:
         return this.data.textures["sidewalk14"];
       case 28:
-        return this.data.textures["sidewalk17"];
+        return this.data.textures["sidewalk15"];
       case 29:
-        return this.data.textures["sidewalk18"];
+        return this.data.textures["sidewalk16"];
       case 30:
-        return this.data.textures["sidewalk19"];
+        return this.data.textures["sidewalk17"];
       case 31:
-        return this.data.textures["sidewalk20"];
+        return this.data.textures["sidewalk18"];
       case 32:
-        return this.data.textures["sidewalk21"];
-      case 33:
-        return this.data.textures["concrete1"];
-      case 34:
-        return this.data.textures["concrete2"];
-      case 35:
-        return this.data.textures["concrete3"];
-      case 36:
-        return this.data.textures["concrete4"];
-      case 37:
-        return this.data.textures["concrete5"];
-      case 38:
-        return this.data.textures["concrete6"];
-      case 39:
-        return this.data.textures["concrete7"];
-      case 40:
-        return this.data.textures["concrete8"];
-      case 41:
         return this.data.textures["crosswalk1"];
-      case 42:
+      case 33:
         return this.data.textures["crosswalk2"];
+      case 35:
+        return this.data.textures["concrete1"];
+      case 36:
+        return this.data.textures["concrete2"];
+      case 37:
+        return this.data.textures["concrete3"];
+      case 38:
+        return this.data.textures["concrete4"];
+      case 39:
+        return this.data.textures["concrete5"];
+      case 40:
+        return this.data.textures["concrete6"];
+      case 41:
+        return this.data.textures["concrete7"];
+      case 42:
+        return this.data.textures["concrete8"];
+      case 43:
+        return this.data.textures["concrete9"];
       default:
         return this.data.textures["floors"];
     }
