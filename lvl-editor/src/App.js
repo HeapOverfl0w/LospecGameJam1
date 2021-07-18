@@ -174,7 +174,6 @@ const textures = [
   "brick", 
   "billboards", 
   "floors", 
-  "skybox",
   "enemyshot",
   "pistolpowerup",
   "bulletprojectile",
@@ -212,54 +211,149 @@ const textures = [
   "statue",
   "enemyrangedmove",
   "enemyrangeddeath",
-  "enemyrangedattack"
+  "enemyrangedattack",
+  "streetlamp",
+  "exitsign",
+  "cardboardbox",
+  "bush",
+  "shotgun",
+  "shotgunattack",
+  "shotgunreload",
+  "shotgunpowerup",
+  "shotgunblast",
+  "hellraiser",
+  "hellraiserattack",
+  "hellraiserdeath",
+  "introtoc",
+  "darkblades",
+  "introtocattack",
+  "introtocpowerup",
+  "grass",
+  "sidewalk1",
+  "sidewalk2",
+  "sidewalk3",
+  "sidewalk4",
+  "sidewalk5",
+  "sidewalk6",
+  "sidewalk7",
+  "sidewalk8",
+  "sidewalk9",
+  "sidewalk10",
+  "sidewalk11",
+  "sidewalk12",
+  "sidewalk13",
+  "sidewalk14",
+  "sidewalk15",
+  "sidewalk16",
+  "sidewalk17",
+  "sidewalk18",
+  "concrete1",
+  "concrete2",
+  "concrete3",
+  "concrete4",
+  "concrete5",
+  "concrete6",
+  "concrete7",
+  "concrete8",
+  "concrete9",
+  "concrete10",
+  "concrete11",
+  "concrete12",
+  "concrete13",
+  "crosswalk1",
+  "crosswalk2",
 ];
 
 function App() {
   const classes = useStyles();
   const [width, setWidth] = useState(0);
   const [height, setHeight] = useState(0);
-  const [rows, setRows] = useState([]);
-  const [layer, setLayer] = useState('floor');
+  const [tiles, setTiles] = useState([]);
+  const [billboards, setBillboards] = useState([]);
+  const [layer, setLayer] = useState('tile');
   const [tile, setTile] = useState(0);
   const [billboard, setBillboard] = useState('');
   const [update, setUpdate] = useState(false);
 
   const [mouseDown, setMouseDown] = useState(false);
 
-  const updateHeight = function(e) {
-    let temp = rows;
+  const initialize = function(value) {
+    let bRows = [];
 
-    while(temp.length < e.target.value) {
-      let defRow = [];
-      for (let i = 0; i < width; i++) {
-        defRow.push({billboard: '', wall: 0, floor: 0, ceiling: 0 });
+    while (bRows.length < value.length) {
+      let tempB = [];
+      while (tempB.length < value[0].length) {
+        tempB.push('');
       }
-
-      temp.push({columns: defRow});
+      bRows.push(tempB);
     }
-
-    while(temp.length > e.target.value) {
-      temp.pop();
-    }
-    setRows(temp);
-    setHeight(e.target.value);
+    setWidth(value[0].length);
+    setHeight(value.length);
+    setBillboards(bRows);
+    setTiles(value);
   }
 
-  const updateWidth = function(e) {
-    let temp = rows;
+  const updateHeight = function(value) {
+    let temp = tiles;
+    let tempB = billboards;
+
+    while(temp.length < value || tempB.length < value) {
+      let defRow = [];
+      let defRowB = [];
+      for (let i = 0; i < width; i++) {
+        defRow.push(0);
+        defRowB.push('');
+      }
+
+      if (temp.length < value) {
+        temp.push(defRow);
+      }
+      if (tempB.length < value) {
+        tempB.push(defRowB);
+      }
+    }
+
+    while(temp.length > value || tempB.length > value) {
+      if (temp.length > value) {
+        temp.pop();
+      }
+      if (tempB.length > value) {
+        tempB.pop();
+      }    
+    }
+    
+    setTiles(temp);
+    setBillboards(tempB);
+    setHeight(value);
+  }
+
+  const updateWidth = function(value) {
+    let temp = tiles;
+    let tempB = billboards;
 
     temp.forEach(row => {
-      while(row.columns.length < e.target.value) {
-        row.columns.push({billboard: '', wall: 0, floor: 0, ceiling: 0 });
+      while(row.length < value) {
+        row.push(0);
       }
 
-      while(row.columns.length > e.target.value) {
-        row.columns.pop();
+      while(row.length > value) {
+        row.pop();
       }
     });
-    setRows(temp);
-    setWidth(e.target.value);
+
+    tempB.forEach(row => {
+      while(row.length < value) {
+        row.push('');
+      }
+
+      while(row.length > value) {
+        row.pop();
+      }
+    });
+
+    setTiles(temp);
+    setBillboards(tempB);
+    setWidth(value);
   }
 
   const updateTile = function(e) {
@@ -275,9 +369,17 @@ function App() {
   }
 
   const updateLevel = function(i, j, value) {
-    let temp = rows;
-    temp[i].columns[j][layer] = value;
-    setRows(temp);
+    if (layer === 'tile') {
+      let temp = tiles;  
+      temp[i][j] = value;
+      setTiles(temp);
+    }
+    else {
+      let tempB = billboards;
+  
+      tempB[i][j] = textures[value];
+      setBillboards(tempB);
+    }
     setUpdate(!update);
   }
 
@@ -285,51 +387,61 @@ function App() {
     setMouseDown(value);
   }
 
+  const handleImport = function(files) {
+  // files is a FileList of File objects. List some properties.
+  var json = '';
+	var output = [];
+	for (var i = 0, f; f = files[i]; i++) {
+		var reader = new FileReader();
+
+		// Closure to capture the file information.
+		reader.onload = (function (theFile) {
+			return function (e) {
+				try {
+          json = JSON.parse(e.target.result);
+          if (layer === 'tile') {
+            initialize(json);
+          }
+          else {
+            let temp = billboards;
+            for(let b = 0; b < json.length; b++) {
+              temp[json[b]['y']][json[b]['x']] = json[b]['type'];
+            }
+            setBillboards(temp);
+            setUpdate(!update);
+          }
+				} catch (ex) {
+					alert('ex when trying to parse json = ' + ex);
+				}
+			}
+		})(f);
+		reader.readAsText(f);
+	}
+  }
+
   const generate = function() {
-    let w = [];
-    let c = [];
-    let f = [];
+    let t = [];
     let b = [];
 
-    for (let i = 0; i < rows.length; i++){
-      let wr = [];
-      let cr = [];
-      let fr = [];
+    for (let i = 0; i < tiles.length; i++){
+      let tr = [];
       let br = [];
-      for (let j = 0; j < rows[i].columns.length; j++) {
-        wr.push(rows[i].columns[j]['wall']);
-        cr.push(rows[i].columns[j]['ceiling']);
-        fr.push(rows[i].columns[j]['floor']);
-        if (rows[i].columns[j]['billboard']) {
-          br.push({type: rows[i].columns[j]['billboard'], x: j, y: i});
+      for (let j = 0; j < tiles[i].length; j++) {
+        tr.push(tiles[i][j]);
+        if (billboards[i][j]) {
+          br.push({type: billboards[i][j], x: j, y: i});
         }
       }
-      w.push(wr);
-      c.push(cr);
-      f.push(fr);
+      t.push(tr);
       b.push(br);
     }
 
     let element1 = document.createElement("a");
-    let wf = new Blob([JSON.stringify(w)], {type: 'text/plain'});
-    element1.href = URL.createObjectURL(wf);
-    element1.download = "walls.json";
+    let tf = new Blob([JSON.stringify(t)], {type: 'text/plain'});
+    element1.href = URL.createObjectURL(tf);
+    element1.download = "tiles.json";
     document.body.appendChild(element1); 
     element1.click();
-
-    let element2 = document.createElement("a");
-    let cf = new Blob([JSON.stringify(c)], {type: 'text/plain'});
-    element2.href = URL.createObjectURL(cf);
-    element2.download = "ceiling.json";
-    document.body.appendChild(element2); 
-    element2.click();
-
-    let element3 = document.createElement("a");
-    let ff = new Blob([JSON.stringify(f)], {type: 'text/plain'});
-    element3.href = URL.createObjectURL(ff);
-    element3.download = "floor.json";
-    document.body.appendChild(element3); 
-    element3.click();
 
     let element4 = document.createElement("a");
     let bf = new Blob([JSON.stringify(b)], {type: 'text/plain'});
@@ -341,7 +453,11 @@ function App() {
 
   return (
     <div className="App">
-      <div style={{width: '100%' }}>
+      <div style={{width: '100%'}}>
+        <input
+          type="file"
+          onChange={ (e) => handleImport(e.target.files) }
+        />
         <Select
           value={layer}
           style={{verticalAlign:'bottom'}}
@@ -350,16 +466,14 @@ function App() {
           className={classes.selectEmpty}
           inputProps={{ 'aria-label': 'Without label' }}
         >
-          <MenuItem value={'floor'}>Floor</MenuItem>
-          <MenuItem value={'wall'}>Walls</MenuItem>
-          <MenuItem value={'ceiling'}>Ceiling</MenuItem>
+          <MenuItem value={'tile'}>Tiles</MenuItem>
           <MenuItem value={'billboard'}>Billboards</MenuItem>
         </Select>  
         <TextField
           label="Height"
           type="number"
           value={height}
-          onChange={(e) => updateHeight(e)}
+          onChange={(e) => updateHeight(e.target.value)}
           InputLabelProps={{
             shrink: true,
           }}
@@ -368,7 +482,7 @@ function App() {
           label="Width"
           type="number"
           value={width}
-          onChange={(e) => updateWidth(e)}
+          onChange={(e) => updateWidth(e.target.value)}
           InputLabelProps={{
             shrink: true,
           }}
@@ -403,25 +517,23 @@ function App() {
         }
       </div>
       <div style={{width: '100%', display: 'flex', flexDirection: 'row', justifyContent: 'center'}} onMouseDown={() => updateMouseDown(true)} onMouseUp={() => updateMouseDown(false)}>
-        <div style={{display: 'flex', flexDirection: 'column'}}>
-          { rows.map((row, i) => (
-            <Grid key={i} container spacing={0}>
-              <Grid item xs={12}>
-                  <Grid  container justifyContent="center" spacing={0}>
-                    {row.columns.map((column, j) => (
-                      <Grid key={j} item>
-                        { layer !== 'billboard' &&
-                          <Paper square className={classes.paper} style={{backgroundColor: lcolors[rows[i].columns[j][layer]]}} onDragStart={(e) => {e.preventDefault()}} onMouseOver={() => {if (mouseDown)updateLevel(i, j, Number(tile))}}/>
-                        }
-                        { layer === 'billboard' &&
-                          <Paper square className={classes.paper} style={{backgroundColor: lcolors[rows[i].columns[j]['wall']]}} onDragStart={(e) => {e.preventDefault()}} onMouseOver={() => {if (mouseDown)updateLevel(i, j, Number(tile))}}>
-                            {column[layer] &&
-                              <Tooltip title={column[layer]}>
-                                <DetailsIcon style={{display: 'block', fontSize: 'medium'}}/>
-                              </Tooltip>
-                            }
-                          </Paper>
-                        }
+        <div style={{display: 'flex', flexDirection: 'column', height: 'fit-content', borderWidth: '2px', borderColor: 'black', borderStyle: 'solid'}}>
+          { tiles.map((row, i) => (
+            <Grid key={i} container spacing={0} style={{flexWrap: 'noWrap'}}>
+              <Grid item xs={12} style={{flexWrap: 'noWrap'}}>
+                  <Grid  container justifyContent="center" spacing={0} style={{flexWrap: 'noWrap'}}>
+                    {row.map((column, j) => (
+                      <Grid key={j} item style={{flexWrap: 'noWrap'}}>
+                        <Paper square className={classes.paper} style={{backgroundColor: lcolors[tiles[i][j]]}} 
+                          onDragStart={(e) => {e.preventDefault()}} 
+                          onMouseOver={() => {if (mouseDown)updateLevel(i, j, Number(tile))}}>
+                          {/*onClick={() => updateLevel(i, j, Number(tile))}>*/}
+                          {billboards[i][j] !== '' &&
+                            <Tooltip title={billboards[i][j]}>
+                              <DetailsIcon style={{display: 'block', fontSize: 'medium'}}/>
+                            </Tooltip>
+                          }
+                        </Paper>
                       </Grid>
                     ))}
                   </Grid>
@@ -429,7 +541,7 @@ function App() {
             </Grid>
           ))}
         </div>
-        <div style={{display: 'flex', flexDirection: 'column', marginLeft: '20px'}}>
+        <div style={{display: 'flex', flexDirection: 'column', marginLeft: '20px', height: '80%'}}>
           { lcolors.map((color, i) => (
             <Paper style={{backgroundColor: color, color: 'white'}}>{i}</Paper>
           ))}
