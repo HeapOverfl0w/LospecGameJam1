@@ -13,7 +13,8 @@ class Camera
     this.activeWeapon = defaultWeapon;
     this.activeWeapon.switchTo();
     this.weapons = [ defaultWeapon ];
-    this.playerHealth = 10;
+    this.playerMaxHealth = 20;
+    this.playerHealth = this.playerMaxHealth;
   }
 
   isInside(x, y) {
@@ -33,7 +34,7 @@ class Camera
     let width = ctx.canvas.width;
     //draw health
     ctx.fillStyle = "#f63f4c";
-    ctx.fillText(Math.round(this.playerHealth / 10 * 100) + "%", 10, height - 10);
+    ctx.fillText(Math.round(this.playerHealth / this.playerMaxHealth * 100) + "%", 10, height - 10);
     //draw ammo
     if (this.activeWeapon.isRanged) {
       ctx.fillStyle = "#37313b";
@@ -44,8 +45,8 @@ class Camera
     ctx.fillText((Math.round(this.x * 10) / 10) + "," + (Math.round(this.y * 10) / 10), width - 40, height - 10);
   }
 
-  handleMouseDown(level) {
-    this.activeWeapon.attack(level, this);
+  handleMouseDown(level, audio) {
+    this.activeWeapon.attack(level, this, audio);
   }
 
   handleMouseUp( ) {

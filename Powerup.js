@@ -5,7 +5,7 @@ class Powerup extends Billboard {
         this.collected = false;
     }
 
-    update(data, camera) {
+    update(data, camera, audio) {
         if (!this.collected && camera.isInside(this.x, this.y)) {
             if ((this.powerupType == "health" && camera.playerHealth == 10) ||
                 (this.powerupType == "ammo" && !camera.activeWeapon.isRanged)) 
@@ -16,7 +16,7 @@ class Powerup extends Billboard {
                     camera.activeWeapon.ammo += camera.activeWeapon.maxMagazineSize;
                     break;
                 case "health":
-                    camera.playerHealth = camera.playerHealth + 3 > 10 ? 10 : camera.playerHealth + 3;
+                    camera.playerHealth = camera.playerHealth + 6 > camera.playerMaxHealth ? camera.playerMaxHealth : camera.playerHealth + 6;
                     break;
                 default:
                     let weaponDoesNotExist = true;
@@ -28,7 +28,7 @@ class Powerup extends Billboard {
                     }
                     if (weaponDoesNotExist) {
                         let newWeapon = data.weapons[this.powerupType].copy(data.weapons[this.powerupType].maxMagazineSize);
-                        newWeapon.reload();
+                        newWeapon.reload(audio);
                         camera.weapons.push(newWeapon);
                     }
                 break;

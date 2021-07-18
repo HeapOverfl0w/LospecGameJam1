@@ -6,6 +6,53 @@
   <body>
     <canvas id="scene"></canvas>
     <div style="display:none;">
+      <audio id="aggressormusic">
+        <source src="./sounds/aggressor-whitebataudio.mp3" type="audio/mp3">
+      </audio>
+      <audio id="lawabidingcitizenmusic">
+        <source src="./sounds/lawabidingcitizen-whitebataudio.mp3" type="audio/mp3">
+      </audio>
+      <audio id="neuromancermusic">
+        <source src="./sounds/neuromancer-whitebataudio.mp3" type="audio/mp3">
+      </audio>
+      <audio id="rebelsmusic">
+        <source src="./sounds/rebels-whitebataudio.mp3" type="audio/mp3">
+      </audio>
+      <audio id="darkmagic">
+        <source src="./sounds/darkmagic.flac" type="audio/flac">
+      </audio>
+      <audio id="death">
+        <source src="./sounds/Death.wav" type="audio/wav">
+      </audio>
+      <audio id="developers">
+        <source src="./sounds/developers.mp3" type="audio/mp3">
+      </audio>
+      <audio id="growl">
+        <source src="./sounds/growl.wav" type="audio/wav">
+      </audio>
+      <audio id="heal">
+        <source src="./sounds/heal.wav" type="audio/wav">
+      </audio>
+      <audio id="reload">
+        <source src="./sounds/reload.wav" type="audio/wav">
+      </audio>
+      <audio id="shot">
+        <source src="./sounds/shot.wav" type="audio/wav">
+      </audio>
+      <audio id="shotgunfire">
+        <source src="./sounds/shotgunfire.wav" type="audio/wav">
+      </audio>
+      <audio id="spirit">
+        <source src="./sounds/spirit.wav" type="audio/wav">
+      </audio>      
+      <audio id="spell">
+        <source src="./sounds/spell.wav" type="audio/wav">
+      </audio>    
+      <audio id="drill">
+        <source src="./sounds/drill.mp3" type="audio/mp3">
+      </audio> 
+    </div>
+    <div style="display:none;">
       <img id="walls" src="./resources/brick.png"/>
       <img id="billboards" src="./resources/billboards.png"/>
       <img id="floors" src="./resources/floors.png"/>
@@ -113,6 +160,7 @@
     </div>
   </body>
 </html>
+<script src="AudioHandler.js"></script>
 <script src="Main.js"></script>
 <script src="Camera.js"></script>
 <script src="Level.js"></script>
@@ -128,6 +176,7 @@
 <script src="./Levels/TestLevel.js"></script>
 <script src="./Levels/TestStreets.js"></script>
 <script src="./Levels/ApartmentLevel4.js"></script>
+<script src="./Levels/StreetsLevel1.js"></script>
 <script>
   var cvs = document.getElementById("scene");
   var main;
