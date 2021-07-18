@@ -142,6 +142,12 @@ class Level
         return this.data.textures["vent"];
       case 11:
         return this.data.textures["cobblestonetall"];
+      case 62:
+        return this.data.textures["bossroomwall"];
+      case 63:
+        return this.data.textures["bossroomwall1"]
+      case 64:
+        return this.data.textures["bossroomwallwires"]
       default:
         return undefined;
     }
@@ -237,6 +243,10 @@ class Level
         return this.data.textures["concrete12"];
       case 47:
         return this.data.textures["concrete13"];
+      case 60:
+        return this.data.textures["bossroomfloor"];
+      case 61:
+        return this.data.textures["bossroomfloor1"];
       default:
         return this.data.textures["floors"];
     }
