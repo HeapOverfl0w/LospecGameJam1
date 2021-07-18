@@ -87,6 +87,7 @@ class Boss extends Billboard {
                 this.activateFireHazards(level);
                 this.currentMode = 2;
                 this.createTeleportTimer(8000);
+                audio.playDevelopers();
             }
         }
         else if (this.currentMode == 2) {
