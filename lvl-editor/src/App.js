@@ -517,13 +517,13 @@ function App() {
         }
       </div>
       <div style={{width: '100%', display: 'flex', flexDirection: 'row', justifyContent: 'center'}} onMouseDown={() => updateMouseDown(true)} onMouseUp={() => updateMouseDown(false)}>
-        <div style={{display: 'flex', flexDirection: 'column', height: 'fit-content', borderWidth: '2px', borderColor: 'black', borderStyle: 'solid'}}>
+        <div style={{flexDirection: 'column', height: 'fit-content', borderWidth: '2px', borderColor: 'black', borderStyle: 'solid', display: 'grid', overflow: 'auto'}}>
           { tiles.map((row, i) => (
-            <Grid key={i} container spacing={0} style={{flexWrap: 'noWrap'}}>
-              <Grid item xs={12} style={{flexWrap: 'noWrap'}}>
+            <Grid key={i} container spacing={0} >
+              <Grid item xs={12} >
                   <Grid  container justifyContent="center" spacing={0} style={{flexWrap: 'noWrap'}}>
                     {row.map((column, j) => (
-                      <Grid key={j} item style={{flexWrap: 'noWrap'}}>
+                      <Grid key={j} item>
                         <Paper square className={classes.paper} style={{backgroundColor: lcolors[tiles[i][j]]}} 
                           onDragStart={(e) => {e.preventDefault()}} 
                           onMouseOver={() => {if (mouseDown)updateLevel(i, j, Number(tile))}}>
