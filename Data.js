@@ -221,7 +221,7 @@ class Data {
 
     createTeleports() {
         this.teleports = {};
-        this.teleports["apartmentlevel4down"] = new Teleport(this.animations["elevatordoors"],0,0,bossRoom,2,2);
+        this.teleports["apartmentlevel4down"] = new Teleport(this.animations["elevatordoors"],0,0,streetslevel1,2,2);
     }
 
     createBillboards() {
