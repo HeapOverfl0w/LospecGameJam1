@@ -113,7 +113,10 @@ class Data {
             "bossattack",
             "bosssecondattack",
             "bossteleport",
-            "bossroomfloorlit"
+            "bossroomfloorlit",
+            "bossdeath",
+            "intro_scene1",
+            "intro_scene2"
         ];
     }
 
@@ -127,6 +130,8 @@ class Data {
         this.createWeapons();
         this.createHazards();
         this.createTeleports();
+
+        this.createCutscenes();
     }
 
     loadTextures() {
@@ -211,7 +216,12 @@ class Data {
         this.animations["bossattack"] = new Animation(this.textures["bossattack"], 64, 75, 9, 80, false);
         this.animations["bosssecondattack"] = new Animation(this.textures["bosssecondattack"], 64, 75, 8, 150, false);
         this.animations["bossteleport"] = new Animation(this.textures["bossteleport"], 64, 75, 5, 200, false);
+        this.animations["bossdeath"] = new Animation(this.textures["bossdeath"], 64, 75, 14, 200, false);
         this.animations["evilfire"] = new Animation(this.textures["evilfire"], 64, 64, 2, 400, true);
+
+        //cutscene animations
+        this.animations["intro_scene1"] = new Animation(this.textures["intro_scene1"], 240, 135, 6, 800, false);
+        this.animations["intro_scene2"] = new Animation(this.textures["intro_scene2"], 240, 135, 6, 800, false);
     }
 
     createHazards() {
@@ -248,7 +258,7 @@ class Data {
     createProjectiles() {
         this.projectiles = {};
         this.projectiles["sparks"] = new Projectile(this.animations["sparks"], 0,0, 0,0, 0.2, 2, 1);
-        this.projectiles["bluesparks"] = new Projectile(this.animations["bluesparks"], 0,0, 0,0, 0.2, 20, 1);
+        this.projectiles["bluesparks"] = new Projectile(this.animations["bluesparks"], 0,0, 0,0, 0.4, 20, 1);
         this.projectiles["enemyshot"] = new Projectile(this.animations["enemyshot"], 0,0, 0,0, 0.5, 20, 1);
         this.projectiles["bulletprojectile"] = new Projectile(this.animations["bulletprojectile"], 0,0,0,0,0.5,25,1);
         this.projectiles["shotgunblast"] = new Projectile(this.animations["shotgunblast"],0,0,0,0,0.6,10,3);
@@ -273,8 +283,7 @@ class Data {
         this.enemies["melee"] = new Enemy("Melee", 2, 2, false, false, this.projectiles["sparks"],this.animations["enemymeleemove"],this.animations["enemymeleeattack"],this.animations["enemyturretdestroyed"],0,0);
         this.enemies["ranged"] = new Enemy("Ranged", 3, 1, true, false, this.projectiles["enemyshot"],this.animations["enemyrangedmove"],this.animations["enemyrangedattack"],this.animations["enemyrangeddeath"],0,0);
         this.enemies["hellraiser"] = new Enemy("Hellraiser", 5, 1, true, false, this.projectiles["enemyshot"],this.animations["hellraisermove"],this.animations["hellraiserattack"],this.animations["hellraiserdeath"],0,0);
-        //TODO: ADD BOSS KILL ANIMATION
-        this.enemies["boss"] = new Boss(this.projectiles["enemyshot"], this.animations["bossdefault"], this.animations["bossattack"], this.animations["bosssecondattack"], this.animations["bossteleport"], this.animations["bossteleport"],0,0);
+        this.enemies["boss"] = new Boss(this.projectiles["bluesparks"], this.animations["bossdefault"], this.animations["bossattack"], this.animations["bosssecondattack"], this.animations["bossteleport"], this.animations["bossdeath"],0,0);
     }
 
     createWeapons() {
@@ -308,5 +317,25 @@ class Data {
         this.weapons["introtoc"] = new Weapon("introtoc", 
         this.animations["defaultintrotoc"], this.animations["attackintrotoc"], this.animations["defaultintrotoc"],
         false, this.projectiles["darkblades"], 0);
+    }
+
+    createCutscenes() {
+        this.introCutscene =  new Cutscene(
+            [this.animations["intro_scene1"],
+            ["The year is 2026. 5 years since github copilot", 
+            "was introduced. It was supposed to make our", 
+            "software lives easier.",
+            "Who would've thought an AI that could write", 
+            "code would take over the world? It all happened", 
+            "when one crazed front end developer tried to",
+            "learn C and wrote the function",
+            "'AIToTakeOverTheWorld()'... Of course copilot", 
+            "wrote the function and took over the ", 
+            "developer's mind with dark spellware. ",
+            "The developer is now only known as ", 
+            "'The Neuromancer'. Part human and part AI. ",
+            "His armies are coming for you..."],
+            this.animations["intro_scene2"]
+        ]);
     }
 }

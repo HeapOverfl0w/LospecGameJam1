@@ -3,12 +3,13 @@ class Main
   constructor(ctx)
   {
     this.audio = new AudioHandler();
-    this.audio.playAndLoopMusic();
     this.data = new Data();
     this.data.load();
     this.ctx = ctx;
     this.level = bossRoom;//ApartmentLevel4;
     this.level.loadData(this.data);
+
+    this.activeCutscene = this.data.introCutscene;
     //17, 67
     this.camera = new Camera(1, 1, 0, Math.PI * (6/18), 6, this.data.weapons["screwDriver"]);
     this.rayCaster = new RayCaster(20);
@@ -27,6 +28,13 @@ class Main
 
   update(main)
   {
+    //render cutscene
+    if (main.activeCutscene !== undefined) {
+      main.activeCutscene.update();
+      main.activeCutscene.draw(main.ctx);
+      return;
+    }
+
     for (let k = 0; k < main.keysDown.length; k++)
       main.camera.handleKeyDown(main.keysDown[k], main.level, 1/main.FPS);
 
@@ -82,6 +90,10 @@ class Main
 
   handleKeyUp(keyCode)
   {
+    if (this.activeCutscene !== undefined) {
+      this.activeCutscene = undefined;
+    }
+
     let removeAt = -1;
     for(let k = 0; k < this.keysDown.length; k++)
     {

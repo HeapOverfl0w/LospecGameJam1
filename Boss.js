@@ -1,7 +1,7 @@
 class Boss extends Billboard {
     constructor(projectile, walkAnimation, attackAnimation, secondaryAttackAnimation, teleportAnimation, destroyAnimation, x, y) {
         super(walkAnimation, x, y);
-        this.maxLife = 90;
+        this.maxLife = 70;
         this.life = this.maxLife;
         
         this.projectile = projectile;
@@ -13,7 +13,7 @@ class Boss extends Billboard {
         this.maxViewRange = 20;
         this.maxAttackRange = 20;
 
-        this.currentMode = 0;
+        this.currentMode = 3;
         this.currentTimer = undefined;
         this.aoeAttackIncrement = 0;
     }
@@ -33,11 +33,14 @@ class Boss extends Billboard {
         }
 
         if (this.life <= 0) {
+            if (this.currentTimer !== undefined) {
+                clearTimeout(this.currentTimer);
+            }
             this.activeAnimation.stop();
             this.activeAnimation = this.destroyAnimation;
             this.activeAnimation.start();
         }
-        else if ((this.life <= 30 && initialHealth > 30) || (this.life <= 60 && initialHealth > 60)) {
+        else if ((this.life <= 30 && initialHealth > 30) || (this.life <= 50 && initialHealth > 50)) {
             this.currentMode = 1;
             this.activeAnimation.stop();
             this.activeAnimation = this.teleportAnimation;
@@ -72,6 +75,10 @@ class Boss extends Billboard {
             }
         }
         //normal attack mode
+        if (this.currentMode == 3) {
+            this.createTeleportTimer(2000);
+            this.currentMode = 0;
+        }   
         if (this.currentMode == 0){
             if (this.activeAnimation === this.attackAnimation && !this.activeAnimation.isAnimating()) {
                 this.normalAttack(camera,level);

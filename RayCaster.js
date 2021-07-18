@@ -258,7 +258,6 @@ class RayCaster {
                 this.screenBuffer.data[screenBufferSample + 3] = 255;
               }
             }
-            //ctx.drawImage(billboardTexture, Math.floor(billboardTexture.width * sampleX), 0, 1, billboardTexture.height, column, ceiling, 1, height);
           }
         }
       }
