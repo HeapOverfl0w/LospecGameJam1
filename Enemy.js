@@ -18,7 +18,7 @@ class Enemy extends Billboard {
         this.maxAttackRange = this.isRanged ? 11.5 : 2;
     }
 
-    update(level, camera, audio, updateInterval) {
+    update(level, camera, data, audio, updateInterval) {
         if (this.life <= 0) { return; }
 
         for (let p = 0; p < level.projectiles.length; p++) {
@@ -34,6 +34,10 @@ class Enemy extends Billboard {
             {
                 audio.playDeath();
                 this.activeAnimation = this.destroyAnimation;
+                //drop ammo
+                if (Math.random() < 0.5) {
+                    level.powerups.push(data.powerups["ammo"].copy(this.x, this.y));
+                }
             }
             return;
         }

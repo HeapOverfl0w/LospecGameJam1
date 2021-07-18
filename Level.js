@@ -28,7 +28,7 @@ class Level
   }
 
   getAllBillboards() {
-    return this.billboards.concat(this.projectiles).concat(this.enemies).concat(this.powerups).concat(this.teleports);
+    return this.billboards.concat(this.projectiles).concat(this.enemies).concat(this.powerups).concat(this.teleports).concat(this.hazards);
   }
 
   getTeleportOnPlayer(camera) {
@@ -40,9 +40,20 @@ class Level
     return undefined;
   }
 
-  update(level, camera, audio, updateInterval) {
+  stopAllAnimations() {
+    let billboards = this.getAllBillboards();
+    for(let b = 0; b < billboards.length; b++){
+      billboards[b].activeAnimation.stop();
+    }
+  }
+
+  update(level, camera, data,  audio, updateInterval) {
     for (let e = 0; e < this.enemies.length; e++) {
-      this.enemies[e].update(level, camera, audio, updateInterval);
+      this.enemies[e].update(level, camera, data, audio, updateInterval);
+    }
+    //See if Hazards hurt the player
+    for (let h = 0; h < this.hazards.length; h++) {
+      this.hazards[h].update(camera, audio);
     }
     //remove unnecessary projectiles
     let projectilesToRemove = [];
@@ -145,9 +156,9 @@ class Level
       case 62:
         return this.data.textures["bossroomwall"];
       case 63:
-        return this.data.textures["bossroomwall1"]
+        return this.data.textures["bossroomwall1"];
       case 64:
-        return this.data.textures["bossroomwallwires"]
+        return this.data.textures["bossroomwallwires"];
       default:
         return undefined;
     }
@@ -247,6 +258,8 @@ class Level
         return this.data.textures["bossroomfloor"];
       case 61:
         return this.data.textures["bossroomfloor1"];
+      case 65:
+          return this.data.textures["bossroomfloorlit"];
       default:
         return this.data.textures["floors"];
     }

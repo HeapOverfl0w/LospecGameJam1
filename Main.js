@@ -7,9 +7,10 @@ class Main
     this.data = new Data();
     this.data.load();
     this.ctx = ctx;
-    this.level = ApartmentLevel4;
+    this.level = bossRoom;//ApartmentLevel4;
     this.level.loadData(this.data);
-    this.camera = new Camera(17, 67, 0, Math.PI * (4/18), 6, this.data.weapons["screwDriver"]);
+    //17, 67
+    this.camera = new Camera(1, 1, 0, Math.PI * (6/18), 6, this.data.weapons["screwDriver"]);
     this.rayCaster = new RayCaster(20);
     this.FPS = 30;
     this.fpsCounter = 0;
@@ -29,13 +30,14 @@ class Main
     for (let k = 0; k < main.keysDown.length; k++)
       main.camera.handleKeyDown(main.keysDown[k], main.level, 1/main.FPS);
 
-    main.level.update(main.level, main.camera, main.audio, 1/main.FPS);
+    main.level.update(main.level, main.camera, main.data, main.audio, 1/main.FPS);
 
     main.rayCaster.draw(main.ctx, main.camera, main.level);
 
     let teleport = main.level.getTeleportOnPlayer(main.camera);
     if (teleport !== undefined) {
       teleport.toLevel.loadData(main.data);
+      main.level.stopAllAnimations();
       main.level = teleport.toLevel;
       main.camera.x = teleport.toLevelX;
       main.camera.y = teleport.toLevelY;
