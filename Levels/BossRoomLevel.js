@@ -25,8 +25,8 @@ let bossRoom = new Level(
       true,
       "#1d1c1f",
       [],
-      [],
-      [],
+      [{type: "boss", x: 10, y: 10}],
+      [{type: "ar", x: 3, y: 1}, {type: "ammo", x: 3.2, y: 1}, {type: "ammo", x: 3.4, y: 1}, {type: "ammo", x: 3.6, y: 1}, {type: "ammo", x: 3.8, y: 1}],
       [],
       []
 );

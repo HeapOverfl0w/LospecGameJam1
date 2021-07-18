@@ -107,7 +107,13 @@ class Data {
             "bossroomwall1",
             "bossroomfloor",
             "bossroomfloor1",
-            "bossroomwallwires"
+            "bossroomwallwires",
+            "evilfire",
+            "boss",
+            "bossattack",
+            "bosssecondattack",
+            "bossteleport",
+            "bossroomfloorlit"
         ];
     }
 
@@ -201,10 +207,16 @@ class Data {
         this.animations["defaultintrotoc"] = new Animation(this.textures["introtoc"], 240,135,3,500, true);
         this.animations["attackintrotoc"] = new Animation(this.textures["introtocattack"], 240,135,3, 150, false);
         this.animations["introtocpowerup"] = new Animation(this.textures["introtocpowerup"], 16, 16, 8, 200, true);
+        this.animations["bossdefault"] = new Animation(this.textures["boss"], 64, 75, 4, 200, true);
+        this.animations["bossattack"] = new Animation(this.textures["bossattack"], 64, 75, 9, 80, false);
+        this.animations["bosssecondattack"] = new Animation(this.textures["bosssecondattack"], 64, 75, 8, 150, false);
+        this.animations["bossteleport"] = new Animation(this.textures["bossteleport"], 64, 75, 5, 200, false);
+        this.animations["evilfire"] = new Animation(this.textures["evilfire"], 64, 64, 2, 400, true);
     }
 
     createHazards() {
         this.hazards = {};
+        this.hazards["evilfire"] = new Hazard(this.animations["evilfire"], 0,0, 1, 0.5);
     }
 
     createTeleports() {
@@ -261,6 +273,8 @@ class Data {
         this.enemies["melee"] = new Enemy("Melee", 2, 2, false, false, this.projectiles["sparks"],this.animations["enemymeleemove"],this.animations["enemymeleeattack"],this.animations["enemyturretdestroyed"],0,0);
         this.enemies["ranged"] = new Enemy("Ranged", 3, 1, true, false, this.projectiles["enemyshot"],this.animations["enemyrangedmove"],this.animations["enemyrangedattack"],this.animations["enemyrangeddeath"],0,0);
         this.enemies["hellraiser"] = new Enemy("Hellraiser", 5, 1, true, false, this.projectiles["enemyshot"],this.animations["hellraisermove"],this.animations["hellraiserattack"],this.animations["hellraiserdeath"],0,0);
+        //TODO: ADD BOSS KILL ANIMATION
+        this.enemies["boss"] = new Boss(this.projectiles["enemyshot"], this.animations["bossdefault"], this.animations["bossattack"], this.animations["bosssecondattack"], this.animations["bossteleport"], this.animations["bossteleport"],0,0);
     }
 
     createWeapons() {

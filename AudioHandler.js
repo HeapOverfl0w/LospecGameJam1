@@ -19,6 +19,7 @@ class AudioHandler {
         this.spirit = document.getElementById("spirit");
         this.spell = document.getElementById("spell");
         this.drill = document.getElementById("drill");
+        this.fire = document.getElementById("fire");
     }
 
     playAndLoopMusic(){
@@ -103,11 +104,17 @@ class AudioHandler {
         this.drill.play();
     }
 
+    playFire() {
+        this.fire.currentTime = 0;
+        this.fire.play();
+    }
+
     playAudio(src) {
         let audioCopy = new Audio();
         audioCopy.src = src;
         audioCopy.play();
     }
+
 
     
 
