@@ -153,6 +153,8 @@ class Level
         return this.data.textures["vent"];
       case 11:
         return this.data.textures["cobblestonetall"];
+      case 34:
+        return this.data.textures["drywalldoor"];
       case 62:
         return this.data.textures["bossroomwall"];
       case 63:

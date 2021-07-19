@@ -7,6 +7,7 @@ class Data {
             "computerdesk", 
             "pottedplant", 
             "drywall", 
+            "drywalldoor",
             "trashcan", 
             "couch", 
             "sparks",
