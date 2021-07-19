@@ -117,7 +117,16 @@ class Data {
             "bossroomfloorlit",
             "bossdeath",
             "intro_scene1",
-            "intro_scene2"
+            "intro_scene2",
+            "cleanwhitewall",
+            "blackfloorshiny",
+            "serverrack1",
+            "serverrack2",
+            "cleanwhitewalldoorclosed",
+            "cleanwhitewalldooropen",
+            "bluecarpet",
+            "azurecloudsign",
+            "bossroomdoor"
         ];
     }
 
@@ -219,6 +228,8 @@ class Data {
         this.animations["bossteleport"] = new Animation(this.textures["bossteleport"], 64, 75, 5, 200, false);
         this.animations["bossdeath"] = new Animation(this.textures["bossdeath"], 64, 75, 14, 200, false);
         this.animations["evilfire"] = new Animation(this.textures["evilfire"], 64, 64, 2, 400, true);
+        this.animations["azurecloudsign"] = new Animation(this.textures["azurecloudsign"], 60, 64, 1, 0, false);
+        this.animations["bossroomdoor"] = new Animation(this.textures["bossroomdoor"], 64, 64, 1, 0, false);
 
         //cutscene animations
         this.animations["intro_scene1"] = new Animation(this.textures["intro_scene1"], 240, 135, 6, 800, false);
@@ -233,6 +244,7 @@ class Data {
     createTeleports() {
         this.teleports = {};
         this.teleports["apartmentlevel4down"] = new Teleport(this.animations["elevatordoors"],0,0,streetslevel1,2,2);
+        this.teleports["bossroomdoor"] = new Teleport(this.animations["bossroomdoor"],0,0,bossRoom,10,1.5);
     }
 
     createBillboards() {
@@ -254,6 +266,7 @@ class Data {
         this.billboards["streetlamp"] = new Billboard(this.animations["streetlamp"], 0, 0);
         this.billboards["cardboardbox"] = new Billboard(this.animations["cardboardbox"], 0, 0);
         this.billboards["bush"] = new Billboard(this.animations["bush"],0,0);
+        this.billboards["azurecloudsign"] = new Billboard(this.animations["azurecloudsign"],0,0);
     }
 
     createProjectiles() {

@@ -120,7 +120,7 @@ class Level
   }
 
   isDoor(x, y) {
-    return this.levelArray[x][y] == 5 || this.levelArray[x][y] == 7;
+    return this.levelArray[x][y] == 5 || this.levelArray[x][y] == 7 || this.levelArray[x][y] == 73;
   }
 
   isWall(x, y)
@@ -161,6 +161,18 @@ class Level
         return this.data.textures["bossroomwall1"];
       case 64:
         return this.data.textures["bossroomwallwires"];
+      case 65:
+        return this.data.textures["bossroomfloor1"];
+      case 66:
+        return this.data.textures["cleanwhitewall"];
+      case 68:
+        return this.data.textures["serverrack1"];
+      case 69:
+        return this.data.textures["serverrack2"];
+      case 72:
+        return this.data.textures["cleanwhitewalldoorclosed"];
+      case 73:
+        return this.data.textures["cleanwhitewalldooropen"];
       default:
         return undefined;
     }
@@ -173,6 +185,12 @@ class Level
         return this.data.textures["ceilingDryWall"];
       case 9:
         return this.data.textures["vent"];
+      case 67:
+        return this.data.textures["cleanwhitewall"];
+      case 70:
+        return this.data.textures["cleanwhitewall"];
+      case 71:
+        return this.data.textures["cleanwhitewall"];
       default:
         return undefined;
     }
@@ -261,7 +279,13 @@ class Level
       case 61:
         return this.data.textures["bossroomfloor1"];
       case 65:
-          return this.data.textures["bossroomfloorlit"];
+        return this.data.textures["bossroomfloorlit"];
+      case 67:
+        return this.data.textures["blackfloorshiny"];
+      case 70:
+        return this.data.textures["cleanwhitewall"];
+      case 71:
+        return this.data.textures["bluecarpet"];
       default:
         return this.data.textures["floors"];
     }
