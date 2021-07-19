@@ -56,13 +56,12 @@ true,
 [{type:"melee", x: 36.3, y:45.5}, {type:"melee", x: 17.8, y:55.5},{type:"melee", x: 22.6, y:67.3},{type:"melee", x: 22.7, y:52.3},{type:"melee", x: 23.4, y:52.3},{type:"melee", x: 22.7, y:58.3},
 {type:"melee", x: 28.9, y:12.3},{type: "melee", x: 23.4, y: 15.2},{type: "ranged", x: 18.4, y: 9.2},{type: "melee", x: 10.2, y: 11.2},{type: "melee", x: 16.2, y: 31.2},{type: "melee", x: 5.3, y: 6.2},
 {type:"turret", x:23.4,y:67.5}, {type:"turret", x:26.4,y:29.2},{type:"turret", x:26.6,y:26.5},{type:"turret", x:22.9,y:26.5},{type:"turret", x:22.3,y:29.2},{type:"turret", x:29.6,y:17.2},
-{type:"turret", x:28.5,y:17.2},{type:"turret", x:9.6,y:13.2},{type:"turret", x:10.6,y:13.2},
-{type:"hellraiser", x:20.3, y:63.5}], //TODO: REMOVE HELLRAISER FROM FIRST LEVEL
+{type:"turret", x:28.5,y:17.2},{type:"turret", x:9.6,y:13.2},{type:"turret", x:10.6,y:13.2}],
 [{type:"fireaxe", x: 19.5, y: 36.5}, 
 {type: "pistol", x: 32.4, y: 54.3}, {type: "pistol", x: 2.5, y: 37.5}, {type: "pistol", x: 35.6, y: 64.3}, {type: "pistol", x: 24.3, y: 6.3},{type: "pistol", x: 18.5, y: 23.3},{type: "pistol", x: 14.9, y: 53.3},{type: "pistol", x: 16.3, y: 6.1},
 {type: "ammo", x:36.5, y: 65.2},{type: "ammo", x: 31.9, y: 61.5},{type: "ammo", x: 36.8, y: 19.5},{type: "ammo", x: 23.3, y: 24.5}, {type: "ammo", x: 24.3, y: 24.5},{type: "ammo", x: 25.3, y: 24.5},{type: "ammo", x: 16.3, y: 42.5},{type: "ammo", x: 7.9, y: 26.2},{type: "ammo", x: 5.2, y: 16.3},
 {type: "health", x: 26.2, y: 58.3},{type: "health", x: 32.9, y: 16.3},{type: "health", x: 7.2, y: 56.5},{type: "health", x: 1.5, y: 6.1},{type: "health", x: 16.5, y: 53.5},
-{type: "ar", x: 24.4, y: 28.5}, {type:"shotgun", x: 17,y:68}, {type: "introtoc",x:14.9,y:68.5}], //TODO: REMOVE SHOTGUN FROM FIRST LEVEL
+{type: "ar", x: 24.4, y: 28.5}], 
 [],
 [{type: "apartmentlevel4down", x: 18.5, y: 6.5}]
 );

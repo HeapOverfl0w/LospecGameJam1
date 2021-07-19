@@ -10,7 +10,7 @@ class AudioHandler {
         this.rebelsmusic.volume = 0.8;
 
         this.musicList = [this.aggressormusic, this.lawabidingcitizenmusic, this.neuromancermusic, this.rebelsmusic];
-        this.currentSong = 1;
+        this.currentSong = 0;
 
         this.darkmagic = document.getElementById("darkmagic");
         this.darkmagic.volume = 0.8;
