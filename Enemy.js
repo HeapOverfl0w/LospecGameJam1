@@ -13,6 +13,7 @@ class Enemy extends Billboard {
         this.isStationary = isStationary;
         this.speed = speed;
         this.destroyAnimation = destroyAnimation;
+        this.isHit = false;
 
         this.maxViewRange = 20;
         this.maxAttackRange = this.isRanged ? 11.5 : 2;
@@ -25,6 +26,8 @@ class Enemy extends Billboard {
             if (level.projectiles[p].playerOwned && level.projectiles[p].isInside(this)) {
                 this.hasSeenCamera = true;
                 this.life -= level.projectiles[p].damage;
+                this.isHit = true;
+                setTimeout((enemy) => {enemy.isHit = false;}, 100, this);
                 level.projectiles[p].hitWall = true;
             }
         }
