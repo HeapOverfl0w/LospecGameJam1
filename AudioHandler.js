@@ -48,7 +48,7 @@ class AudioHandler {
 
     playAndLoopMusic(){
         this.currentSong++;
-        if (this.currentSong > this.musicList.length)
+        if (this.currentSong >= this.musicList.length)
             this.currentSong = 0;
 
         this.musicList[this.currentSong].currentTime = 0;

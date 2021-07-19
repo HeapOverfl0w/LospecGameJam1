@@ -57,7 +57,7 @@ class Enemy extends Billboard {
                 this.attack(angle, playerInView, distanceFromPlayer, level, audio);
                 
                 //randomly play enemy sounds
-                if (Math.random() < 0.005) {
+                if (Math.random() < 0.001) {
                     if (Math.random() < 0.5)
                         audio.playGrowl();
                     else

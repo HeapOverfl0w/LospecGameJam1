@@ -6,12 +6,12 @@ class Main
     this.data = new Data();
     this.data.load();
     this.ctx = ctx;
-    this.level = bossRoom;//ApartmentLevel4;
+    this.level = azureCloudLevel;//bossRoom;//ApartmentLevel4;
     this.level.loadData(this.data);
 
     this.activeCutscene = this.data.introCutscene;
     //17, 67
-    this.camera = new Camera(1, 1, 0, Math.PI * (6/18), 6, this.data.weapons["screwDriver"]);
+    this.camera = new Camera(19, 2, 0, Math.PI * (6/18), 6, this.data.weapons["screwDriver"]);
     this.rayCaster = new RayCaster(20);
     this.FPS = 30;
     this.fpsCounter = 0;
