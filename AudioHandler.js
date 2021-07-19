@@ -6,7 +6,7 @@ class AudioHandler {
         this.rebelsmusic = document.getElementById("rebelsmusic");
 
         this.musicList = [this.aggressormusic, this.lawabidingcitizenmusic, this.neuromancermusic, this.rebelsmusic];
-        this.currentSong = 0;
+        this.currentSong = 1;
 
         this.darkmagic = document.getElementById("darkmagic");
         this.death = document.getElementById("death");

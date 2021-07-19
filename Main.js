@@ -92,6 +92,7 @@ class Main
   {
     if (this.activeCutscene !== undefined) {
       this.activeCutscene = undefined;
+      this.audio.playAndLoopMusic();
     }
 
     let removeAt = -1;
