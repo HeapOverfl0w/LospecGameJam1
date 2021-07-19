@@ -368,16 +368,16 @@ function App() {
     setBillboard(e.target.value);
   }
 
-  const updateLevel = function(i, j, value) {
+  const updateLevel = function(i, j, tile, billboard) {
     if (layer === 'tile') {
       let temp = tiles;  
-      temp[i][j] = value;
+      temp[i][j] = tile;
       setTiles(temp);
     }
     else {
       let tempB = billboards;
   
-      tempB[i][j] = textures[value];
+      tempB[i][j] = billboard;
       setBillboards(tempB);
     }
     setUpdate(!update);
@@ -526,7 +526,7 @@ function App() {
                       <Grid key={j} item>
                         <Paper square className={classes.paper} style={{backgroundColor: lcolors[tiles[i][j]]}} 
                           onDragStart={(e) => {e.preventDefault()}} 
-                          onMouseOver={() => {if (mouseDown)updateLevel(i, j, Number(tile))}}>
+                          onMouseOver={() => {if (mouseDown)updateLevel(i, j, Number(tile), billboard)}}>
                           {/*onClick={() => updateLevel(i, j, Number(tile))}>*/}
                           {billboards[i][j] !== '' &&
                             <Tooltip title={billboards[i][j]}>
