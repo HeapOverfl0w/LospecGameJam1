@@ -3,6 +3,7 @@ class RayCaster {
   {
     this.maxViewDistance = maxViewDistance;
     this.maxShadeDistance = maxViewDistance - 5;
+    this.redShade = this.hexToRgbOffset("#f63f4c");
   }
 
   hexToRgbOffset(hex) {
@@ -249,9 +250,16 @@ class RayCaster {
               let textureSample = 4 * (ySample * billboardTexture.width + xSample);
               let screenBufferSample = 4 * ((bufferCeiling + y) * cvsWidth + column);
               if (billboardTexture.data[textureSample + 3] != 0 && textureSample < billboardTexture.data.length) {
-                let r = billboardTexture.data[textureSample] + (billboardsToDraw[i].dist / this.maxShadeDistance) * this.shadeColor.r;
-                let g = billboardTexture.data[textureSample+1] + (billboardsToDraw[i].dist / this.maxShadeDistance) * this.shadeColor.g;
-                let b = billboardTexture.data[textureSample+2] + (billboardsToDraw[i].dist / this.maxShadeDistance) * this.shadeColor.b;
+                let shadeColor = this.shadeColor;
+                let shadeOffset = (billboardsToDraw[i].dist / this.maxShadeDistance);
+                if (billboardsToDraw[i].billboard.isHit !== undefined && billboardsToDraw[i].billboard.isHit) {
+                  shadeColor = this.redShade;
+                  shadeOffset = 0.8;
+                }
+
+                let r = billboardTexture.data[textureSample] + shadeOffset * shadeColor.r;
+                let g = billboardTexture.data[textureSample+1] + shadeOffset * shadeColor.g;
+                let b = billboardTexture.data[textureSample+2] + shadeOffset * shadeColor.b;
                 this.screenBuffer.data[screenBufferSample] = r;
                 this.screenBuffer.data[screenBufferSample + 1] = g;
                 this.screenBuffer.data[screenBufferSample + 2] = b;
