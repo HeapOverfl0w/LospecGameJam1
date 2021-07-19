@@ -139,7 +139,7 @@ class Boss extends Billboard {
 
     normalAttack(camera, level) {
         let angle = Math.atan2(camera.x - this.x, camera.y - this.y);
-        const thirtyDegreesInRadians = 0.5236;
+        const thirtyDegreesInRadians = 0.2236;
         level.projectiles.push(this.projectile.copy(this.x, this.y, Math.sin(angle), Math.cos(angle)));
         level.projectiles.push(this.projectile.copy(this.x, this.y, Math.sin(angle + thirtyDegreesInRadians), Math.cos(angle + thirtyDegreesInRadians)));
         level.projectiles.push(this.projectile.copy(this.x, this.y, Math.sin(angle - thirtyDegreesInRadians), Math.cos(angle - thirtyDegreesInRadians)));

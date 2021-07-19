@@ -13,6 +13,7 @@ class Hazard extends Billboard{
             this.y - this.radius < camera.y) {
                 if (this.ready) {
                     audio.playFire();
+                    audio.playPain();
                     camera.playerHealth -= this.damage;
                     this.ready = false;
                     setTimeout((hazard) => {hazard.ready = true;}, 1000, this);

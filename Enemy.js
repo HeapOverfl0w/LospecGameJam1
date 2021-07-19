@@ -35,7 +35,7 @@ class Enemy extends Billboard {
                 audio.playDeath();
                 this.activeAnimation = this.destroyAnimation;
                 //drop ammo
-                if (Math.random() < 0.5) {
+                if (Math.random() < 0.25) {
                     level.powerups.push(data.powerups["ammo"].copy(this.x, this.y));
                 }
             }
@@ -57,7 +57,7 @@ class Enemy extends Billboard {
                 this.attack(angle, playerInView, distanceFromPlayer, level, audio);
                 
                 //randomly play enemy sounds
-                if (Math.random() < 0.01) {
+                if (Math.random() < 0.005) {
                     if (Math.random() < 0.5)
                         audio.playGrowl();
                     else

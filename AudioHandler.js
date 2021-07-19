@@ -1,25 +1,43 @@
 class AudioHandler {
     constructor() {
         this.aggressormusic = document.getElementById("aggressormusic");
+        this.aggressormusic.volume = 0.8;
         this.lawabidingcitizenmusic = document.getElementById("lawabidingcitizenmusic");
+        this.lawabidingcitizenmusic.volume = 0.8;
         this.neuromancermusic = document.getElementById("neuromancermusic");
+        this.neuromancermusic.volume = 0.8;
         this.rebelsmusic = document.getElementById("rebelsmusic");
+        this.rebelsmusic.volume = 0.8;
 
         this.musicList = [this.aggressormusic, this.lawabidingcitizenmusic, this.neuromancermusic, this.rebelsmusic];
         this.currentSong = 1;
 
         this.darkmagic = document.getElementById("darkmagic");
+        this.darkmagic.volume = 0.8;
         this.death = document.getElementById("death");
+        this.death.volume = 0.8;
         this.developers = document.getElementById("developers");
+        this.developers.volume = 0.8;
         this.growl = document.getElementById("growl");
+        this.growl.volume = 0.8;
         this.heal = document.getElementById("heal");
+        this.heal.volume = 0.8;
         this.reload = document.getElementById("reload");
+        this.reload.volume = 0.8;
         this.shot = document.getElementById("shot");
+        this.shot.volume = 0.8;
         this.shotgunfire = document.getElementById("shotgunfire");
+        this.shotgunfire.volume = 0.8;
         this.spirit = document.getElementById("spirit");
+        this.spirit.volume = 0.8;
         this.spell = document.getElementById("spell");
+        this.spell.volume = 0.8;
         this.drill = document.getElementById("drill");
+        this.drill.volume = 0.8;
         this.fire = document.getElementById("fire");
+        this.fire.volume = 0.8;
+        this.pain = document.getElementById("pain");
+        this.pain.volume = 0.8;
     }
 
     update() {
@@ -120,7 +138,10 @@ class AudioHandler {
         audioCopy.play();
     }
 
-
+    playPain() {
+        this.pain.currentTime = 0;
+        this.pain.play();
+    }
     
 
     
