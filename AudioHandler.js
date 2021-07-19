@@ -40,6 +40,13 @@ class AudioHandler {
         this.pain.volume = 0.8;
     }
 
+    toggleMute() {
+        document.querySelectorAll("audio").forEach( (elem) => 
+        {
+            elem.muted = !elem.muted; 
+        });
+    }
+
     update() {
         if (this.musicList[this.currentSong].ended) {
             this.playAndLoopMusic();

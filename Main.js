@@ -96,6 +96,10 @@ class Main
       this.audio.playAndLoopMusic();
     }
 
+    if (keyCode == 86) {
+      this.audio.toggleMute();
+    }
+
     let removeAt = -1;
     for(let k = 0; k < this.keysDown.length; k++)
     {

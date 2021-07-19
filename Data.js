@@ -354,5 +354,6 @@ class Data {
             "His armies are coming for you..."],
             this.animations["intro_scene2"]
         ]);
+        
     }
 }
