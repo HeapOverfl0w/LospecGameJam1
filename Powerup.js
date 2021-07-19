@@ -13,7 +13,8 @@ class Powerup extends Billboard {
 
             switch(this.powerupType) {
                 case "ammo":
-                    camera.activeWeapon.ammo += camera.activeWeapon.maxMagazineSize;
+                    let ammoAmount = camera.activeWeapon.maxMagazineSize > 4 ? camera.activeWeapon.maxMagazineSize : 4;
+                    camera.activeWeapon.ammo += ammoAmount;
                     break;
                 case "health":
                     camera.playerHealth = camera.playerHealth + 6 > camera.playerMaxHealth ? camera.playerMaxHealth : camera.playerHealth + 6;

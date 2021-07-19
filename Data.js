@@ -126,7 +126,8 @@ class Data {
             "cleanwhitewalldooropen",
             "bluecarpet",
             "azurecloudsign",
-            "bossroomdoor"
+            "bossroomdoor",
+            "intro_scene0"
         ];
     }
 
@@ -232,6 +233,7 @@ class Data {
         this.animations["bossroomdoor"] = new Animation(this.textures["bossroomdoor"], 64, 64, 1, 0, false);
 
         //cutscene animations
+        this.animations["intro_scene0"] = new Animation(this.textures["intro_scene0"], 240, 135, 5, 800, false);
         this.animations["intro_scene1"] = new Animation(this.textures["intro_scene1"], 240, 135, 6, 800, false);
         this.animations["intro_scene2"] = new Animation(this.textures["intro_scene2"], 240, 135, 6, 800, false);
     }
@@ -243,7 +245,7 @@ class Data {
 
     createTeleports() {
         this.teleports = {};
-        this.teleports["apartmentlevel4down"] = new Teleport(this.animations["elevatordoors"],0,0,streetslevel1,2,2);
+        this.teleports["apartmentlevel4down"] = new Teleport(this.animations["elevatordoors"],0,0,ApartmentLevel3,2,2);
         this.teleports["bossroomdoor"] = new Teleport(this.animations["bossroomdoor"],0,0,bossRoom,10,1.5);
     }
 
@@ -295,8 +297,8 @@ class Data {
         this.enemies["turret"] = new Enemy("Turret", 3, 0, true, true, this.projectiles["enemyshot"],this.animations["enemyturret"],this.animations["enemyturretattack"],this.animations["enemyturretdestroyed"],0,0);
         //TODO: ADD MELEE ENEMY KILL ANIMATION
         this.enemies["melee"] = new Enemy("Melee", 2, 2, false, false, this.projectiles["sparks"],this.animations["enemymeleemove"],this.animations["enemymeleeattack"],this.animations["enemyturretdestroyed"],0,0);
-        this.enemies["ranged"] = new Enemy("Ranged", 3, 1, true, false, this.projectiles["enemyshot"],this.animations["enemyrangedmove"],this.animations["enemyrangedattack"],this.animations["enemyrangeddeath"],0,0);
-        this.enemies["hellraiser"] = new Enemy("Hellraiser", 5, 1, true, false, this.projectiles["enemyshot"],this.animations["hellraisermove"],this.animations["hellraiserattack"],this.animations["hellraiserdeath"],0,0);
+        this.enemies["ranged"] = new Enemy("Ranged", 4, 1, true, false, this.projectiles["enemyshot"],this.animations["enemyrangedmove"],this.animations["enemyrangedattack"],this.animations["enemyrangeddeath"],0,0);
+        this.enemies["hellraiser"] = new Enemy("Hellraiser", 6, 1, true, false, this.projectiles["enemyshot"],this.animations["hellraisermove"],this.animations["hellraiserattack"],this.animations["hellraiserdeath"],0,0);
         this.enemies["boss"] = new Boss(this.projectiles["bluesparks"], this.animations["bossdefault"], this.animations["bossattack"], this.animations["bosssecondattack"], this.animations["bossteleport"], this.animations["bossdeath"],0,0);
     }
 
@@ -335,7 +337,8 @@ class Data {
 
     createCutscenes() {
         this.introCutscene =  new Cutscene(
-            [this.animations["intro_scene1"],
+            [this.animations["intro_scene0"],
+            this.animations["intro_scene1"],
             ["The year is 2026. 5 years since github copilot", 
             "was introduced. It was supposed to make our", 
             "software lives easier.",

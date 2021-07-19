@@ -166,7 +166,7 @@ class Boss extends Billboard {
             for (let y = 0; y < level.levelArray[x].length; y++){
                 if (level.levelArray[x][y] == 60) {
                     hazards.push({type: "evilfire", x:x + 0.5, y:y + 0.5})
-                    level.levelArray[x][y] = 65;
+                    level.levelArray[x][y] = 75;
                 }
             }
         }
@@ -176,7 +176,7 @@ class Boss extends Billboard {
     clearFireHazards(level){
         for (let x = 0; x < level.levelArray.length; x++){
             for (let y = 0; y < level.levelArray[x].length; y++){
-                if (level.levelArray[x][y] == 65) {
+                if (level.levelArray[x][y] == 75) {
                     level.levelArray[x][y] = 60;
                 }
             }

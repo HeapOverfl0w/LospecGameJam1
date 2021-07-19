@@ -278,7 +278,7 @@ class Level
         return this.data.textures["bossroomfloor"];
       case 61:
         return this.data.textures["bossroomfloor1"];
-      case 65:
+      case 75:
         return this.data.textures["bossroomfloorlit"];
       case 67:
         return this.data.textures["blackfloorshiny"];

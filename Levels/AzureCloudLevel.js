@@ -49,7 +49,7 @@ let azureCloudLevel = new Level(
         {type: "couch", x: 5, y: 9.8},
         {type: "comfychair", x: 6.5, y: 8.7}, {type: "comfychair", x: 3.5, y: 8.7},
         {type:"azurecloudsign", x:19, y:4.5}],
-      [{type: "hellraiser", x: 18.5, y: 27.5}, {type: "hellraiser", x: 19.5, y: 27.5}, 
+      [{type: "hellraiser", x: 18.5, y: 27.5}, {type: "hellraiser", x: 19.5, y: 27.5}, {type: "hellraiser", x: 19, y: 27.5},
         {type: "ranged", x: 13.5, y: 27.5}, {type: "ranged", x: 24.5, y: 27.5}, {type: "ranged", x: 13.5, y: 12.5}, {type: "ranged", x: 24.5, y: 12.5},
         {type: "melee", x: 35.4, y: 8}, {type: "melee", x: 34.4, y: 8},{type: "melee", x: 33.4, y: 8},{type: "melee", x: 23.3, y: 10.2},
         {type: "melee", x: 23.3, y: 10.7}, {type: "melee", x: 23.6, y: 10.7}, {type: "melee", x: 15.9, y: 10.7}, {type: "melee", x: 15.6, y: 10.7},
