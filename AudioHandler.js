@@ -22,13 +22,18 @@ class AudioHandler {
         this.fire = document.getElementById("fire");
     }
 
+    update() {
+        if (this.musicList[this.currentSong].ended) {
+            this.playAndLoopMusic();
+        }
+    }
+
     playAndLoopMusic(){
         this.currentSong++;
         if (this.currentSong > this.musicList.length)
             this.currentSong = 0;
-        
-        this.musicList[this.currentSong].onended = this.playAndLoopMusic;
 
+        this.musicList[this.currentSong].currentTime = 0;
         this.musicList[this.currentSong].play();
     }
 

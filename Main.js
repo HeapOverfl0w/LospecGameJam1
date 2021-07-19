@@ -42,6 +42,8 @@ class Main
 
     main.rayCaster.draw(main.ctx, main.camera, main.level);
 
+    main.audio.update();
+
     let teleport = main.level.getTeleportOnPlayer(main.camera);
     if (teleport !== undefined) {
       teleport.toLevel.loadData(main.data);
