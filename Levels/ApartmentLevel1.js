@@ -38,14 +38,15 @@ let ApartmentLevel1 = new Level (
       [1,0,0,0,0,0,2,0,0,0,0,2,0,0,0,0,0,0,2,0,0,0,0,0,0,2,0,0,0,0,2,3,77,6,6,6,6,77,3,2,0,0,0,0,2,0,0,0,0,0,0,2,0,0,0,0,0,0,2,0,0,0,0,2,0,0,0,0,0,1],
       [4,0,0,0,0,0,2,0,0,0,0,34,0,0,0,0,0,0,2,0,0,0,0,0,0,34,0,0,0,0,2,3,77,6,6,6,6,77,3,2,0,0,0,0,34,0,0,0,0,0,0,2,0,0,0,0,0,0,34,0,0,0,0,2,0,0,0,0,0,4],
       [1,0,0,0,0,0,2,0,0,0,0,2,0,0,0,0,0,0,2,0,0,0,0,0,0,2,0,0,0,0,2,3,77,6,6,6,6,77,3,2,0,0,0,0,2,0,0,0,0,0,0,2,0,0,0,0,0,0,2,0,0,0,0,2,0,0,0,0,0,1],
-      [1,1,4,1,4,1,1,1,4,4,1,1,1,4,1,1,4,1,1,1,4,1,1,4,1,1,1,4,4,1,1,1,1,1,0,0,1,1,1,1,1,4,4,1,1,1,4,1,1,4,1,1,1,4,1,1,4,1,1,1,4,4,1,1,1,4,1,4,1,1]
+      [1,1,4,1,4,1,1,1,4,4,1,1,1,4,1,1,4,1,1,1,4,1,1,4,1,1,1,4,4,1,1,1,1,1,1,1,1,1,1,1,1,4,4,1,1,1,4,1,1,4,1,1,1,4,1,1,4,1,1,1,4,4,1,1,1,4,1,4,1,1]
     ],
       document.getElementById("skyboxblank"),
     true,
     "#1d1c1f",
-      [{"type":"computerdesk","x":26,"y":11},{"type":"computerdesk","x":28,"y":11},{"type":"computerdesk","x":30,"y":11},{"type":"computerdesk","x":32,"y":11},{"type":"computerdesk","x":36,"y":11},{"type":"computerdesk","x":38,"y":11},{"type":"computerdesk","x":40,"y":11},{"type":"computerdesk","x":42,"y":11}],[],[{"type":"computerdesk","x":26,"y":13},{"type":"computerdesk","x":28,"y":13},{"type":"computerdesk","x":30,"y":13},{"type":"computerdesk","x":32,"y":13},{"type":"computerdesk","x":36,"y":13},{"type":"computerdesk","x":38,"y":13},{"type":"computerdesk","x":40,"y":13},{"type":"computerdesk","x":42,"y":13}],[],[{"type":"computerdesk","x":26,"y":15},{"type":"computerdesk","x":28,"y":15},{"type":"computerdesk","x":30,"y":15},{"type":"computerdesk","x":32,"y":15},{"type":"computerdesk","x":36,"y":15},{"type":"computerdesk","x":38,"y":15},{"type":"computerdesk","x":40,"y":15},{"type":"computerdesk","x":42,"y":15}],[],[],[],[{"type":"elevatordoorsbroken","x":18,"y":19},{"type":"elevatordoorsbroken","x":22,"y":19},{"type":"elevatordoorsbroken","x":47,"y":19},{"type":"elevatordoorsbroken","x":51,"y":19}],
+      [{type:"computerdesk",x:26,y:11},{type:"computerdesk",x:28,y:11},{type:"computerdesk",x:30,y:11},{type:"computerdesk",x:32,y:11},{type:"computerdesk",x:36,y:11},{type:"computerdesk",x:38,y:11},{type:"computerdesk",x:40,y:11},{"type":"computerdesk","x":42,"y":11},
+      {type:"computerdesk",x:26,y:13},{type:"computerdesk",x:28,y:13},{type:"computerdesk",x:30,y:13},{type:"computerdesk",x:32,y:13},{type:"computerdesk",x:36,y:13},{type:"computerdesk",x:38,y:13},{type:"computerdesk",x:40,y:13},{type:"computerdesk",x:42,y:13}],
       [],
       [],
       [],
-      []
+      [{type:"apartmentlevel1out", x: 37.3, y: 35}]
 )

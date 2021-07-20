@@ -265,7 +265,10 @@ class Data {
 
     createTeleports() {
         this.teleports = {};
-        this.teleports["apartmentlevel4down"] = new Teleport(this.animations["elevatordoors"],0,0,ApartmentLevel3,19.3,52.5);
+        this.teleports["apartmentlevel4down"] = new Teleport(this.animations["elevatordoors"],0,0,ApartmentLevel3,19.3,61.5);
+        this.teleports["apartmentlevel3down"] = new Teleport(this.animations["elevatordoors"],0,0,ApartmentLevel2,19.3,61.5);
+        this.teleports["apartmentlevel2down"] = new Teleport(this.animations["elevatordoors"],0,0,ApartmentLevel1,19.3,61.5);
+        this.teleports["apartmentlevel1out"] = new Teleport(this.animations["elevatordoors"],0,0,StreetsLevel1,19.3,61.5);
         this.teleports["bossroomdoor"] = new Teleport(this.animations["bossroomdoor"],0,0,bossRoom,10,1.5);
     }
 
@@ -376,7 +379,7 @@ class Data {
             this.animations["intro_scene2"]
         ], true);
 
-        this.deathCutscene = new Cutscene([this.animations["death_cutscene"]]);
+        this.deathCutscene = new Cutscene([this.animations["death_cutscene"]], false);
 
         this.endGameCutscene = new Cutscene([this.animations["endgame_scene0"], this.animations["endgame_scene1"],
             ["You don his helmet, seduced by its power.",
@@ -401,7 +404,7 @@ class Data {
             "the very thing you swore to destroy...", 
             "                    "],
             this.animations["endgame_scene4"]
-        ]);
+        ], false);
 
     }
 }
