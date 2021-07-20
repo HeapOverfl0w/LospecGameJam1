@@ -134,7 +134,7 @@ class Data {
             "endgame_scene2",
             "endgame_scene3",
             "endgame_scene4",
-            "elevatordoorsbroken",
+            "elevatorbroken",
             "wallpapermailboxes"
         ];
     }
