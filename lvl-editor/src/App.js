@@ -201,7 +201,7 @@ const textures = [
   "wallpaperdoor",
   "wallpapervent",
   "elevatordoors",
-  "elevatordoorsbroken",
+  "elevatorbroken",
   "pistolreload",
   "deaddude",
   "fridge",
