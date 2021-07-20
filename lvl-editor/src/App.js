@@ -406,7 +406,9 @@ function App() {
           else {
             let temp = billboards;
             for(let b = 0; b < json.length; b++) {
-              temp[json[b]['y']][json[b]['x']] = json[b]['type'];
+              let x = Math.floor(json[b]['x']);
+              let y = Math.floor(json[b]['y']);
+              temp[x][y] = json[b]['type'];
             }
             setBillboards(temp);
             setUpdate(!update);
