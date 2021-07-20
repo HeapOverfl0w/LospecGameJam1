@@ -10,6 +10,7 @@ class Main
     this.level.loadData(this.data);
 
     this.activeCutscene = this.data.introCutscene;
+    //17, 67
     this.camera = new Camera(17, 67, 0, Math.PI * (6/18), 6, this.data.weapons["screwDriver"]);
     this.rayCaster = new RayCaster(20);
     this.FPS = 30;
