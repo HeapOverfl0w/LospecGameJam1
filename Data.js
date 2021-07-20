@@ -133,7 +133,9 @@ class Data {
             "endgame_scene1",
             "endgame_scene2",
             "endgame_scene3",
-            "endgame_scene4"
+            "endgame_scene4",
+            "elevatordoorsbroken",
+            "wallpapermailboxes"
         ];
     }
 
@@ -203,6 +205,7 @@ class Data {
         this.animations["reloadar"] = new Animation(this.textures["arreload"], 240,135,6,300,false);
         this.animations["arpowerup"] = new Animation(this.textures["arpowerup"], 16, 16, 8, 200, true);
         this.animations["elevatordoors"] = new Animation(this.textures["elevatordoors"], 32, 32, 6, 300, true);
+        this.animations["elevatordoorsbroken"] = new Animation(this.textures["elevatordoorsbroken"], 32, 32, 6, 300, true);
         this.animations["deaddude"] = new Animation(this.textures["deaddude"], 32, 32, 1, 0, true);
         this.animations["comfychair"] = new Animation(this.textures["comfychair"], 41, 32, 1, 0, true);
         this.animations["tv"] = new Animation(this.textures["tv"], 32, 32, 1, 0, true);

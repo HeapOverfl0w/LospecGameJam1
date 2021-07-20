@@ -173,6 +173,8 @@ class Level
         return this.data.textures["cleanwhitewalldoorclosed"];
       case 73:
         return this.data.textures["cleanwhitewalldooropen"];
+      case 77:
+        return this.data.textures["wallpapermailboxes"];
       default:
         return undefined;
     }
