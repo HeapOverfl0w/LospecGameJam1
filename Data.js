@@ -127,7 +127,13 @@ class Data {
             "bluecarpet",
             "azurecloudsign",
             "bossroomdoor",
-            "intro_scene0"
+            "intro_scene0",
+            "death_cutscene",
+            "endgame_scene0",
+            "endgame_scene1",
+            "endgame_scene2",
+            "endgame_scene3",
+            "endgame_scene4"
         ];
     }
 
@@ -236,6 +242,12 @@ class Data {
         this.animations["intro_scene0"] = new Animation(this.textures["intro_scene0"], 240, 135, 5, 800, false);
         this.animations["intro_scene1"] = new Animation(this.textures["intro_scene1"], 240, 135, 6, 800, false);
         this.animations["intro_scene2"] = new Animation(this.textures["intro_scene2"], 240, 135, 6, 800, false);
+        this.animations["death_cutscene"] = new Animation(this.textures["death_cutscene"], 240, 135, 6, 800, false);
+        this.animations["endgame_scene0"] = new Animation(this.textures["endgame_scene0"], 240, 135, 8, 800, false);
+        this.animations["endgame_scene1"] = new Animation(this.textures["endgame_scene1"], 240, 135, 7, 800, false);
+        this.animations["endgame_scene2"] = new Animation(this.textures["endgame_scene3"], 240, 135, 6, 400, false);
+        this.animations["endgame_scene3"] = new Animation(this.textures["endgame_scene2"], 240, 135, 6, 1000, false);
+        this.animations["endgame_scene4"] = new Animation(this.textures["endgame_scene4"], 240, 135, 2, 1000, false);
     }
 
     createHazards() {
@@ -351,9 +363,37 @@ class Data {
             "developer's mind with dark spellware. ",
             "The developer is now only known as ", 
             "'The Neuromancer'. Part human and part AI. ",
-            "His armies are coming for you..."],
+            "His armies are coming for you...",
+            "                 "],
             this.animations["intro_scene2"]
+        ], true);
+
+        this.deathCutscene = new Cutscene([this.animations["death_cutscene"]]);
+
+        this.endGameCutscene = new Cutscene([this.animations["endgame_scene0"], this.animations["endgame_scene1"],
+            ["You don his helmet, seduced by its power.",
+            "Your mind becomes a machine and all your",
+            "senses are enhanced...",
+            "                    "],
+            this.animations["endgame_scene2"],
+            ["You crush every leetcode interview in",
+            "the 100th percentile. All algorithms you",
+            "write complete in linear time. You work",
+            "for FAANG... all of them at once.",
+            "                    "],
+            this.animations["endgame_scene3"],
+            ["Eventually every night becomes restless.",
+            "You lie in your bed with a cold sweat",
+            "pondering things that cannot be calculated.",
+            "What is the meaning of life?",
+            "Will people ever stop making node_modules?",
+            "To be human again... To be imperfect...",
+            "You desire it, but there's no turning back.",
+            "You slowly slip into madness and become",
+            "the very thing you swore to destroy...", 
+            "                    "],
+            this.animations["endgame_scene4"]
         ]);
-        
+
     }
 }

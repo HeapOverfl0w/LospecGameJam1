@@ -292,6 +292,6 @@ class Level
   }
 
   copy() {
-    return new Level([...this.levelArray], this.data, this.skybox, this.useShade, this.shadeColor, this.billboardTypes, this.enemyTypes, this.powerupTypes, this.hazardTypes, this.teleportTypes);
+    return new Level([...this.levelArray], this.skybox, this.useShade, this.shadeColor, this.billboardTypes, this.enemyTypes, this.powerupTypes, this.hazardTypes, this.teleportTypes);
   }
 }

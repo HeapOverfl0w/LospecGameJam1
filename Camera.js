@@ -17,6 +17,12 @@ class Camera
     this.playerHealth = this.playerMaxHealth;
   }
 
+  stopAllWeaponAnimations() {
+    for (let w = 0; w < this.weapons.length; w++) {
+      this.weapons[w].activeAnimation.stop();
+    }
+  }
+
   isInside(x, y) {
     const cameraWidth = 0.6;
     return (x + cameraWidth / 2 > this.x &&

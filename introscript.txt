@@ -1,7 +1,0 @@
-intro scene script:
-
-The year is 2026. 5 years since github copilot was introduced. It was supposed to make our software lives easier. Who would've thought an AI that could write code would take over the world?
-
-It all happened when one crazed front end developer tried to learn C and wrote the function "AIToTakeOverTheWorld()"... Of course copilot wrote the function and took over developer's mind with dark spellware.
-
-The developer is now only known by the neuromancer. A part human and part AI. What was meant to help us code is now our destruction. His armies are coming for you.

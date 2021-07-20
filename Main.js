@@ -6,10 +6,10 @@ class Main
     this.data = new Data();
     this.data.load();
     this.ctx = ctx;
-    this.level = ApartmentLevel4;
+    this.level = ApartmentLevel4.copy();
     this.level.loadData(this.data);
 
-    this.activeCutscene = this.data.introCutscene;
+    this.activeCutscene = this.data.endGameCutscene;
     this.camera = new Camera(17, 67, 0, Math.PI * (6/18), 6, this.data.weapons["screwDriver"]);
     this.rayCaster = new RayCaster(20);
     this.FPS = 30;
@@ -59,12 +59,12 @@ class Main
       main.camera.handleMouseDown(main.level, main.audio);
 
     main.fpsCounter++;
-    if (new Date().getTime() - main.lastSecond > 1000)
-    {
-      console.log(main.fpsCounter);
-      main.fpsCounter = 0;
-      main.lastSecond = new Date().getTime();
-    }
+
+    //death check
+    // if (main.camera.playerHealth <= 0) {
+    //   main.activeCutscene = main.data.deathCutscene;
+    //   main.activeCutscene.restart();
+    // }
   }
 
   handleMouseMove(movementx) {
@@ -91,9 +91,14 @@ class Main
 
   handleKeyUp(keyCode)
   {
-    if (this.activeCutscene !== undefined) {
+    if (this.activeCutscene !== undefined && (this.activeCutscene.skippable || (this.activeCutscene.isOver()))) {
+      if (this.activeCutscene != this.data.introCutscene) {
+        this.restartGame();
+      }
+      else {
+        this.audio.playAndLoopMusic();
+      }
       this.activeCutscene = undefined;
-      this.audio.playAndLoopMusic();
     }
 
     if (keyCode == 86) {
@@ -118,5 +123,12 @@ class Main
       if (!this.keysDown.includes(65) && !this.keysDown.includes(68))
         this.camera.isStrafing = false;
     }
+  }
+
+  restartGame() {
+    this.camera.stopAllWeaponAnimations();
+    this.camera = new Camera(17, 67, 0, Math.PI * (6/18), 6, this.data.weapons["screwDriver"]);
+    this.level = ApartmentLevel4.copy();
+    this.level.loadData(this.data);
   }
 }
