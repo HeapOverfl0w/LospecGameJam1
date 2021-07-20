@@ -292,6 +292,7 @@ class Data {
         this.billboards["cardboardbox"] = new Billboard(this.animations["cardboardbox"], 0, 0);
         this.billboards["bush"] = new Billboard(this.animations["bush"],0,0);
         this.billboards["azurecloudsign"] = new Billboard(this.animations["azurecloudsign"],0,0);
+        this.billboards["elevatorbroken"] = new Billboard(this.animations["elevatorbroken"],0,0);
     }
 
     createProjectiles() {
