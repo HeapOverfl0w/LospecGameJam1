@@ -205,7 +205,7 @@ class Data {
         this.animations["reloadar"] = new Animation(this.textures["arreload"], 240,135,6,300,false);
         this.animations["arpowerup"] = new Animation(this.textures["arpowerup"], 16, 16, 8, 200, true);
         this.animations["elevatordoors"] = new Animation(this.textures["elevatordoors"], 32, 32, 6, 300, true);
-        this.animations["elevatorbroken"] = new Animation(this.textures["elevatorbroken"], 32, 32, 6, 300, true);
+        this.animations["elevatorbroken"] = new Animation(this.textures["elevatorbroken"], 32, 32, 4, 300, true);
         this.animations["deaddude"] = new Animation(this.textures["deaddude"], 32, 32, 1, 0, true);
         this.animations["comfychair"] = new Animation(this.textures["comfychair"], 41, 32, 1, 0, true);
         this.animations["tv"] = new Animation(this.textures["tv"], 32, 32, 1, 0, true);
