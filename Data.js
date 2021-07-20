@@ -139,7 +139,8 @@ class Data {
             "guardsheddoor",
             "guardshedwall",
             "guardshedcorner",
-            "fence"
+            "fence",
+            "brokendoorwallpaper-2"
         ];
     }
 
@@ -264,7 +265,7 @@ class Data {
 
     createTeleports() {
         this.teleports = {};
-        this.teleports["apartmentlevel4down"] = new Teleport(this.animations["elevatorbroken"],0,0,ApartmentLevel3,19.3,61.5);
+        this.teleports["apartmentlevel4down"] = new Teleport(this.animations["elevatordoors"],0,0,ApartmentLevel3,19.3,52.5);
         this.teleports["bossroomdoor"] = new Teleport(this.animations["bossroomdoor"],0,0,bossRoom,10,1.5);
     }
 
