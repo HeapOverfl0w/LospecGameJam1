@@ -140,7 +140,8 @@ class Data {
             "guardshedwall",
             "guardshedcorner",
             "fence",
-            "brokendoorwallpaper-2"
+            "brokendoorwallpaper-2",
+            "grasstuft"
         ];
     }
 
@@ -245,6 +246,7 @@ class Data {
         this.animations["evilfire"] = new Animation(this.textures["evilfire"], 64, 64, 2, 400, true);
         this.animations["azurecloudsign"] = new Animation(this.textures["azurecloudsign"], 60, 64, 1, 0, false);
         this.animations["bossroomdoor"] = new Animation(this.textures["bossroomdoor"], 64, 64, 1, 0, false);
+        this.animations["grasstuft"] = new Animation(this.textures["grasstuft"], 32, 16, 1, 0, false);
 
         //cutscene animations
         this.animations["intro_scene0"] = new Animation(this.textures["intro_scene0"], 240, 135, 5, 800, false);
@@ -293,6 +295,7 @@ class Data {
         this.billboards["bush"] = new Billboard(this.animations["bush"],0,0);
         this.billboards["azurecloudsign"] = new Billboard(this.animations["azurecloudsign"],0,0);
         this.billboards["elevatorbroken"] = new Billboard(this.animations["elevatorbroken"],0,0);
+        this.billboards["grass"] = new Billboard(this.animations["grasstuft"],0,0);
     }
 
     createProjectiles() {
