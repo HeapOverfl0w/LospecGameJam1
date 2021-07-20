@@ -375,7 +375,7 @@ class Data {
             this.animations["intro_scene2"]
         ], true);
 
-        this.deathCutscene = new Cutscene([this.animations["death_cutscene"]]);
+        this.deathCutscene = new Cutscene([this.animations["death_cutscene"]], false);
 
         this.endGameCutscene = new Cutscene([this.animations["endgame_scene0"], this.animations["endgame_scene1"],
             ["You don his helmet, seduced by its power.",
@@ -400,7 +400,7 @@ class Data {
             "the very thing you swore to destroy...", 
             "                    "],
             this.animations["endgame_scene4"]
-        ]);
+        ], false);
 
     }
 }
