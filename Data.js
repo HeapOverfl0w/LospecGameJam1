@@ -135,7 +135,11 @@ class Data {
             "endgame_scene3",
             "endgame_scene4",
             "elevatorbroken",
-            "wallpapermailboxes"
+            "wallpapermailboxes",
+            "guardsheddoor",
+            "guardshedwall",
+            "guardshedcorner",
+            "fence"
         ];
     }
 

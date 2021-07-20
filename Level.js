@@ -175,6 +175,14 @@ class Level
         return this.data.textures["cleanwhitewalldooropen"];
       case 77:
         return this.data.textures["wallpapermailboxes"];
+      case 78:
+        return this.data.textures["guardsheddoor"];
+      case 79:
+        return this.data.textures["guardshedwall"];
+      case 80:
+        return this.data.textures["guardshedcorner"];
+      case 81:
+        return this.data.textures["fence"];
       default:
         return undefined;
     }
