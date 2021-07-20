@@ -120,7 +120,7 @@ class Level
   }
 
   isDoor(x, y) {
-    return this.levelArray[x][y] == 5 || this.levelArray[x][y] == 7 || this.levelArray[x][y] == 73 || this.levelArray[x][y] == 34;
+    return this.levelArray[x][y] == 5 || this.levelArray[x][y] == 7 || this.levelArray[x][y] == 73 || this.levelArray[x][y] == 34 || this.levelArray[x][y] == 78;
   }
 
   isWall(x, y)
