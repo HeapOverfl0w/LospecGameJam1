@@ -185,6 +185,8 @@ class Level
         return this.data.textures["fence"];
       case 82:
         return this.data.textures["brokendoorwallpaper-2"];
+      case 83:
+        return this.data.textures["stairs"];
       default:
         return undefined;
     }

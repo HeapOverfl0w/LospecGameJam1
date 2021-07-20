@@ -140,7 +140,9 @@ class Data {
             "guardshedwall",
             "guardshedcorner",
             "fence",
-            "brokendoorwallpaper-2"
+            "brokendoorwallpaper-2",
+            "stairs",
+            "empty"
         ];
     }
 
@@ -245,6 +247,7 @@ class Data {
         this.animations["evilfire"] = new Animation(this.textures["evilfire"], 64, 64, 2, 400, true);
         this.animations["azurecloudsign"] = new Animation(this.textures["azurecloudsign"], 60, 64, 1, 0, false);
         this.animations["bossroomdoor"] = new Animation(this.textures["bossroomdoor"], 64, 64, 1, 0, false);
+        this.animations["empty"] = new Animation(this.textures["empty"], 32, 32, 1, 0, false);
 
         //cutscene animations
         this.animations["intro_scene0"] = new Animation(this.textures["intro_scene0"], 240, 135, 5, 800, false);
@@ -266,7 +269,7 @@ class Data {
     createTeleports() {
         this.teleports = {};
         this.teleports["apartmentlevel4down"] = new Teleport(this.animations["elevatordoors"],0,0,ApartmentLevel3,19.3,52.5);
-        this.teleports["apartmentlevel3down"] = new Teleport(this.animations["elevatordoors"],0,0,ApartmentLevel2,19.3,61.5);
+        this.teleports["apartmentlevel3down"] = new Teleport(this.animations["empty"],0,0,ApartmentLevel2,19.3,8.5);
         this.teleports["apartmentlevel2down"] = new Teleport(this.animations["elevatordoors"],0,0,ApartmentLevel1,19.3,61.5);
         this.teleports["apartmentlevel1out"] = new Teleport(this.animations["elevatordoors"],0,0,StreetsLevel1,19.3,61.5);
         this.teleports["bossroomdoor"] = new Teleport(this.animations["bossroomdoor"],0,0,bossRoom,10,1.5);
