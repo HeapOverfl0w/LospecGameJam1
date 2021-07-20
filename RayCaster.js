@@ -55,6 +55,8 @@ class RayCaster {
       let floor = (cvsHeight + 32) / 2 * (1 + 1/z) - 13;
       if (rayData.texture !== undefined && rayData.texture.height > 32)
         wallLength *= 2;
+      if (rayData.texture !== undefined && rayData.texture.height < 32)
+        wallLength /= 2;
       let ceiling = floor - wallLength;
 
       rayData.height = wallLength;
