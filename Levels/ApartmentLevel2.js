@@ -47,5 +47,5 @@ let ApartmentLevel2 = new Level (
       [],
       [],
       [],
-      [{type:"apartmentlevel2down", x: 19.5, y: 61.5}]
+      [{type:"apartmentlevel2down", x: 19.5, y: 7.5}]
 )
