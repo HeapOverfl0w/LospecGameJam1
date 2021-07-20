@@ -57,7 +57,7 @@ class RayCaster {
         wallLength *= 2;
       if (rayData.texture !== undefined && rayData.texture.height < 32)
         wallLength /= 2;
-      let ceiling = floor - Math.max(wallLength, 32);
+      let ceiling = floor - wallLength;
 
       rayData.height = wallLength;
       rayData.ceiling = Math.ceil(ceiling);
