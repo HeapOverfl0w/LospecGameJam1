@@ -432,7 +432,7 @@ function App() {
       for (let j = 0; j < tiles[i].length; j++) {
         tr.push(tiles[i][j]);
         if (billboards[i][j]) {
-          br.push({type: billboards[i][j], x: j, y: i});
+          br.push({type: billboards[i][j], x: i, y: j});
         }
       }
       t.push(tr);
