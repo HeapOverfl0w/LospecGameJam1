@@ -66,6 +66,13 @@ class Main
     //   main.activeCutscene = main.data.deathCutscene;
     //   main.activeCutscene.restart();
     // }
+
+    //win check
+    if (main.level.enemies[0] != undefined && main.level.enemies[0].currentMode != undefined &&
+        main.level.enemies[0].life <= 0 && !main.level.enemies[0].activeAnimation.isAnimating()) {
+          main.activeCutscene = main.data.endGameCutscene;
+          main.activeCutscene.restart();
+        }
   }
 
   handleMouseMove(movementx) {

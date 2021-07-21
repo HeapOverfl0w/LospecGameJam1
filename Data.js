@@ -210,7 +210,7 @@ class Data {
         this.animations["pistolpowerup"] = new Animation(this.textures["pistolpowerup"], 16, 16, 8, 200, true);
         this.animations["bulletprojectile"] = new Animation(this.textures["bulletprojectile"], 16, 16, 1, 0, false);
         this.animations["defaultPistol"] = new Animation(this.textures["defaultPistol"], 240,135,3,300,true);
-        this.animations["attackPistol"] = new Animation(this.textures["attackPistol"], 240,135,3,300,false);
+        this.animations["attackPistol"] = new Animation(this.textures["attackPistol"], 240,135,3,250,false);
         this.animations["reloadPistol"] = new Animation(this.textures["pistolreload"], 240,135,6,300,false);
         this.animations["ammopowerup"] = new Animation(this.textures["ammopowerup"], 16, 16, 6, 200, true);
         this.animations["healthpowerup"] = new Animation(this.textures["healthpowerup"], 16, 16, 6, 200, true);
