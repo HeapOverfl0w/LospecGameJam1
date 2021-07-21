@@ -148,7 +148,10 @@ class Data {
             "bluesiding",
             "bluesidingwindow",
             "bluesidingopendoor",
-            "cobblestonetalldooropen"
+            "cobblestonetalldooropen",
+            "cobblestonetallblockeddoor",
+            "cobblestonetallwindow",
+            "roadblocktall"
         ];
     }
 
