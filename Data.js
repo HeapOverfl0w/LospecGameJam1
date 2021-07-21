@@ -152,6 +152,9 @@ class Data {
             "cobblestonetallblockeddoor",
             "cobblestonetallwindow",
             "roadblocktall",
+            "teleport",
+            "car",
+            "fortsign",
             "apartmentrubble"
         ];
     }
@@ -259,6 +262,9 @@ class Data {
         this.animations["bossroomdoor"] = new Animation(this.textures["bossroomdoor"], 64, 64, 1, 0, false);
         this.animations["grasstuft"] = new Animation(this.textures["grasstuft"], 32, 16, 1, 0, false);
         this.animations["empty"] = new Animation(this.textures["empty"], 32, 32, 1, 0, false);
+        this.animations["teleport"] = new Animation(this.textures["teleport"], 32, 32, 3, 300, true);
+        this.animations["car"] = new Animation(this.textures["car"], 69, 32, 3, 300, true);
+        this.animations["fortsign"] = new Animation(this.textures["fortsign"], 39, 32, 1, 0, false);
 
         //cutscene animations
         this.animations["intro_scene0"] = new Animation(this.textures["intro_scene0"], 240, 135, 5, 800, false);
@@ -281,8 +287,9 @@ class Data {
         this.teleports = {};
         this.teleports["apartmentlevel4down"] = new Teleport(this.animations["elevatordoors"],0,0,ApartmentLevel3,19.3,18.5);
         this.teleports["apartmentlevel3down"] = new Teleport(this.animations["elevatordoors"],0,0,ApartmentLevel1,19.3,18.5);
-        this.teleports["apartmentlevel1out"] = new Teleport(this.animations["elevatordoors"],0,0,StreetsLevel1,19.3,61.5);
+        this.teleports["apartmentlevel1out"] = new Teleport(this.animations["elevatordoors"],0,0,StreetsLevel1,14.3,5.5);
         this.teleports["bossroomdoor"] = new Teleport(this.animations["bossroomdoor"],0,0,bossRoom,10,1.5);
+        this.teleports["teleporttoazurecloud"] = new Teleport(this.animations["teleport"],0,0,azureCloudLevel,19,1.5);
     }
 
     createBillboards() {
@@ -307,6 +314,8 @@ class Data {
         this.billboards["azurecloudsign"] = new Billboard(this.animations["azurecloudsign"],0,0);
         this.billboards["elevatorbroken"] = new Billboard(this.animations["elevatorbroken"],0,0);
         this.billboards["grass"] = new Billboard(this.animations["grasstuft"],0,0);
+        this.billboards["car"] = new Billboard(this.animations["car"],0,0);
+        this.billboards["fortsign"] = new Billboard(this.animations["fortsign"],0,0);
     }
 
     createProjectiles() {
