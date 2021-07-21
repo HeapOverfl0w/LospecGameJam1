@@ -344,7 +344,7 @@ class Data {
         this.enemies["turret"] = new Enemy("Turret", 3, 0, true, true, this.projectiles["enemyshot"],this.animations["enemyturret"],this.animations["enemyturretattack"],this.animations["enemyturretdestroyed"],0,0);
         //TODO: ADD MELEE ENEMY KILL ANIMATION
         this.enemies["melee"] = new Enemy("Melee", 2, 2, false, false, this.projectiles["sparks"],this.animations["enemymeleemove"],this.animations["enemymeleeattack"],this.animations["enemyturretdestroyed"],0,0);
-        this.enemies["ranged"] = new Enemy("Ranged", 4, 1, true, false, this.projectiles["enemyshot"],this.animations["enemyrangedmove"],this.animations["enemyrangedattack"],this.animations["enemyrangeddeath"],0,0);
+        this.enemies["ranged"] = new Enemy("Ranged", 5, 1, true, false, this.projectiles["enemyshot"],this.animations["enemyrangedmove"],this.animations["enemyrangedattack"],this.animations["enemyrangeddeath"],0,0);
         this.enemies["hellraiser"] = new Enemy("Hellraiser", 6, 1, true, false, this.projectiles["enemyshot"],this.animations["hellraisermove"],this.animations["hellraiserattack"],this.animations["hellraiserdeath"],0,0);
         this.enemies["boss"] = new Boss(this.projectiles["bluesparks"], this.animations["bossdefault"], this.animations["bossattack"], this.animations["bosssecondattack"], this.animations["bossteleport"], this.animations["bossdeath"],0,0);
     }
