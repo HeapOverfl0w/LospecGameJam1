@@ -190,6 +190,8 @@ class Level
         return this.data.textures["stairs"];
       case 85:
         return this.data.textures["stairsup"];
+      case 86:
+        return this.data.textures["apartmentrubble"];
       case 102:
         return this.data.textures["bluesidingopendoor"];
       case 103:

@@ -43,9 +43,9 @@ let ApartmentLevel3 = new Level (
       document.getElementById("skyboxblank"),
     true,
     "#1d1c1f",
-      [{type:"elevatorbroken",x:19.5,y:17.5},{type:"elevatorbroken",x:19.5,y:22.5},{type:"elevatorbroken",x:19.5,y:46.5},{type:"elevatorbroken",x:19.5,y:51.5}],
+      [{type:"elevatorbroken",x:19.5,y:16.5},{type:"elevatorbroken",x:19.5,y:22.5},{type:"elevatorbroken",x:19.5,y:45.5}],
       [],
       [],
       [],
-      [{type:"apartmentlevel3down", x: 19.5, y: 7.5}]
+      [{type:"apartmentlevel3down", x: 19.5, y: 51}]
 )
