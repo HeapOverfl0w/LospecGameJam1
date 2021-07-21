@@ -6,7 +6,7 @@ class Main
     this.data = new Data();
     this.data.load();
     this.ctx = ctx;
-    this.level = ApartmentLevel4.copy();
+    this.level = StreetsLevel1.copy();
     this.level.loadData(this.data);
 
     this.activeCutscene = this.data.introCutscene;

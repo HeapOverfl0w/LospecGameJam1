@@ -144,7 +144,11 @@ class Data {
             "stairs",
             "empty",
             "stairsup",
-            "grasstuft"
+            "grasstuft",
+            "bluesiding",
+            "bluesidingwindow",
+            "bluesidingopendoor",
+            "cobblestonetalldooropen"
         ];
     }
 

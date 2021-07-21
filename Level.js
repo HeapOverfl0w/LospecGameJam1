@@ -120,7 +120,8 @@ class Level
   }
 
   isDoor(x, y) {
-    return this.levelArray[x][y] == 5 || this.levelArray[x][y] == 7 || this.levelArray[x][y] == 73 || this.levelArray[x][y] == 34 || this.levelArray[x][y] == 78;
+    return this.levelArray[x][y] == 5 || this.levelArray[x][y] == 7 || this.levelArray[x][y] == 73 || this.levelArray[x][y] == 34 || this.levelArray[x][y] == 78 ||
+    this.levelArray[x][y] == 103 || this.levelArray[x][y] == 104 || this.levelArray[x][y] == 105 || this.levelArray[x][y] == 102;
   }
 
   isWall(x, y)
@@ -189,6 +190,14 @@ class Level
         return this.data.textures["stairs"];
       case 85:
         return this.data.textures["stairsup"];
+      case 102:
+        return this.data.textures["cobblestonetalldooropen"];
+      case 103:
+        return this.data.textures["cobblestonetalldooropen"];
+      case 104:
+        return this.data.textures["cobblestonetalldooropen"];
+      case 105:
+        return this.data.textures["cobblestonetalldooropen"];
       default:
         return undefined;
     }
