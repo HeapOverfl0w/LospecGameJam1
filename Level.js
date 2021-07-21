@@ -191,13 +191,23 @@ class Level
       case 85:
         return this.data.textures["stairsup"];
       case 102:
-        return this.data.textures["cobblestonetalldooropen"];
+        return this.data.textures["bluesidingopendoor"];
       case 103:
         return this.data.textures["cobblestonetalldooropen"];
       case 104:
         return this.data.textures["cobblestonetalldooropen"];
       case 105:
         return this.data.textures["cobblestonetalldooropen"];
+      case 95:
+        return this.data.textures["bluesiding"];
+      case 96:
+        return this.data.textures["bluesidingwindow"];
+      case 97:
+        return this.data.textures["cobblestonetallwindow"];
+      case 98:
+        return this.data.textures["cobblestonetallblockeddoor"];
+      case 99:
+        return this.data.textures["roadblocktall"];
       default:
         return undefined;
     }
