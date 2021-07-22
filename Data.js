@@ -160,7 +160,9 @@ class Data {
             "os2floppy",
             "os2floppyattack",
             "os2floppypowerup",
-            "greenslicesprojectile"
+            "greenslicesprojectile",
+            "treadmill",
+            "benchpress"
         ];
     }
 
