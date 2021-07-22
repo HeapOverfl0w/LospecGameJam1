@@ -69,6 +69,7 @@ class AudioHandler {
                 break;
             case "introtoc":
             case "fireaxe":
+            case "os2floppy":
                 this.playSpell();
                 break;
             case "screwdriver":
