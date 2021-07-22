@@ -15,6 +15,7 @@ class Camera
     this.weapons = [ defaultWeapon ];
     this.playerMaxHealth = 20;
     this.playerHealth = this.playerMaxHealth;
+    this.hudBoxImage = document.getElementById("hudbox");
   }
 
   stopAllWeaponAnimations() {
@@ -38,13 +39,15 @@ class Camera
   drawHUD(ctx) {
     let height = ctx.canvas.height;
     let width = ctx.canvas.width;
+
+    ctx.drawImage(this.hudBoxImage,8,height - 20);
     //draw health
     ctx.fillStyle = "#f63f4c";
-    ctx.fillText(Math.round(this.playerHealth / this.playerMaxHealth * 100) + "%", 10, height - 10);
+    ctx.fillText(Math.round(this.playerHealth / this.playerMaxHealth * 100) + "%", 18, height - 10);
     //draw ammo
     if (this.activeWeapon.isRanged) {
       ctx.fillStyle = "#37313b";
-      ctx.fillText(this.activeWeapon.magazineAmmo + " : " + this.activeWeapon.ammo, 35, height - 10);
+      ctx.fillText(this.activeWeapon.magazineAmmo + ":" + this.activeWeapon.ammo, 48, height - 10);
     }
 
     ctx.fillStyle = "#000000";
