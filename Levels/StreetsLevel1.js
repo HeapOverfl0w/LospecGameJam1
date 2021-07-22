@@ -97,7 +97,7 @@ true,
 {type:"ammo",x:2.5,y:20.5},{type:"ammo",x:34.5,y:1.5},{type:"ammo",x:34.5,y:8.5},
 {type:"health",x:1.5,y:20.5},{type:"health",x:30,y:40.5},{type:"health",x:52.5,y:80},{type:"health",x:52.5,y:109},{type:"health",x:22.5,y:43.5},{type:"health",x:1.5,y:43.5},
 {type:"ar",x:20,y:26.5},{type:"ar",x:35,y:52},{type:"ar",x:27.5,y:5.5},{type:"ar",x:9,y:55.5},
-{type:"pistol",x:4,y:16.2},{type:"pistol",x:9,y:55}],
+{type:"pistol",x:4,y:16.2},{type:"pistol",x:9,y:55},{type:"os2floppy",x:20.5,y:43.5}],
 [],
 [{type:"teleporttoazurecloud", x:41, y:84}]
 );

@@ -6,12 +6,12 @@ class Main
     this.data = new Data();
     this.data.load();
     this.ctx = ctx;
-    this.level = ApartmentLevel4.copy();
+    this.level = StreetsLevel1.copy();
     this.level.loadData(this.data);
 
     this.activeCutscene = this.data.introCutscene;
     //17, 67
-    this.camera = new Camera(2, 2, 0, Math.PI * (6/18), 6, this.data.weapons["screwDriver"]);
+    this.camera = new Camera(17, 67, 0, Math.PI * (6/18), 6, this.data.weapons["screwDriver"]);
     this.rayCaster = new RayCaster(20);
     this.FPS = 30;
     this.fpsCounter = 0;
@@ -38,11 +38,11 @@ class Main
         main.ctx.fillText("Play Time: " + Math.floor((timeinMS / (1000 * 60 * 60)) % 24) + " : " + Math.floor((timeinMS / (1000 * 60)) % 60) + " : " + Math.floor((timeinMS / 1000) % 60), 65, 70);
         let artifactsFound = 0;
         for (let w = 0; w < main.camera.weapons; w++) {
-          if (main.camera.weapons[w].name == "fireaxe" || main.camera.weapons[w].name == "introtoc") {
+          if (main.camera.weapons[w].name == "fireaxe" || main.camera.weapons[w].name == "introtoc" || main.camera.weapons[w].name == "os2floppy") {
             artifactsFound++;
           }
         }
-        main.ctx.fillText("Artifacts Found: " + artifactsFound + " / 2", 65, 80);
+        main.ctx.fillText("Artifacts Found: " + artifactsFound + " / 3", 65, 80);
       }
       main.activeCutscene.update();
       main.activeCutscene.draw(main.ctx);

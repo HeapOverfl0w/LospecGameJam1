@@ -155,7 +155,11 @@ class Data {
             "teleport",
             "car",
             "fortsign",
-            "apartmentrubble"
+            "apartmentrubble",
+            "os2floppy",
+            "os2floppyattack",
+            "os2floppypowerup",
+            "greenslicesprojectile"
         ];
     }
 
@@ -265,6 +269,10 @@ class Data {
         this.animations["teleport"] = new Animation(this.textures["teleport"], 32, 32, 3, 300, true);
         this.animations["car"] = new Animation(this.textures["car"], 69, 32, 3, 300, true);
         this.animations["fortsign"] = new Animation(this.textures["fortsign"], 39, 32, 1, 0, false);
+        this.animations["os2floppydefault"] = new Animation(this.textures["os2floppy"], 240,135,3,400, true);
+        this.animations["os2floppyattack"]  = new Animation(this.textures["os2floppyattack"],240,135,16,40, false);
+        this.animations["os2floppypowerup"] = new Animation(this.textures["os2floppypowerup"],16,16,4,200,true);
+        this.animations["greensliceprojectile"] = new Animation(this.textures["greenslicesprojectile"],16,16,2,100, true);
 
         //cutscene animations
         this.animations["intro_scene0"] = new Animation(this.textures["intro_scene0"], 240, 135, 5, 800, false);
@@ -326,6 +334,7 @@ class Data {
         this.projectiles["bulletprojectile"] = new Projectile(this.animations["bulletprojectile"], 0,0,0,0,0.5,25,1);
         this.projectiles["shotgunblast"] = new Projectile(this.animations["shotgunblast"],0,0,0,0,0.6,10,3);
         this.projectiles["darkblades"] = new Projectile(this.animations["darkblades"],0,0,0,0,0.2,7,2);
+        this.projectiles["greensliceprojectile"] = new Projectile(this.animations["greensliceprojectile"],0,0,0,0,0.2,3,4);
     }
 
     createPowerups() {
@@ -337,6 +346,7 @@ class Data {
         this.powerups["health"] = new Powerup("health", this.animations["healthpowerup"], 0, 0);
         this.powerups["shotgun"] = new Powerup("shotgun", this.animations["shotgunpowerup"], 0, 0);
         this.powerups["introtoc"] = new Powerup("introtoc", this.animations["introtocpowerup"], 0, 0);
+        this.powerups["os2floppy"] = new Powerup("os2floppy", this.animations["os2floppypowerup"], 0, 0);
     }
 
     createEnemies() {
@@ -380,6 +390,11 @@ class Data {
         this.weapons["introtoc"] = new Weapon("introtoc", 
         this.animations["defaultintrotoc"], this.animations["attackintrotoc"], this.animations["defaultintrotoc"],
         false, this.projectiles["darkblades"], 0);
+
+        //OS2Floppy
+        this.weapons["os2floppy"] = new Weapon("os2floppy", 
+        this.animations["os2floppydefault"], this.animations["os2floppyattack"], this.animations["os2floppydefault"],
+        false, this.projectiles["greensliceprojectile"], 0);
     }
 
     createCutscenes() {
