@@ -1,43 +1,44 @@
 class AudioHandler {
     constructor() {
+        const volume = 0.6;
         this.aggressormusic = document.getElementById("aggressormusic");
-        this.aggressormusic.volume = 0.8;
+        this.aggressormusic.volume = volume;
         this.lawabidingcitizenmusic = document.getElementById("lawabidingcitizenmusic");
-        this.lawabidingcitizenmusic.volume = 0.8;
+        this.lawabidingcitizenmusic.volume = volume;
         this.neuromancermusic = document.getElementById("neuromancermusic");
-        this.neuromancermusic.volume = 0.8;
+        this.neuromancermusic.volume = volume;
         this.rebelsmusic = document.getElementById("rebelsmusic");
-        this.rebelsmusic.volume = 0.8;
+        this.rebelsmusic.volume = volume;
 
         this.musicList = [this.aggressormusic, this.lawabidingcitizenmusic, this.neuromancermusic, this.rebelsmusic];
         this.currentSong = 0;
 
         this.darkmagic = document.getElementById("darkmagic");
-        this.darkmagic.volume = 0.8;
+        this.darkmagic.volume = volume;
         this.death = document.getElementById("death");
-        this.death.volume = 0.8;
+        this.death.volume = volume;
         this.developers = document.getElementById("developers");
-        this.developers.volume = 0.8;
+        this.developers.volume = volume;
         this.growl = document.getElementById("growl");
-        this.growl.volume = 0.8;
+        this.growl.volume = volume;
         this.heal = document.getElementById("heal");
-        this.heal.volume = 0.8;
+        this.heal.volume = volume;
         this.reload = document.getElementById("reload");
-        this.reload.volume = 0.8;
+        this.reload.volume = volume;
         this.shot = document.getElementById("shot");
-        this.shot.volume = 0.8;
+        this.shot.volume = volume;
         this.shotgunfire = document.getElementById("shotgunfire");
-        this.shotgunfire.volume = 0.8;
+        this.shotgunfire.volume = volume;
         this.spirit = document.getElementById("spirit");
-        this.spirit.volume = 0.8;
+        this.spirit.volume = volume;
         this.spell = document.getElementById("spell");
-        this.spell.volume = 0.8;
+        this.spell.volume = volume;
         this.drill = document.getElementById("drill");
-        this.drill.volume = 0.8;
+        this.drill.volume = volume;
         this.fire = document.getElementById("fire");
-        this.fire.volume = 0.8;
+        this.fire.volume = volume;
         this.pain = document.getElementById("pain");
-        this.pain.volume = 0.8;
+        this.pain.volume = volume;
     }
 
     toggleMute() {
