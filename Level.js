@@ -132,7 +132,7 @@ class Level
   }
 
   isPassable(x, y) {
-    return !this.isWall(x, y);
+    return !this.isWall(x, y) || this.isDoor(x,y);
   }
 
   wallTextureAt(x, y)

@@ -145,49 +145,50 @@ class Camera
       this.isStrafing = true;
     }
 
-    if (level.isDoor(Math.floor(adjustedX), Math.floor(adjustedY))) {
-      let previousXDiff = Math.abs(adjustedX - previousX);
-      let previousYDiff = Math.abs(adjustedY - previousY);
+    // if (level.isDoor(Math.floor(adjustedX), Math.floor(adjustedY))) {
+    //   let previousXDiff = Math.abs(adjustedX - previousX);
+    //   let previousYDiff = Math.abs(adjustedY - previousY);
 
-      if (previousXDiff > previousYDiff) {
-        if (adjustedX > previousX) {
-          actualX = this.x + 1;
-        }
-        else if (adjustedX < previousX) {
-          actualX = this.x - 1;
-        }
-      }
-      else {
-        if (adjustedY > previousY) {
-          actualY = this.y + 1;
-        }
-        else if (adjustedY < previousY) {
-          actualY = this.y - 1;
-        }
-      }
+    //   if (previousXDiff > previousYDiff) {
+    //     if (adjustedX > previousX) {
+    //       actualX = this.x + 1;
+    //     }
+    //     else if (adjustedX < previousX) {
+    //       actualX = this.x - 1;
+    //     }
+    //   }
+    //   else {
+    //     if (adjustedY > previousY) {
+    //       actualY = this.y + 1;
+    //     }
+    //     else if (adjustedY < previousY) {
+    //       actualY = this.y - 1;
+    //     }
+    //   }
 
-      //first check to see if we're in a wall
-      if (!level.isPassable(Math.floor(actualX), Math.floor(actualY) && !level.isDoor(Math.floor(actualX), Math.floor(actualY)))) {
-        if (level.isPassable(Math.floor(actualX + 1), Math.floor(actualY)))
-          actualX = actualX + 1;
-        else if (level.isPassable(Math.floor(actualX), Math.floor(actualY + 1)))
-          actualY = actualY + 1;
-        else if (level.isPassable(Math.floor(actualX + 1), Math.floor(actualY+1))) {
-          actualY = actualY + 1;
-          actualX = actualX + 1;
-        }
-        else if (level.isPassable(Math.floor(actualX), Math.floor(actualY-1))) {
-          actualY = actualY - 1;
-        }
-        else if (level.isPassable(Math.floor(actualX-1), Math.floor(actualY))) {
-          actualY = actualX - 1;
-        }
-        else if (level.isPassable(Math.floor(actualX-1), Math.floor(actualY-1))) {
-          actualY = actualY - 1;
-          actualX = actualX - 1;
-        }
-      }
-    }
+    //   //first check to see if we're in a wall
+    //   if (!level.isPassable(Math.floor(actualX), Math.floor(actualY))) {
+    //     if (level.isPassable(Math.floor(actualX + 1), Math.floor(actualY)))
+    //       actualX = actualX + 1;
+    //     else if (level.isPassable(Math.floor(actualX), Math.floor(actualY + 1)))
+    //       actualY = actualY + 1;
+    //     else if (level.isPassable(Math.floor(actualX + 1), Math.floor(actualY+1))) {
+    //       actualY = actualY + 1;
+    //       actualX = actualX + 1;
+    //     }
+    //     else if (level.isPassable(Math.floor(actualX), Math.floor(actualY-1))) {
+    //       actualY = actualY - 1;
+    //     }
+    //     else if (level.isPassable(Math.floor(actualX-1), Math.floor(actualY))) {
+    //       actualY = actualX - 1;
+    //     }
+    //     else if (level.isPassable(Math.floor(actualX-1), Math.floor(actualY-1))) {
+    //       actualY = actualY - 1;
+    //       actualX = actualX - 1;
+    //     }
+    //     console.log("Here");
+    //   }
+    // }
 
     this.x = actualX;
     this.y = actualY;
