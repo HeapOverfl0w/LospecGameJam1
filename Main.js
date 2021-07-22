@@ -6,16 +6,17 @@ class Main
     this.data = new Data();
     this.data.load();
     this.ctx = ctx;
-    this.level = ApartmentLevel4.copy();
+    this.level = StreetsLevel1.copy();
     this.level.loadData(this.data);
 
     this.activeCutscene = this.data.introCutscene;
     //17, 67
-    this.camera = new Camera(17, 67, 0, Math.PI * (6/18), 6, this.data.weapons["screwDriver"]);
+    this.camera = new Camera(2, 2, 0, Math.PI * (6/18), 6, this.data.weapons["screwDriver"]);
     this.rayCaster = new RayCaster(20);
     this.FPS = 30;
     this.fpsCounter = 0;
-    this.lastSecond = new Date().getTime();
+    this.startTime = Date.now();
+    this.endTime = 0;
 
     this.keysDown = [];
     this.mouseDown = false;
@@ -30,6 +31,19 @@ class Main
   {
     //render cutscene
     if (main.activeCutscene !== undefined) {
+      //render end game stats
+      if (main.activeCutscene == main.data.endGameCutscene && main.activeCutscene.isOver()) {
+        let timeinMS = main.endTime - main.startTime;
+        main.ctx.fillStyle = "#1d1c1f";
+        main.ctx.fillText("Play Time: " + Math.floor((timeinMS / (1000 * 60 * 60)) % 24) + " : " + Math.floor((timeinMS / (1000 * 60)) % 60) + " : " + Math.floor((timeinMS / 1000) % 60), 65, 70);
+        let artifactsFound = 0;
+        for (let w = 0; w < main.camera.weapons; w++) {
+          if (main.camera.weapons[w].name == "fireaxe" || main.camera.weapons[w].name == "introtoc") {
+            artifactsFound++;
+          }
+        }
+        main.ctx.fillText("Artifacts Found: " + artifactsFound + " / 2", 65, 80);
+      }
       main.activeCutscene.update();
       main.activeCutscene.draw(main.ctx);
       return;
@@ -72,6 +86,7 @@ class Main
         main.level.enemies[0].life <= 0 && !main.level.enemies[0].activeAnimation.isAnimating()) {
           main.activeCutscene = main.data.endGameCutscene;
           main.activeCutscene.restart();
+          main.endTime = Date.now();
         }
   }
 
@@ -134,6 +149,7 @@ class Main
   }
 
   restartGame() {
+    this.startTime = new Date().getTime();
     this.camera.stopAllWeaponAnimations();
     this.camera = new Camera(17, 67, 0, Math.PI * (6/18), 6, this.data.weapons["screwDriver"]);
     this.level = ApartmentLevel4.copy();

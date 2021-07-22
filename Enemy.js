@@ -16,7 +16,7 @@ class Enemy extends Billboard {
         this.isHit = false;
 
         this.maxViewRange = 20;
-        this.maxAttackRange = this.isRanged ? 11.5 : 2;
+        this.maxAttackRange = this.isRanged ? 12 : 2;
     }
 
     update(level, camera, data, audio, updateInterval) {
