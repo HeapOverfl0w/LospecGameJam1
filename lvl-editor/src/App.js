@@ -321,7 +321,8 @@ const textures = [
   "os2floppypowerup",
   "greenslicesprojectile",
   "treadmill",
-  "benchpress"
+  "benchpress",
+  "dumbells"
 ];
 
 function App() {

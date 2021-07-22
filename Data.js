@@ -164,7 +164,8 @@ class Data {
             "treadmill",
             "benchpress",
             "apartmentexitdoor",
-            "npc_melee_death"
+            "npc_melee_death",
+            "dumbells"
         ];
     }
 
@@ -280,7 +281,10 @@ class Data {
         this.animations["greensliceprojectile"] = new Animation(this.textures["greenslicesprojectile"],16,16,2,100, true);
         this.animations["apartmentexitdoor"] = new Animation(this.textures["apartmentexitdoor"],48,60,1,0,false);
         this.animations["enemymeleedeath"] = new Animation(this.textures["npc_melee_death"],32,32,5,300,false);
-
+        this.animations["treadmill"]  = new Animation(this.textures["treadmill"],32,48,1,0, false);
+        this.animations["benchpress"] = new Animation(this.textures["benchpress"],32,22,1,0,false);
+        this.animations["dumbells"] = new Animation(this.textures["dumbells"],32,16,1,0, false);
+        
         //cutscene animations
         this.animations["intro_scene0"] = new Animation(this.textures["intro_scene0"], 240, 135, 5, 800, false);
         this.animations["intro_scene1"] = new Animation(this.textures["intro_scene1"], 240, 135, 6, 800, false);
@@ -331,6 +335,9 @@ class Data {
         this.billboards["grass"] = new Billboard(this.animations["grasstuft"],0,0);
         this.billboards["car"] = new Billboard(this.animations["car"],0,0);
         this.billboards["fortsign"] = new Billboard(this.animations["fortsign"],0,0);
+        this.billboards["treadmill"] = new Billboard(this.animations["treadmill"],0,0);
+        this.billboards["benchpress"] = new Billboard(this.animations["benchpress"],0,0);
+        this.billboards["dumbells"] = new Billboard(this.animations["dumbells"],0,0);
     }
 
     createProjectiles() {
