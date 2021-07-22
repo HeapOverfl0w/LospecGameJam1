@@ -428,15 +428,13 @@ function App() {
 
     for (let i = 0; i < tiles.length; i++){
       let tr = [];
-      let br = [];
       for (let j = 0; j < tiles[i].length; j++) {
         tr.push(tiles[i][j]);
         if (billboards[i][j]) {
-          br.push({type: billboards[i][j], x: i, y: j});
+          b.push({type: billboards[i][j], x: i + .5, y: j + .5});
         }
       }
       t.push(tr);
-      b.push(br);
     }
 
     let element1 = document.createElement("a");
