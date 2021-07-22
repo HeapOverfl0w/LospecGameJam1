@@ -167,14 +167,24 @@ class Camera
       }
 
       //first check to see if we're in a wall
-      if (!level.isPassable(Math.floor(this.x), Math.floor(this.y) && !level.isDoor(Math.floor(this.x), Math.floor(this.y)))) {
-        if (level.isPassable(Math.floor(this.x + 1), Math.floor(this.y)))
-          actualX = this.x + 1;
-        else if (level.isPassable(Math.floor(this.x), Math.floor(this.y + 1)))
-          actualY = this.y + 1;
-        else if (level.isPassable(Math.floor(this.x + 1), Math.floor(this.y+1))) {
-          actualY = this.y + 1;
-          actualX = this.x + 1;
+      if (!level.isPassable(Math.floor(actualX), Math.floor(actualY) && !level.isDoor(Math.floor(actualX), Math.floor(actualY)))) {
+        if (level.isPassable(Math.floor(actualX + 1), Math.floor(actualY)))
+          actualX = actualX + 1;
+        else if (level.isPassable(Math.floor(actualX), Math.floor(actualY + 1)))
+          actualY = actualY + 1;
+        else if (level.isPassable(Math.floor(actualX + 1), Math.floor(actualY+1))) {
+          actualY = actualY + 1;
+          actualX = actualX + 1;
+        }
+        else if (level.isPassable(Math.floor(actualX), Math.floor(actualY-1))) {
+          actualY = actualY - 1;
+        }
+        else if (level.isPassable(Math.floor(actualX-1), Math.floor(actualY))) {
+          actualY = actualX - 1;
+        }
+        else if (level.isPassable(Math.floor(actualX-1), Math.floor(actualY-1))) {
+          actualY = actualY - 1;
+          actualX = actualX - 1;
         }
       }
     }
