@@ -162,7 +162,8 @@ class Data {
             "os2floppypowerup",
             "greenslicesprojectile",
             "treadmill",
-            "benchpress"
+            "benchpress",
+            "apartmentexitdoor"
         ];
     }
 
@@ -276,6 +277,7 @@ class Data {
         this.animations["os2floppyattack"]  = new Animation(this.textures["os2floppyattack"],240,135,16,40, false);
         this.animations["os2floppypowerup"] = new Animation(this.textures["os2floppypowerup"],16,16,4,200,true);
         this.animations["greensliceprojectile"] = new Animation(this.textures["greenslicesprojectile"],16,16,2,100, true);
+        this.animations["apartmentexitdoor"] = new Animation(this.textures["apartmentexitdoor"],48,60,1,0,false);
 
         //cutscene animations
         this.animations["intro_scene0"] = new Animation(this.textures["intro_scene0"], 240, 135, 5, 800, false);
@@ -298,7 +300,7 @@ class Data {
         this.teleports = {};
         this.teleports["apartmentlevel4down"] = new Teleport(this.animations["elevatordoors"],0,0,ApartmentLevel3,19.3,18.5);
         this.teleports["apartmentlevel3down"] = new Teleport(this.animations["elevatordoors"],0,0,ApartmentLevel1,19.3,18.5);
-        this.teleports["apartmentlevel1out"] = new Teleport(this.animations["elevatordoors"],0,0,StreetsLevel1,14.3,5.5);
+        this.teleports["apartmentlevel1out"] = new Teleport(this.animations["apartmentexitdoor"],0,0,StreetsLevel1,14.3,5.5);
         this.teleports["bossroomdoor"] = new Teleport(this.animations["bossroomdoor"],0,0,bossRoom,10,1.5);
         this.teleports["teleporttoazurecloud"] = new Teleport(this.animations["teleport"],0,0,azureCloudLevel,19,1.5);
     }
