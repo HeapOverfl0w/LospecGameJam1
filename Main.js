@@ -76,10 +76,10 @@ class Main
     main.fpsCounter++;
 
     //death check
-    // if (main.camera.playerHealth <= 0) {
-    //   main.activeCutscene = main.data.deathCutscene;
-    //   main.activeCutscene.restart();
-    // }
+    if (main.camera.playerHealth <= 0) {
+       main.activeCutscene = main.data.deathCutscene;
+       main.activeCutscene.restart();
+    }
 
     //win check
     if (main.level.enemies[0] != undefined && main.level.enemies[0].currentMode != undefined &&

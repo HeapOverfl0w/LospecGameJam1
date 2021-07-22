@@ -50,8 +50,8 @@ class Camera
       ctx.fillText(this.activeWeapon.magazineAmmo + ":" + this.activeWeapon.ammo, 48, height - 10);
     }
 
-    ctx.fillStyle = "#000000";
-    ctx.fillText((Math.round(this.x * 10) / 10) + "," + (Math.round(this.y * 10) / 10), width - 40, height - 10);
+    // ctx.fillStyle = "#000000";
+    // ctx.fillText((Math.round(this.x * 10) / 10) + "," + (Math.round(this.y * 10) / 10), width - 40, height - 10);
   }
 
   handleMouseDown(level, audio) {
