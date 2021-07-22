@@ -51,7 +51,7 @@ let ApartmentLevel1 = new Level (
       {"type":"computerdesk","x":13.5,"y":30.5},
       {"type":"computerdesk","x":13.5,"y":38.5},{"type":"computerdesk","x":13.5,"y":40.5},{"type":"computerdesk","x":13.5,"y":42.5},
       {"type":"deaddude","x":14.5,"y":33.5},{"type":"fridge","x":15.5,"y":16.5},{"type":"computerdesk","x":15.5,"y":26.5},
-      {"type":"computerdesk","x":15.5,"y":28.5},{"type":"computerdesk","x":15.5,"y":30.5},,{"type":"computerdesk","x":15.5,"y":38.5},{"type":"computerdesk","x":15.5,"y":40.5},
+      {"type":"computerdesk","x":15.5,"y":28.5},{"type":"computerdesk","x":15.5,"y":30.5},{"type":"computerdesk","x":15.5,"y":38.5},{"type":"computerdesk","x":15.5,"y":40.5},
       {"type":"computerdesk","x":15.5,"y":42.5},{"type":"deaddude","x":16.5,"y":33.5},{"type":"deaddude","x":18.5,"y":12.5},
       {"type":"elevatorbroken","x":18.5,"y":18.5},{"type":"elevatorbroken","x":18.5,"y":21.5},
       {"type":"elevatorbroken","x":18.5,"y":47.5},{"type":"elevatorbroken","x":18.5,"y":50.5},
