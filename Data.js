@@ -140,6 +140,7 @@ class Data {
             "guardshedwall",
             "guardshedcorner",
             "fence",
+            "lockeddoorwallpaper",
             "brokendoorwallpaper-2",
             "stairs",
             "empty",
