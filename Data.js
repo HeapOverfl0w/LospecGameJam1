@@ -333,7 +333,7 @@ class Data {
         this.projectiles["enemyshot"] = new Projectile(this.animations["enemyshot"], 0,0, 0,0, 0.5, 20, 1);
         this.projectiles["bulletprojectile"] = new Projectile(this.animations["bulletprojectile"], 0,0,0,0,0.5,25,1);
         this.projectiles["shotgunblast"] = new Projectile(this.animations["shotgunblast"],0,0,0,0,0.6,10,3);
-        this.projectiles["darkblades"] = new Projectile(this.animations["darkblades"],0,0,0,0,0.2,7,2);
+        this.projectiles["darkblades"] = new Projectile(this.animations["darkblades"],0,0,0,0,0.2,8,2);
         this.projectiles["greensliceprojectile"] = new Projectile(this.animations["greensliceprojectile"],0,0,0,0,0.2,3,4);
     }
 
