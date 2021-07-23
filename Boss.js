@@ -1,7 +1,7 @@
 class Boss extends Billboard {
     constructor(projectile, walkAnimation, attackAnimation, secondaryAttackAnimation, teleportAnimation, destroyAnimation, x, y) {
         super(walkAnimation, x, y);
-        this.maxLife = 80;
+        this.maxLife = 75;
         this.life = this.maxLife;
         
         this.projectile = projectile;
