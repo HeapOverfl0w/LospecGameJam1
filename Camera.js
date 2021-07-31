@@ -95,11 +95,6 @@ class Camera
       adjustedY = this.y + Math.cos(this.angle) * this.speed * modifier * updateInterval;
       actualX = adjustedX;
       actualY = adjustedY;
-      if (!level.isPassable(Math.floor(adjustedX), Math.floor(adjustedY)))
-      {
-        actualX = this.x;
-        actualY = this.y;
-      }
     }
     if (keyCode == 83)
     { //S
@@ -108,13 +103,6 @@ class Camera
       adjustedY = this.y - Math.cos(this.angle) * this.speed * modifier * updateInterval;
       actualX = adjustedX;
       actualY = adjustedY;
-      let floorAdjustedX = Math.floor(adjustedX);
-      let floorAdjustedY = Math.floor(adjustedY);
-      if (!level.isPassable(floorAdjustedX, floorAdjustedY))
-      {
-        actualX = this.x;
-        actualY = this.y;
-      }
     }
     if (keyCode == 65)
     { //A
@@ -122,12 +110,6 @@ class Camera
       adjustedY = this.y - Math.cos(this.angle + Math.PI/2) * this.speed * (0.4) * updateInterval;
       actualX = adjustedX;
       actualY = adjustedY;
-      let floorAdjustedX = Math.floor(adjustedX);
-      let floorAdjustedY = Math.floor(adjustedY);
-      if (!level.isPassable(floorAdjustedX, floorAdjustedY)) {
-        actualX = this.x;
-        actualY = this.y;
-      }
       this.isStrafing = true;
     }
     if (keyCode == 68)
@@ -136,13 +118,22 @@ class Camera
       adjustedY = this.y - Math.cos(this.angle - Math.PI/2) * this.speed * (0.4) * updateInterval;
       actualX = adjustedX;
       actualY = adjustedY;
-      let floorAdjustedX = Math.floor(adjustedX);
-      let floorAdjustedY = Math.floor(adjustedY);
-      if (!level.isPassable(floorAdjustedX, floorAdjustedY)) {
-        actualX = this.x;
-        actualY = this.y;
-      }
       this.isStrafing = true;
+    }
+
+    let floorAdjustedX = Math.floor(adjustedX);
+    let floorAdjustedY = Math.floor(adjustedY);
+    if (!level.isPassable(floorAdjustedX, floorAdjustedY)) {
+      actualX = this.x;
+      actualY = this.y;
+    }
+
+    if (level.isDoor(floorAdjustedX, floorAdjustedY))
+    {
+      let doorMoveX = (floorAdjustedX - Math.floor(previousX)) * 2;
+      let doorMoveY = (floorAdjustedY - Math.floor(previousY)) * 2;
+      actualX = adjustedX + doorMoveX;
+      actualY = adjustedY + doorMoveY;
     }
 
     // if (level.isDoor(Math.floor(adjustedX), Math.floor(adjustedY))) {

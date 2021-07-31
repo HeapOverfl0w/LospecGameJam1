@@ -38,8 +38,12 @@ class Enemy extends Billboard {
                 audio.playDeath();
                 this.activeAnimation = this.destroyAnimation;
                 //drop ammo
-                if (Math.random() < 0.15) {
+                let rand = Math.random();
+                if (rand < 0.15) {
                     level.powerups.push(data.powerups["ammo"].copy(this.x, this.y));
+                }
+                else if (rand < 0.2) {
+                    level.powerups.push(data.powerups["health"].copy(this.x, this.y));
                 }
             }
             return;
@@ -107,7 +111,6 @@ class Enemy extends Billboard {
             }
             this.activeAnimation = this.attackAnimation;
             this.activeAnimation.start();
-            //TODO: DETERMINE DAMAGE TO PLAYER
         }
     }
 
