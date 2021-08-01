@@ -37,7 +37,7 @@ class Main
         main.ctx.fillStyle = "#1d1c1f";
         main.ctx.fillText("Play Time: " + Math.floor((timeinMS / (1000 * 60 * 60)) % 24) + " : " + Math.floor((timeinMS / (1000 * 60)) % 60) + " : " + Math.floor((timeinMS / 1000) % 60), 65, 70);
         let artifactsFound = 0;
-        for (let w = 0; w < main.camera.weapons; w++) {
+        for (let w = 0; w < main.camera.weapons.length; w++) {
           if (main.camera.weapons[w].name == "fireaxe" || main.camera.weapons[w].name == "introtoc" || main.camera.weapons[w].name == "os2floppy") {
             artifactsFound++;
           }
